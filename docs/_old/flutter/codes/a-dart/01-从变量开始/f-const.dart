@@ -1,0 +1,4 @@
+void main() {
+  const PI = 3.14159;
+  print(PI);
+}
