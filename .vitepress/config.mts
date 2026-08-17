@@ -5,12 +5,12 @@ export default withMermaid({
   title: "前端开发与Vibe Coding",
   description: "前端开发与Vibe Coding",
   ignoreDeadLinks: true,
-  base: '/lesson-ai/',
+  base: '/lesson-front-end/',
   markdown: {
     math: true,
   },
   head: [
-    ['link', { rel: 'icon', href: '/lesson-ai/logo_icon.jpeg' }],
+    ['link', { rel: 'icon', href: '/lesson-front-end/logo_icon.jpeg' }],
   ],
   themeConfig: {
     sidebar: [
@@ -33,7 +33,7 @@ export default withMermaid({
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/hughxusu/lesson-ai' },
+      { icon: 'github', link: 'https://github.com/hughxusu/lesson-front-end' },
       { icon: 'bilibili', link: 'https://space.bilibili.com/94456974/upload/video' }
     ]
   }

@@ -1,6 +1,6 @@
 # 前端开发与Vibe Coding
 
-**本站网址** https://hughxusu.github.io/lesson-web/
+**本站网址** https://hughxusu.github.io/lesson-front-end/
 
 **[代码仓库](https://github.com/hughxusu/lesson-front-end)**
 
