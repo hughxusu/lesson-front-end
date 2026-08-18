@@ -22,6 +22,16 @@ export default withMermaid({
           { text: '搭建前端开发环境', link: '/docs/a-introduce/2-环境.md' },
         ]
       },
+      {
+        text: 'html',
+        collapsed: true,
+        items: [
+          { text: '认识HTML', link: '/docs/b-html/1-认识' },
+          { text: '基础HTML标签', link: '/docs/b-html/2-基础' },
+          { text: '高级HTML标签', link: '/docs/b-html/3-高级' },
+        ]
+      },
+
     ],
 
     outline: {
