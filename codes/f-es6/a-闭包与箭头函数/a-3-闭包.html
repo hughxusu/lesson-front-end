@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+</body>
+<script type="text/javascript">
+function makeCounter(init=0) {
+    let count = init
+    return function () {
+        count++
+        return count
+    }
+}
+let counter = makeCounter()
+console.log(counter());
+console.log(counter());
+console.log(counter());
+</script>
+</html>

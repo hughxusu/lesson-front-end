@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+</body>
+<script type="text/javascript">
+function multiplierFactory(factor) {
+	function multiplier(number) {
+		return number * factor
+	}
+
+	return multiplier
+}
+
+let double = multiplierFactory(2)
+console.log(double);
+console.log(double(5));
+let triple = multiplierFactory(3)
+console.log(triple(5));
+</script>
+</html>

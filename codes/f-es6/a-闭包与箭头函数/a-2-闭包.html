@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+</body>
+<script type="text/javascript">
+function multiplierFactory(factor) {
+	return function(number) {
+		return number * factor
+	}
+
+}
+
+let double = multiplierFactory(2)
+console.log(double(6));
+</script>
+</html>

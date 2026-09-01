@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+</body>
+<script>
+    // 全局变量
+    let pi = 3.1415926 
+
+    // 局部变量
+    function getAreaAndCircle(r) {
+        let area = pi * r * r 
+        let circle = 2 * pi * r
+        console.log(area);
+        console.log(pi);
+        return [area, circle]
+    }
+    let result = getAreaAndCircle(5)
+    console.log(pi);
+    // console.log(area);
+</script>
+</html>

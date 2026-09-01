@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .show {
+            width: 600px;
+            margin: 40px auto;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="show">
+        <img src="" width="600">
+    </div>
+</body>
+<script>   
+    function getRandom(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min
+    }
+
+    let path = 'https://raw.githubusercontent.com/hughxusu/lesson-web/develop/images/material/silder/'
+    let arr = ['naz1.jpg', 'naz2.jpg', 'naz3.jpg', 'naz4.jpg', 'naz5.jpg', 'naz6.jpg', 'naz7.jpg']
+    let randomIndex = getRandom(0, arr.length - 1)
+    let img = document.querySelector('img')
+    img.src = path + arr[randomIndex]
+    img.title = randomIndex
+</script>
+
+</html>

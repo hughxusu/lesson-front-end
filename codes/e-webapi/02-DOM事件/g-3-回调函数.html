@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+function superAdd(x, y, callback) {
+    return callback(x) + callback(y)
+}
+
+console.log(superAdd(2, -3, Math.sin));
+console.log(superAdd(2, 3, Math.abs));
+</script>
+
+</html>
