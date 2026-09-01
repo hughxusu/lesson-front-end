@@ -23,3 +23,7 @@
 * [菜鸟教程](https://www.runoob.com/)
 * [炼码编程](https://www.lintcode.com/problem/?typeId=8)
 * [W3Schools练习](https://www.w3ccoo.com/exercises/)
+
+### 素材下载
+
+[课程相关素材](https://pan.baidu.com/s/1vvaA9a7CJs_yUSLjEXvttA?pwd=5p6h )，提取码: 5p6h。

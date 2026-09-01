@@ -122,7 +122,7 @@ export default defineConfig({
     footer: {
       copyright: '徐夙 &copy; 2026 北方工业大学',
     },
-    
+
     socialLinks: [
       { icon: 'github', link: 'https://github.com/hughxusu/lesson-front-end' },
       { icon: 'bilibili', link: 'https://space.bilibili.com/94456974/upload/video' }
