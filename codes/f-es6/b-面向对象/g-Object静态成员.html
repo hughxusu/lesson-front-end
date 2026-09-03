@@ -22,9 +22,11 @@ function Item(desc, isDone) {
     }
 }
 
-let item1 = new Item('学习es6', false);
-document.body.appendChild(item1.getElement());
+let item = new Item('学习es6', false);
 
-let item2 = new Item('学习vue', true);
-document.body.appendChild(item2.getElement());
+let keys = Object.keys(item);
+console.log(keys);
+let values = Object.values(item);
+console.log(values);
+
 </script>

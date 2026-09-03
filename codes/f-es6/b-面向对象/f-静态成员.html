@@ -22,9 +22,15 @@ function Item(desc, isDone) {
     }
 }
 
-let item1 = new Item('学习es6', false);
-document.body.appendChild(item1.getElement());
+let item = new Item('学习es6', false);
+document.body.appendChild(item.getElement());
 
-let item2 = new Item('学习vue', true);
-document.body.appendChild(item2.getElement());
+Item.total = 0
+Item.addOne = function() {
+    this.total++
+}
+
+console.log(Item.total);
+Item.addOne()
+console.log(Item.total);
 </script>

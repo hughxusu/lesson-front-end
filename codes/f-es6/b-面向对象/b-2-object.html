@@ -11,10 +11,15 @@
 let item = new Object({
     desc: '学习es6',
     isDone: false,
-    show: function () {
-        status = this.isDone ? '✅' : '⭕️';
-        return status + ' ' + this.desc;
+    getElement: function () {
+        let div = document.createElement('div');
+        let checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.checked = this.isDone;
+        div.appendChild(checkbox);
+        div.appendChild(document.createTextNode(this.desc));
+        return div;
     }
 });
-console.log(item.show());
+document.body.appendChild(item.getElement());
 </script>
