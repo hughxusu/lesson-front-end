@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+</body>
+<script>
+let numbers = [10, 20, 30, 30, 50, 80, 90];
+
+let shortNumbers = numbers.filter(item => item < 50);
+console.log(shortNumbers);
+
+let first = numbers.find(item => item > 50);
+console.log(first);
+
+let firstIndex = numbers.findIndex(item => item > 50);
+console.log(firstIndex);
+</script>
+</html>
