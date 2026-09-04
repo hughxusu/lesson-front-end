@@ -239,16 +239,15 @@ btn.addEventListener('click', () => {
 let product = {
 	price: 299,
     getImage: function () {
-		console.log(`product.this`);
-		console.log(this);
-		window.setTimeout(function () {
-			console.log(`window.this`);
-			console.log(this);
-		}, 1000);
+      console.log(`product.this`);
+      console.log(this);
+      window.setTimeout(function () {
+        console.log(`window.this`);
+        console.log(this);
+      }, 1000);
     },
 }
 product.getImage()
-</script>
 ```
 
 * 使用箭头函数定义对象的方法
@@ -257,12 +256,12 @@ product.getImage()
 let product = {
 	price: 299,
     getImage: () => {
-		console.log(`product.this`);
-		console.log(this);
-		window.setTimeout(() => {
-			console.log(`window.this`);
-			console.log(this);
-		}, 1000);
+      console.log(`product.this`);
+      console.log(this);
+      window.setTimeout(() => {
+        console.log(`window.this`);
+        console.log(this);
+      }, 1000);
     },
 }
 product.getImage()

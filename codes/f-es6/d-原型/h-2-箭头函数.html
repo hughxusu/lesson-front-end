@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<body>
+</body>
+<script type="text/javascript">
+let product = {
+	price: 299,
+    getImage: () => {
+		console.log(`product.this`);
+		console.log(this);
+		window.setTimeout(() => {
+			console.log(`window.this`);
+			console.log(this);
+		}, 1000);
+    },
+}
+product.getImage()
+</script>
+</html>
