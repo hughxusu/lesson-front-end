@@ -163,9 +163,116 @@ result.forEach(item => {
 
 [正则对象的相关方法](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/RegExp)
 
+## 数据拷贝
+
+直接对变量进行赋值，数据指向相同的内存，修改一个变量导致副本同样被修改
+
+```js
+function Item(desc, isDone) {
+    this.desc = desc;
+    this.isDone = isDone;
+}
+
+let item = new Item('学习es6', false);
+let itemClone = item;
+
+itemClone.desc = '学习vue';
+console.log(itemClone);
+console.log(item);
+```
+
+<img src="./assets/Xnip2026-09-04_22-49-22.jpg" style="zoom:62%;" />
+
+### 浅拷贝
+
+只拷贝对象第一层的数据，使用`Object.assign`可以实现浅拷贝。
+
+```js
+function Item(desc, isDone) {
+    this.desc = desc;
+    this.isDone = isDone;
+}
+
+let item = new Item('学习es6', false);
+let itemClone = Object.assign(new Item(), item);
+
+itemClone.desc = '学习vue';
+console.log(itemClone);
+console.log(item);
+```
+
+`...`展开运算符也可以用浅拷贝。
+
+```js
+let one = [1, 2, 3];
+let two = [...one];
+two.push(4);
+console.log(one);
+console.log(two);
+```
+
+### 深拷贝
+
+当数据有对象嵌套时，第二层数据无法拷贝。
+
+```js
+let product = {
+    'name': '无线蓝牙耳机',
+    "price": 299,
+    brand: '小米'
+}
+
+let order = {
+    product: product,
+    num: 2,
+    discount: 0.9, 
+}
+
+console.log(order);
+
+let orderClone = Object.assign({}, order);
+orderClone.num = 10;
+console.log(orderClone);
+
+orderClone.product.name = '有线耳机';
+console.log(orderClone);
+console.log(order);
+```
+
+实现深拷贝的方法
+
+1. 手动实现递归函数。
+2. `structuredClone`，2022年后添加的API。
+
+```js
+let product = {
+    'name': '无线蓝牙耳机',
+    "price": 299,
+    brand: '小米'
+}
+
+let order = {
+    product: product,
+    num: 2,
+    discount: 0.9, 
+}
+
+let orderClone = structuredClone(order);
+orderClone.num = 10;
+
+orderClone.product.name = '有线耳机';
+console.log(orderClone);
+console.log(order);
+```
+
+> [!caution]
+>
+> 不能拷贝函数`Function`和DOM节点，尝试拷贝会抛出异常。 
+
 ## 练习
 
 1. 设计一个手机号和密码登陆的页面，用正则表达式验证输入是否合理。
+1. 使用JavaScript实现一个递归的深拷贝函数。
 
 
 
