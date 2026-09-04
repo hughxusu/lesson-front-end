@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+</body>
+<script>
+function Item(desc, isDone) {
+    this.desc = desc;
+    this.isDone = isDone;
+
+    this.getElement = function() {
+        let status = this.isDone ? '✅' : '❌';
+        let div = document.createElement('div');
+        div.appendChild(document.createTextNode(status + ' ' + this.desc));
+        return div;
+    }
+}
+
+Item.prototype.getElement = function() {
+    let div = document.createElement('div');
+    let checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.checked = this.isDone;
+    div.appendChild(checkbox);
+    div.appendChild(document.createTextNode(this.desc));
+    return div;
+}
+
+let item = new Item('学习es6', false);
+document.body.appendChild(item.getElement());
+
+</script>
