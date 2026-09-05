@@ -85,6 +85,8 @@ export default defineConfig({
           { text: '闭包与箭头函数', link: '/docs/d-js/c-es6/a-闭包' },  
           { text: '面向对象', link: '/docs/d-js/c-es6/b-对象' },
           { text: '内置对象进阶', link: '/docs/d-js/c-es6/c-内置' },
+          { text: '原型', link: '/docs/d-js/c-es6/d-原型' },
+          { text: '继承', link: '/docs/d-js/c-es6/e-继承' },
         ]
       },
       {
