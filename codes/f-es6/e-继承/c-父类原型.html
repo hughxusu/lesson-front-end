@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+</body>
+<script>
+function Item(desc, isDone) {
+    this.desc = desc;
+    this.isDone = isDone;
+}
+
+Item.prototype.getElement = function() {
+    let div = document.createElement('div');
+    let checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.checked = this.isDone;
+    div.appendChild(checkbox);
+    div.appendChild(document.createTextNode(this.desc));
+    return div;
+}
+
+function DeadlineItem(desc, isDone, deadline) {
+    Item.call(this, desc, isDone);
+    this.deadline = deadline;
+}
+
+DeadlineItem.prototype = new Item();
+DeadlineItem.prototype.constructor = DeadlineItem;
+
+DeadlineItem.prototype.getElement = function () {
+    let div = Item.prototype.getElement.call(this);
+    div.appendChild(document.createTextNode(' 截止日期：' + this.deadline));
+    return div;
+}
+
+item = new DeadlineItem('学习es6', false, '2023-01-01');
+console.log(item.__proto__);
+console.log(item.__proto__.__proto__);
+console.log(item.__proto__.__proto__.__proto__);
+console.log(item.__proto__.__proto__.__proto__.__proto__);
+</script>

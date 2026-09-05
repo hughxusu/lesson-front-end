@@ -29,11 +29,14 @@ function DeadlineItem(desc, isDone, deadline) {
 }
 
 DeadlineItem.prototype = new Item();
-console.log(DeadlineItem.prototype.constructor);
 DeadlineItem.prototype.constructor = DeadlineItem;
-console.log(DeadlineItem.prototype.constructor);
+
+DeadlineItem.prototype.getElement = function () {
+    let div = Item.prototype.getElement.call(this);
+    div.appendChild(document.createTextNode(' 截止日期：' + this.deadline));
+    return div;
+}
 
 item = new DeadlineItem('学习es6', false, '2023-01-01');
 document.body.appendChild(item.getElement());
-
 </script>

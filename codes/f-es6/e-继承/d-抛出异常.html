@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+</body>
+<script>
+function addTwoArr(arr1, arr2) {
+    if (!Array.isArray(arr1) || !Array.isArray(arr2)) {
+        throw new Error('参数必须是数组');
+    }
+
+    if (arr1.length !== arr2.length) {
+        throw new Error('数组长度必须相同');
+    }
+
+    let res = [];
+    for (let i = 0; i < arr1.length; i++) {
+        res.push(arr1[i] + arr2[i]);
+    }
+    return res;
+}
+
+let arr1 = [1, 2, 3];
+let arr2 = [4, 5, 6, 7];
+console.log(addTwoArr(arr1, arr2));
+</script>
