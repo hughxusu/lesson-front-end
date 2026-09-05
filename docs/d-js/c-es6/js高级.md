@@ -233,32 +233,6 @@ async function getNews() {
 }
 ```
 
-#### `Class`
-
-```javascript
-class Person {
-    constructor(name, age){ // 调用类的构造方法
-        this.name = name;
-        this.age = age;
-    }
-    
-    showName() { // 定义一般的方法
-        console.log(this.name, this.age);
-    }
-}
-
-class StrPerson extends Person { // 定义一个子类
-    constructor(name, age, salary) { 
-        super(name, age); // 调用父类的构造方法
-        this.salary = salary;
-    }
-  
-    showName() { // 在子类自身定义方法
-        console.log(this.name, this.age, this.salary);
-    }
-}
-```
-
 ### ES7
 
 ```javascript
