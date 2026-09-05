@@ -87,29 +87,30 @@ export default defineConfig({
           { text: '内置对象进阶', link: '/docs/d-js/c-es6/c-内置' },
           { text: '原型', link: '/docs/d-js/c-es6/d-原型' },
           { text: '继承', link: '/docs/d-js/c-es6/e-继承' },
+          { text: 'class关键字', link: '/docs/d-js/c-es6/f-class' },
         ]
       },
-      {
-        text: 'node.js',
-        collapsed: true,
-        items: [
-          { text: 'node.js安装', link: '/docs/e-node/a-node.md' }, 
-        ]
-      },
-      {
-        text: 'typescript',
-        collapsed: true,
-        items: [
+      // {
+      //   text: 'node.js',
+      //   collapsed: true,
+      //   items: [
+      //     { text: 'node.js安装', link: '/docs/e-node/a-node.md' }, 
+      //   ]
+      // },
+      // {
+      //   text: 'typescript',
+      //   collapsed: true,
+      //   items: [
 
-        ]
-      },
-      {
-        text: 'Vue',
-        collapsed: true,
-        items: [
+      //   ]
+      // },
+      // {
+      //   text: 'Vue',
+      //   collapsed: true,
+      //   items: [
 
-        ]
-      },
+      //   ]
+      // },
       // {
       //   text: '微信小程序',
       //   collapsed: true,
