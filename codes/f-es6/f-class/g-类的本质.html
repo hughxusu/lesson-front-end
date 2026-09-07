@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+</body>
+<script>
+class Item {
+    constructor(desc, isDone=false) {
+        this.desc = desc;
+        this.isDone = isDone;
+    }
+}
+
+console.log(`Item 类型是：${typeof Item}`);
+console.log(`Item 类的原型是：`);
+console.log(Item.prototype);
+
+let item = new Item('学习vue');
+console.log(`item 类型是：${typeof item}`);
+console.log(`item 实例的原型是：`);
+console.log(item.__proto__);
+
+console.log(`item 实例的原型是否是 Item 类的原型：`);
+console.log(item.__proto__ === Item.prototype);
+</script>

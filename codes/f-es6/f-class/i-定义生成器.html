@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+</body>
+<script>
+function * generator() {
+    console.log('开始生成');
+    yield 'hello';
+    console.log('生成 1');
+    yield 'world';
+}
+
+let gen = generator();
+console.log(gen);
+console.log(`gen 是一个 ${typeof gen}`);
+console.log(gen.next());
+console.log(gen.next());
+
+console.log('生成器结束');
+console.log(gen.next());
+</script>

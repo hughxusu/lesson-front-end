@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+</body>
+<script>
+class Item {
+    constructor(desc, isDone=false) {
+        this.desc = desc;
+        this.isDone = isDone;
+    }
+
+    getElement() {
+        let div = document.createElement('div');
+        let checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.checked = this.isDone;
+        div.appendChild(checkbox);
+        div.appendChild(document.createTextNode(this.desc));
+        return div;
+    }
+}
+
+class DeadlineItem extends Item {
+    constructor(desc, deadline, isDone=false) {
+        super(desc, isDone);
+        this.deadline = deadline;
+    }
+
+    getElement() {
+        let div = super.getElement();
+        div.appendChild(document.createTextNode(' 截止日期：' + this.deadline));
+        return div;
+    }
+}
+
+let deadlineItem = new DeadlineItem('学习es6', '2023-01-01');
+document.body.appendChild(deadlineItem.getElement());
+
+let item = new Item('学习vue');
+document.body.appendChild(item.getElement());
+</script>

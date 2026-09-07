@@ -137,52 +137,6 @@ let symbol2 = Symbol('two');
 const Person_key = Symbol('(Person_key')
 ```
 
-#### 迭代器与生成器
-
-迭代器（Iterator）主要供`for ... of`进行遍历。
-
-* `for ... in ...` 以原始插入顺序迭代对象的可枚举属性。
-* `for ... of ...` 根据可迭代对象的迭代器具体实现迭代对象的数据。
-
-原生具备iterator接口的数据：Array、arguments、set容器、map容、String。使用解构赋值以及三点运算符时会默认调用iterator接口。
-
-```javascript
-let arr3 = [1, 2, 'kobe', true];
-for(let i of arr3) { // 迭代器遍历
-    console.log(i);
-}
-```
-
-生成器（Generator）函数是一个状态机，内部封装了不同状态的数据，function与函数名之间有一个星号，内部用yield表达式来定义不同的状态。generator函数返回的是指针对象，调用next方法函数内部逻辑开始执行，遇到yield表达式停止，返回`{value: yield/undefined, done: false/true}`。
-
-```javascript
-// 定义Generator函数
-function* generatorTest() {
-    console.log('函数开始执行');
-    result = yield 'hello';
-    console.log('函数暂停后再次启动');
-    yield 'generator';
-}
-// 生成遍历器对象
-let Gt = generatorTest();
-let result = Gt.next(); // 函数执行，遇到yield暂停，{value: "hello", done: false}
-result = Gt.next('input'); // 函数再次启动，并传入返回值用result接收
-result = Gt.next();
-console.log(result); // {value: undefined, done: true} 表示函数内部状态已经遍历完毕
-
-// 对象的Symbol.iterator属性;
-let myIterable = {};
-myIterable[Symbol.iterator] = function* () {
-    yield 1;
-    yield 2;
-    yield 4;
-};
-for(let i of myIterable) {
-    console.log(i);
-}
-let obj = [...myIterable];
-```
-
 #### async
 
 解决异步回调的问题，同步流程表达异步操作。本质是 Generator的语法糖。

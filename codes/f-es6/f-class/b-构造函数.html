@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+</body>
+<script>
+class Item {
+    constructor(desc, isDone=false) {
+        this.desc = desc;
+        this.isDone = isDone;
+    }
+}
+
+let item1 = new Item('学习es6');
+console.log(item1);
+let item2 = new Item('学习vue', true);
+console.log(item2);
+</script>

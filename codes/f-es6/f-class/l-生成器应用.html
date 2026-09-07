@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+</body>
+<script>
+function * fibonacci(num) {
+    let a = 0;
+    let b = 1;
+    while (num-- > 0) {
+        yield a;
+        [a, b] = [b, a + b];
+    }
+}
+
+let fib = fibonacci(10);
+for (let i of fib) {
+    console.log(i);
+}
+
+</script>
