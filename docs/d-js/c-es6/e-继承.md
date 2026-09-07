@@ -193,7 +193,7 @@ try {
 
 ## 练习
 
-1. 实现一个叫做Dog的类和一个叫做Animal的类：
+1. 使用构造函数，实现一个叫做Dog的类和一个叫做Animal的类：
    * Dog类继承自Animal类
    * 在Animal中实现一个show_species的类方法，打印出当前父类或者子类的species属性，像这样： It's dog!
    * 在 Dog类中实现一个barking的方法，打印出类似这样的句子"Brown Pug is barking!"，其中Brown是这条狗的颜色，Pug 是狗的品种。

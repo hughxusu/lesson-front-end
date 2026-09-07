@@ -292,5 +292,32 @@ for (let i of fib) {
 }
 ```
 
+## ES7语法
 
+JavaScript的语法一直在升级，总有新的语法特征加入，不需要掌握全部语法现象，掌握常用的语法即可。
+
+* 指数运算符
+
+```js
+console.log(3 ** 3);
+```
+
+* 判断数组中是否包含指定value
+
+```js
+let arr = [1, 2, 3, 4, 5];
+console.log(arr.includes(2)); 
+```
+
+## 练习
+
+1. 使用`class`，实现一个叫做Dog的类和一个叫做Animal的类：
+
+   * Dog类继承自Animal类
+
+   * 在Animal中实现一个show_species的类方法，打印出当前父类或者子类的species属性，像这样： It's dog!
+
+   * 在 Dog类中实现一个barking的方法，打印出类似这样的句子"Brown Pug is barking!"，其中Brown是这条狗的颜色，Pug 是狗的品种。
+
+   * 可以在Animal的构造函数中看到颜色和品种是如何被初始化的。
 
