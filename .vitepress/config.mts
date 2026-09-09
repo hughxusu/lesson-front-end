@@ -90,6 +90,13 @@ export default withMermaid({
           { text: 'class关键字', link: '/docs/d-js/c-es6/f-class' },
         ]
       },
+      {
+        text: '网络请求',
+        collapsed: true,
+        items: [
+          { text: '网络请求的基本知识', link: '/docs/d-js/d-ajax/a-基础' }, 
+        ]
+      },
       // {
       //   text: 'node.js',
       //   collapsed: true,
