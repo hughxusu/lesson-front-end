@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">发送get请求</button>
+    <div id="result"></div>
+</body>
+<script>
+    let btn = document.querySelector('#btn');
+    let result = document.querySelector('#result');
+    btn.addEventListener('click', function() {
+        let xhr = new XMLHttpRequest();
+        xhr.open('GET', 'https://dummyjson.com/users');
+        xhr.send();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                result.innerHTML = this.responseText;
+            }
+        }
+    })
+</script>

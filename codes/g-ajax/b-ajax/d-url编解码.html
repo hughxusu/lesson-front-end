@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h2>编码：</h2>
+        <span>编码前：张三</span>
+        <span >编码后：</span>
+        <span class="encoded"></span>
+    </div>
+    <div>
+        <h2>解码：</h2>
+        <span >解码前：</span>
+        <span class="encoded"></span>
+        <span >解码后：</span>
+        <span class="decoded"></span>
+    </div>
+
+</body>
+<script>
+let encoded = encodeURIComponent('张三');
+let decoded = decodeURIComponent(encoded);
+document.querySelectorAll('.encoded')[0].innerHTML = encoded;
+document.querySelectorAll('.encoded')[1].innerHTML = encoded;
+document.querySelector('.decoded').innerHTML = decoded;
+</script>
