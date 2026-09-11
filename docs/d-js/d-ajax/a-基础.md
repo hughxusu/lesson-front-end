@@ -98,8 +98,30 @@ flowchart TB
 
 ### 使用Restfox
 
-[DummyJSON](https://dummyjson.com/)是一个免费的接口测试网站，可以用于接口测试。
+几个免费的接口API，可以用于接口测试。
+
+| 名称                                                        | 介绍                                                   |
+| ----------------------------------------------------------- | ------------------------------------------------------ |
+| [{JSON} Placeholder](https://jsonplaceholder.typicode.com/) | 简单的API练习接口                                      |
+| [ReqRes](https://reqres.in/)                                | 简单接口测试                                           |
+| [DummyJSON](https://dummyjson.com/)                         | 全套假数据接口，接近真实电商和后台系统的业务数据结构。 |
+| [Fake Store API](http://fakestoreapi.com/)                  | 专为真实购物网站设计的模拟API                          |
+| [Open Trivia Database](https://opentdb.com/)                | 随机问答题库                                           |
+| [一言](https://developer.hitokoto.cn/)                      | 随机名言诗词                                           |
+| [Platzi Fake Store API](https://fakeapi.platzi.com/)        | 电商模拟接口                                           |
+| [RandomUser](https://randomuser.me/)                        | 专业生成假用户信息的API                                |
+| [REST Countries](https://restcountries.com/)                | 包含全球所有国家和地区的详细地理信息                   |
+| [Frankfurter](https://frankfurter.dev/)                     | 汇率转换API                                            |
+| [Open-Meteo](https://open-meteo.com/)                       | 完全免费开源的气象API                                  |
+| [PokeAPI](https://pokeapi.co/)                              | 收录了全套宝可梦的属性、技能、图片等信息               |
+| [Dog API](https://dog.ceo/dog-api/)                         | 返回随机狗图片的URL                                    |
+| [Cat Facts](https://catfact.ninja/#/)                       | 随机返回一条关于猫咪的冷知识                           |
 
 测试一个`get`请求
 
 <img src="./assets/Xnip2026-09-10_15-01-48.jpg" style="zoom:80%;" />
+
+测试一个`post`请求
+
+<img src="./assets/Xnip2026-09-11_10-14-03.jpg" style="zoom:80%;" />
+
