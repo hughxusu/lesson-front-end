@@ -138,6 +138,17 @@ flowchart TB
 
 <img src="./assets/Xnip2026-09-11_10-14-03.jpg" style="zoom:80%;" />
 
+### 接口文档
+
+说明接口调用方式和返回数据格式的文档，文档包括：
+
+* 请求URL。
+* 调用方式`post`或`get`等。
+* 参数格式。
+* 响应格式。
+
+[Cat Fact API](https://catfact.ninja/#/MCP) Swagger接口文档。
+
 ## 数据交换格式
 
 数据交换格式，是指浏览器与服务器传递数据的格式，这里的数据主要是指，电商、天气等文本信息。前度常见的数据交互格式是XML和JSON。
