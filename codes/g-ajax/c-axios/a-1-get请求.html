@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/1.18.1/axios.min.js"></script>
+</head>
+<body>
+    <button id="btn">发送get请求</button>
+</body>
+<script>
+    let btn = document.querySelector('#btn');
+    let result = document.querySelector('#result');
+    btn.addEventListener('click', function() {
+        axios.get('https://dummyjson.com/users').then(function(response) {
+            console.log(response);
+            console.log(response.data);
+        })
+    })
+</script>
+</html>
