@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户登录</title>
+    <style>
+
+    </style>
+</head>
+<body>
+  <input type="file" id="file-input" />
+  <br />
+  <button id="btn">上传文件</button>
+  <br />
+  <a href="" id="link" target="_blank" style="display: none;">查看图片</a>
+</body>
+<script>
+    let btn = document.querySelector('#btn');
+    btn.addEventListener('click', function() {
+        let files = document.querySelector('#file-input').files;
+        if (files.length <= 0) {
+            alert('请选择文件');
+            return;
+        }
+
+        let file = files[0];
+        console.log(file);
+        let formData = new FormData();
+        formData.append('file', file);
+        let xhr = new XMLHttpRequest();
+        xhr.open('POST', 'https://api.escuelajs.co/api/v1/files/upload');
+        xhr.send(formData);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 201) {
+                let res = JSON.parse(this.responseText);
+                document.querySelector('#link').href = res.location;
+                document.querySelector('#link').style.display = 'block';
+            }
+        }
+    })
+</script>
+</html>

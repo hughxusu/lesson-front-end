@@ -328,7 +328,84 @@ loginForm.addEventListener('submit', function(e) {
 
 ### 上传文件
 
-### 显示传输进度
+[文件上传接口](https://fakeapi.platzi.com/en/rest/files/)：可以使用Restfox测试文件上传接口。
+
+1. 上传文件时，`<input>`的类型是文件选择器
+
+```html
+<body>
+  <input type="file" id="file-input" />
+  <br />
+  <button id="btn">上传文件</button>
+  <br />
+  <a href="" id="link" target="_blank" style="display: none;">查看图片</a>
+</body>
+```
+
+2. `<input>`可以同时添加多个文件
+
+```js
+let files = document.querySelector('#file-input').files;
+if (files.length <= 0) {
+    alert('请选择文件');
+    return;
+}
+```
+
+* `<input>`节点对象中，`files`表示选择文件的数组。
+
+3. 从`files`数组中可以读取二进制文件。
+
+```js
+let file = files[0];
+console.log(file);
+```
+
+* 这里的`file`是一个二进制文件对象，包含了文件的基本信息。
+
+4. 创建`FormData`对象用于文件上传。
+
+```js
+let formData = new FormData();
+formData.append('file', file);
+```
+
+* `file`表单域名称，值是二进制文件。
+
+5. 上传文件
+
+```js
+let xhr = new XMLHttpRequest();
+xhr.open('POST', 'https://api.escuelajs.co/api/v1/files/upload');
+xhr.send(formData);
+xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4 && xhr.status === 201) {
+        let res = JSON.parse(this.responseText);
+        document.querySelector('#link').href = res.location;
+        document.querySelector('#link').style.display = 'block';
+    }
+}
+```
+
+* 这里上传成功，返回的状态码是`201`。
+
+### 文件传输进度
+
+通过监听`xhr.upload.onprogress`事件，来获取到文件的上传进度。
+
+```js
+let xhr = new XMLHttpRequest();
+xhr.upload.addEventListener('progress', function(e) {
+    if (e.lengthComputable) {
+        let progress = e.loaded / e.total;
+        document.querySelector('#progress').textContent = (progress * 100).toFixed(2) + '%';
+    }
+})
+```
+
+* `e.lengthComputable`布尔值，表示当前上传的资源是否具有可计算的长度。
+* `e.loaded`已传输的字节。
+* `e.total`需传输的总字节。
 
 ## Fetch API
 
