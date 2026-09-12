@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <button id="btn">发送get请求</button>
+    <button id="btn">发送post请求</button>
     <div id="result"></div>
 </body>
 <script>
@@ -14,8 +14,9 @@
     let result = document.querySelector('#result');
     btn.addEventListener('click', function() {
         let xhr = new XMLHttpRequest();
-        xhr.open('GET', 'https://dummyjson.com/users');
-        xhr.send();
+        xhr.open('POST', 'https://dummyjson.com/user/login');
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send('username=emilys&password=emilyspass');
         xhr.onreadystatechange = function() {
             if (xhr.readyState === 4 && xhr.status === 200) {
                 result.innerHTML = this.responseText;

@@ -14,7 +14,12 @@
     let result = document.querySelector('#result');
     btn.addEventListener('click', function() {
         let xhr = new XMLHttpRequest();
-        xhr.open('GET', 'https://dummyjson.com/users');
+        xhr.timeout = 30;
+        xhr.ontimeout = function() {
+            result.innerHTML = '请求超时';
+        };
+
+        xhr.open('GET', 'https://dummyjson.com/users/1');
         xhr.send();
         xhr.onreadystatechange = function() {
             if (xhr.readyState === 4 && xhr.status === 200) {

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户登录</title>
+    <style>
+
+    </style>
+</head>
+<body>
+<h2>用户登录</h2>
+<form id="loginForm">
+    <input type="text" id="username" name="username" placeholder="请输入用户名" value="emilys"> <br>
+    <input type="password" id="password" name="password" placeholder="请输入密码" value="emilyspass"> <br>
+    <button type="submit">登录</button>
+</form>
+<div id="result"></div> 
+</body>
+<script>
+    let loginForm = document.querySelector('#loginForm');
+    loginForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        let username = document.querySelector('#username').value;
+        let password = document.querySelector('#password').value;
+        let formData = new FormData(this);
+        let xhr = new XMLHttpRequest();
+        xhr.open('POST', 'https://dummyjson.com/user/login');
+        xhr.send(formData);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                document.querySelector('#result').innerHTML = this.responseText;
+            }
+        }
+    })
+</script>
