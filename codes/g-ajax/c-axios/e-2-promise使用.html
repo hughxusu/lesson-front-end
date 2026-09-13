@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/1.18.1/axios.min.js"></script>
+</head>
+<body>
+    <div><span>第一步操作</span>: <span id="first"></span></div>
+    <div><span>第二步操作</span>: <span id="second"></span></div>
+    <div><span>第三步操作</span>: <span id="third"></span></div>
+    <button id="btn">开始操作</button>
+</body>
+<script>
+let btn = document.querySelector('#btn');
+let first = document.querySelector('#first');
+let second = document.querySelector('#second');
+let third = document.querySelector('#third');
+btn.addEventListener('click', function() {
+    axios.get('https://dummyjson.com/products/1').then(function(response) {
+        first.innerHTML = response.data.title;
+        return axios.get('https://dummyjson.com/products/2');
+    }).then(function(response) {
+        second.innerHTML = response.data.title;
+        return axios.get('https://dummyjson.com/products/3');
+    }).then(function(response) {
+        third.innerHTML = response.data.title;
+    })
+})
+</script>
+</html>

@@ -407,6 +407,10 @@ xhr.upload.addEventListener('progress', function(e) {
 * `e.loaded`已传输的字节。
 * `e.total`需传输的总字节。
 
+使用Chrome控制网络传输的进度
+
+<img src="./assets/Xnip2026-09-12_21-20-31.jpg" style="zoom:50%;" />
+
 ## Fetch API
 
 Fetch API 是WebAPI新添加的原生函数，但老版本浏览器不支持。[Fetch API说明文档](https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API)

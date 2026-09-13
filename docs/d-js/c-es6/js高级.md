@@ -1,38 +1,5 @@
 # js高级
 
-
-
-## Json对象
-
-```javascript
-var json = '{"name":"孙悟空","age":18,"gender":"男"}';
-var arr ='[{"name":"孙悟空","age":18,"gender":"男"},{"name":"孙悟空","age":18,"gender":"男"}]';
-
-// 可以将以JSON字符串转换为js对象
-var obj = JSON.parse(json);
-var list = JSON.parse(arr);
-
-var obj3 = {name:"猪八戒" , age:28 , gender:"男"};
-
-// JS对象转换为JSON字符串
-var str = JSON.stringify(obj3);
-```
-
-### eval处理Json对象
-
-```javascript
-var str = '{"name":"孙悟空","age":18,"gender":"男"}';
-
-/*
- * eval()
- * - 这个函数可以用来执行一段字符串形式的JS代码，并将执行结果返回
- * - 如果使用eval()执行的字符串中含有{},它会将{}当成是代码块
- * 	 如果不希望将其当成代码块解析，则需要在字符串前后各加一个()
- * - 字符串转换为对象
- */
-var obj = eval("(" + str + ")");
-```
-
 # ES规范
 
 ## ES6+
@@ -185,17 +152,6 @@ async function getNews() {
   // 再次请求评论，会等待第一次请求完成
   result = await sendXml('http://localhost:3000' + result.commentsUrl)
 }
-```
-
-### ES7
-
-```javascript
-// 指数运算符(幂)
-console.log(3 ** 3);//27
-
-// 判断数组中是否包含指定value
-let arr = [1,2,3,4, 'abc'];
-console.log(arr.includes(2)); // true
 ```
 
 #### 修饰符

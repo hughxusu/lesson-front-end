@@ -191,6 +191,21 @@ try {
 }
 ```
 
+使用`finally`无论发是否发生异常代码都会被执行
+
+```js
+let arr1 = [1, 2, 3];
+let arr2 = [4, 5, 6, 7];
+
+try {
+    console.log(addTwoArr(arr1, arr2));
+} catch (error) {
+    console.log(error.message);
+} finally {
+    console.log('finally');
+}
+```
+
 ## 练习
 
 1. 使用构造函数，实现一个叫做Dog的类和一个叫做Animal的类：

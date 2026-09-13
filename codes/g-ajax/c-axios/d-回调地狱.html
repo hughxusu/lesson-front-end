@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div><span>第一步操作</span>: <span id="first"></span></div>
+    <div><span>第二步操作</span>: <span id="second"></span></div>
+    <div><span>第三步操作</span>: <span id="third"></span></div>
+    <button id="btn">开始操作</button>
+</body>
+<script>
+let first = document.querySelector('#first');
+let second = document.querySelector('#second');
+let third = document.querySelector('#third');
+let btn = document.querySelector('#btn');
+
+btn.addEventListener('click', function() {
+    first.innerHTML = '第一步操作完成';
+    setTimeout(function() {
+        second.innerHTML = '第二步操作完成';
+        setTimeout(function() {
+            third.innerHTML = '第三步操作完成';
+        }, 1000);
+    }, 1000);
+}, 1000);
+</script>
+</html>
