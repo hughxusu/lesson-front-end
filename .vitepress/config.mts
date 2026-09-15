@@ -97,6 +97,7 @@ export default withMermaid({
           { text: '网络请求的基本知识', link: '/docs/d-js/d-ajax/a-基础' }, 
           { text: 'Ajax', link: '/docs/d-js/d-ajax/b-ajax' }, 
           { text: 'Axios', link: '/docs/d-js/d-ajax/c-axios' }, 
+          { text: '网络交互的注意事项', link: '/docs/d-js/d-ajax/d-注意' }, 
         ]
       },
       // {
