@@ -121,11 +121,11 @@ let hello = 'hello world'
 
 > [!caution]
 >
-> 无论是变量和函数都应该先定义，后使用。
+> 无论是变量和函数都应该，先定义后使用。
 
 ## 剩余参数
 
-使用`...`符合可以在函数中打包参数。
+`...`符号，可以在函数中打包参数。
 
 ```js
 function getSum (...a) {
@@ -163,6 +163,7 @@ console.log(getValues(1, 2, 3, 4));
 let trapezoidArea = (top, bottom, height) => {
     return (top + bottom) * height / 2;
 }
+console.log(typeof trapezoidArea);
 
 let result = trapezoidArea(2, 3, 4);
 console.log(result);
