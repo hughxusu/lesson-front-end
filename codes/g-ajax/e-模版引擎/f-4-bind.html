@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+    <script defer src="https://cdn.bootcdn.net/ajax/libs/alpinejs/3.16.1/cdn.min.js"></script>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      margin: 0;
+      padding: 100px;
+    }
+
+    .tab-btn {
+      padding: 10px 20px;
+      border: 1px solid #ccc;
+      background-color: #f5f5f5;
+      color: #333;
+      cursor: pointer;
+    }
+    
+    .active {
+      background-color: #007bff;
+      color: #ffffff;
+      border-color: #007bff;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+<div x-data="{ current: 'personal' }">
+<button class="tab-btn" 
+        :class="{ 'active': current === 'personal' }" 
+        @click="current = 'personal'">
+    个人登录
+</button>
+<button class="tab-btn" 
+        :class="{ 'active': current === 'company' }" 
+        @click="current = 'company'">
+    企业登录
+</button>
+</div>
+</body>
+</html>

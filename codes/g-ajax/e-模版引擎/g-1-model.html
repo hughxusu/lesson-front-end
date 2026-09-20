@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script defer src="https://cdn.bootcdn.net/ajax/libs/alpinejs/3.16.1/cdn.min.js"></script>
+</head>
+<body>
+<div x-data="{ message: '' }">
+    <input type="text" x-model="message">
+    <hr>
+    <h2 x-text="message"></h2>
+</div>
+</body>
+</html>
