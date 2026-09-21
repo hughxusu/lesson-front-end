@@ -8,21 +8,38 @@
 </head>
 <body>
     <button id="btn">发送get请求</button>
+    <hr>
+    <div >username: <span id="result"></span></div>
 </body>
 <script defer>
     let btn = document.querySelector('#btn');
+    let result = document.querySelector('#result');
     let query = {
         key: 'username',
         value: 'emilys'
     }
-    btn.addEventListener('click', function() {
+
+    function debounce(fn, delay) {
+        let timer = null;
+        return function() {
+            if (timer) {
+                clearTimeout(timer);
+            }
+            timer = setTimeout(function() {
+                fn.apply(this, arguments);
+            }, delay);
+        }
+    }
+
+    btn.addEventListener('click', debounce(function() {
         axios({
             method: 'GET',
             url: 'https://dummyjson.com/users/filter',
             params: query
         }).then(function(response) {
-            console.log(response.data);
+            let user = response.data.users[0];
+            result.innerHTML = JSON.stringify(user.username);
         })
-    })
+    }, 500))
 </script>
 </html>

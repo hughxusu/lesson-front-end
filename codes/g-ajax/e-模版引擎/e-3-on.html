@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title> 
+    <script defer src="https://cdn.bootcdn.net/ajax/libs/alpinejs/3.16.1/cdn.min.js"></script>
+</head>
+<body x-data>
+<button @click="handleClick">Say Hi</button>
+</body>
+<script>
+    function handleClick(e) {
+        alert(`Target innerHTML: ${e.target.innerHTML}`);
+    }
+</script>
+</html>

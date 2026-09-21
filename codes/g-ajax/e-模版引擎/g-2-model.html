@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script defer src="https://cdn.bootcdn.net/ajax/libs/alpinejs/3.16.1/cdn.min.js"></script>
+</head>
+<body>
+<div x-data="{ message: '岭外音书断，经冬复历春。' }">
+    <input type="text" x-model="message">
+    <hr>
+    <button x-text="message" @click="message = '近乡情更怯，不敢问来人。'"></button>
+</div>
+</body>
+</html>

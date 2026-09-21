@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script defer src="https://cdn.bootcdn.net/ajax/libs/alpinejs/3.16.1/cdn.min.js"></script>
+</head>
+<body>
+<div x-data="{ open: true, toggle() { this.open = ! this.open } }">
+    <button @click="toggle()">Toggle Content</button>
+    <hr>
+    <template x-if="open">
+      <h2>
+        尘事如潮人如水，只叹江湖几人回。
+      </h2>
+    </template>
+</div>
+</body>
+</html>

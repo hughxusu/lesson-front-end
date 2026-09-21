@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script defer src="https://cdn.bootcdn.net/ajax/libs/alpinejs/3.16.1/cdn.min.js"></script>
+</head>
+<body>
+<div x-data="{ open: true, toggle() { this.open = ! this.open } }">
+    <button @click="toggle()">Toggle Content</button>
+    <hr>
+    <h2 x-show="open">
+      提剑跨骑挥鬼雨，白骨如山鸟惊飞。
+    </h2>
+</div>
+</body>
+</html>

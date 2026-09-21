@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            width: 96px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="https://raw.githubusercontent.com/hughxusu/lesson-front-end/develop/static/scope.png" alt="">
+</body>
+<script>
+    let img = document.querySelector('img')
+
+    function throttle(fn, delay) {
+        let timer = null;
+        return function(...args) {
+            if (timer) return;
+            timer = setTimeout(function() {
+                fn.apply(this, args);
+                timer = null;
+            }, delay);
+        }
+    }
+
+    document.addEventListener('mousemove', throttle(function (e) {
+        // 图片中心跟随鼠标
+        img.style.left = e.pageX - 48 + 'px'
+        img.style.top = e.pageY - 48 + 'px'
+    }, 10))
+</script>
+
+</html>
