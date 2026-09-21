@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script defer src="https://cdn.bootcdn.net/ajax/libs/alpinejs/3.16.1/cdn.min.js"></script>
+</head>
+<body>
+<ul x-data="{ colors: ['Red', 'Orange', 'Yellow'] }">
+    <template x-for="(color, index) in colors">
+        <li>
+            <span x-text="index + ': '"></span>
+            <span x-text="color"></span>
+        </li>
+    </template>
+</ul>
+</body>
+</html>

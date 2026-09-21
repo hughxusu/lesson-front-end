@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script defer src="https://cdn.bootcdn.net/ajax/libs/alpinejs/3.16.1/cdn.min.js"></script>
+</head>
+<body>
+<ul x-data="{ colors: ['Red', 'Orange', 'Yellow'] }">
+    <template x-for="color in colors">
+        <li x-text="color"></li>
+    </template>
+</ul>
+</body>
+<script>
+let colors = ['Red', 'Orange', 'Yellow']
+for (let color in colors) {
+  console.log(color)  
+}
+</script>
+</html>

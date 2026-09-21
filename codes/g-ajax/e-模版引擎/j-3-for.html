@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script defer src="https://cdn.bootcdn.net/ajax/libs/alpinejs/3.16.1/cdn.min.js"></script>
+</head>
+<body>
+<ul x-data="{ car: { make: 'Jeep', model: 'Grand Cherokee', color: 'Black' } }">
+    <template x-for="(value, key) in car">
+        <li>
+            <span x-text="key"></span>: <span x-text="value"></span>
+        </li>
+    </template>
+</ul>
+</body>
+<script>
+let car = {
+    make: 'Jeep',
+    model: 'Grand Cherokee',
+    color: 'Black'
+}
+
+for (let key in car) {
+    console.log(key, car[key])
+}
+</script>
+</html>

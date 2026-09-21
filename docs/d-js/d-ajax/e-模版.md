@@ -8,6 +8,8 @@
 * 轻量级的响应式框架，直接作用于真实DOM。
 * 双向绑定，数据与DOM同步。
 
+Alpine.js用来代替标签选择器或jQuery库。
+
 <img src="./assets/double-bind.jpg" style="zoom:90%;" />
 
 ## Alpine使用
@@ -279,5 +281,121 @@
 * `x-if`不应直接应用于元素本身，而应用`<template>`标签包裹。
 * `<template>`是HTML5的原生标签，渲染时会惰性加载。
 
+> [!warning]
+>
+> Alpine.js中只提供了`x-if`指令，没有对应的`else`指令。
+
 #### `x-for`
+
+指令用于遍历列表来创建DOM元素。
+
+1. `x-for`的指令内容，必须是一个Alpine.js约定的迭代语法。
+2. `x-for`必须在一个`<template>`元素上声明。
+3. `<template>`元素必须只包含一个根元素。
+
+遍历数组
+
+```html
+<ul x-data="{ colors: ['Red', 'Orange', 'Yellow'] }">
+    <template x-for="color in colors">
+        <li x-text="color"></li>
+    </template>
+</ul>
+```
+
+> [!caution]
+>
+> JavaScript中`for...in`遍历语法只能用于遍历索引值。
+
+获取数组索引值
+
+```html
+<ul x-data="{ colors: ['Red', 'Orange', 'Yellow'] }">
+    <template x-for="(color, index) in colors">
+        <li>
+            <span x-text="index + ': '"></span>
+            <span x-text="color"></span>
+        </li>
+    </template>
+</ul>
+```
+
+> [!caution]
+>
+> JavaScript中没有`(color, index) in colors`，JavaScript中`for...in`只能获得索引值。
+
+遍历对象
+
+```html
+<ul x-data="{ car: { make: 'Jeep', model: 'Grand Cherokee', color: 'Black' } }">
+    <template x-for="(value, key) in car">
+        <li>
+            <span x-text="key"></span>: <span x-text="value"></span>
+        </li>
+    </template>
+</ul>
+```
+
+* `(value, key) in car`不是JavaScript的标准语法，`for...in`遍历对象只能获得`key`。
+
+> [!warning]
+>
+> `<template>`中虽然只包含一个根元素，但唯一根元素中可以包含多个元素。
+
+遍历对象时读取属性值
+
+```html
+<ul x-data="{ colors: [
+    { id: 1, label: 'Red' },
+    { id: 2, label: 'Orange' },
+    { id: 3, label: 'Yellow' },
+]}">
+    <template x-for="color in colors" :key="color.id">
+        <li x-text="color.label"></li>
+    </template>
+</ul>
+```
+
+> [!important]
+>
+> `:key`是Alpine.js自定义的辅助属性，给循环生成的每一个标签，打上了一个唯一的标识（ID）。如果代码涉及动态增删、重排序列表时，需要使用该属性。
+
+### 全局配置对象
+
+
+
+#### `Alpine.data`
+
+提供了一种在应用程序中重复使用`x-data`上下文的方法。
+
+```html
+<div x-data="dropdown">
+    <button @click="toggle">Toggle Content</button>
+    <hr>
+    <h2 x-show="open">
+			...
+    </h2>
+</div>
+</body>
+<script>
+    document.addEventListener('alpine:init', () => {
+        Alpine.data('dropdown', () => ({
+            open: false,
+            toggle() {
+                this.open = ! this.open
+            }
+        }))
+    })
+</script>
+```
+
+
+
+#### `Alpine.store`
+
+
+
+
+
+
 
