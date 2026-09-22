@@ -7,14 +7,12 @@
     <script defer src="https://cdn.bootcdn.net/ajax/libs/alpinejs/3.16.1/cdn.min.js"></script>
 </head>
 <body>
-<div x-data="{ count: 0 }">
-    <button x-on:click="count++">Increment</button>
-    <h2 x-text="count"></h2>
-</div>
-<hr>
-<div x-data="{ count: 0 }">
-    <button x-on:click="count++">Increment</button>
-    <h2 x-text="count"></h2>
+<div x-data="{ open: false, toggle() { this.open = ! this.open } }">
+    <button @click="toggle()">Toggle Content</button>
+    <hr>
+    <h2 x-show="open">
+        天下风云出我辈，一入江湖岁月催。
+    </h2>
 </div>
 </body>
 </html>

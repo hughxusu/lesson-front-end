@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script defer src="https://cdn.bootcdn.net/ajax/libs/axios/1.18.1/axios.min.js" ></script>
+  <script defer src="https://cdn.bootcdn.net/ajax/libs/alpinejs/3.16.1/cdn.min.js"></script>
+</head>
+<body>
+<div x-data="user" >
+  <div>username: <span x-text="data.username"></span></div>
+  <div>age: <span x-text="data.age"></span></div>
+</div>
+</body>
+<script>
+  document.addEventListener('alpine:init', () => {
+    Alpine.data('user', () => ({
+      data: null,
+      async init() {
+        let res = await axios.get('https://dummyjson.com/users/1');
+        this.data = res.data;
+      }
+    }))
+  })
+</script>
+</html>

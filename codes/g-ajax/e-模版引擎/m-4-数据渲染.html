@@ -12,7 +12,7 @@
     }
 
     li {
-      background-color: #ecf8ff;
+      background-color: #409EFF;
       color: #fff;
       border-radius: 8px;
       padding: 12px 16px;
@@ -36,14 +36,14 @@
     </template>
   </ul>
 </div>
+</body>
 <script>
   document.addEventListener('alpine:init', () => {
     Alpine.data('userList', () => ({
       users: [],
-      init() {
-        axios.get('https://dummyjson.com/users').then(res => {
-          this.users = res.data.users;
-        })
+      async init() {
+        let res = await axios.get('https://dummyjson.com/users');
+        this.users = res.data.users;
       },
       fullName(user) {
         return user.firstName + ' ' + user.lastName + ' ' + user.maidenName;
@@ -51,5 +51,4 @@
     }))
   })
 </script>
-</body>
 </html>

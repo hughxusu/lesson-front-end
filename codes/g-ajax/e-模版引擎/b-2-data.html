@@ -4,17 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title> 
-    <script defer src="https://cdn.bootcdn.net/ajax/libs/alpinejs/3.16.1/cdn.min.js"></script>
 </head>
 <body>
-<div x-data="{ count: 0 }">
-    <button x-on:click="count++">Increment</button>
-    <h2 x-text="count"></h2>
-</div>
-<hr>
-<div x-data="{ count: 0 }">
-    <button x-on:click="count++">Increment</button>
-    <h2 x-text="count"></h2>
+<div >
+    <button id="btn">Increment</button>
+    <h2 id="count">0</h2>
 </div>
 </body>
+<script>
+let btn = document.getElementById('btn');
+let count = document.getElementById('count');
+btn.addEventListener('click', () => {
+    count.innerHTML = Number(count.innerHTML) + 1;
+})
+</script>
 </html>

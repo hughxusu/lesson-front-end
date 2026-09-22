@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script defer src="https://cdn.bootcdn.net/ajax/libs/axios/1.18.1/axios.min.js" ></script>
+  <script defer src="https://cdn.bootcdn.net/ajax/libs/alpinejs/3.16.1/cdn.min.js"></script>
+</head>
+<body>
+<div 
+  x-data="{user: null}" 
+  x-init="user = {name: 'Tom',age: 25}"
+  >
+  <div x-text="user.name"></div>
+  <div x-text="user.age"></div>
+</div>
+</body>
+</html>

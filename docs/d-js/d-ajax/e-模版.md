@@ -60,6 +60,23 @@ Alpine.js用来代替标签选择器或jQuery库。
 
 * 每个`x-data`都会创建一个局部作用域对象，它们拥有各自的作用域和独立的响应式实例。
 
+使用元素选择的方式实现上面的功能
+
+```html
+<div >
+    <button id="btn">Increment</button>
+    <h2 id="count">0</h2>
+</div>
+</body>
+<script>
+let btn = document.getElementById('btn');
+let count = document.getElementById('count');
+btn.addEventListener('click', () => {
+    count.innerHTML = Number(count.innerHTML) + 1;
+})
+</script>
+```
+
 1. 同级组件：互相隔离
 
 ```html
@@ -436,7 +453,87 @@ document.addEventListener('alpine:init', () => {
 
 ## 请求数据渲染
 
+### 初始化数据
+
+#### `x-init`
+
+初始化指令，在任何元素的初始阶段进行操作，可以用于网络请求或数据初始化操作。
+
+1. `x-init`在初始化阶段执行回调。
+
+```html
+<div x-init="console.log('I\'m being initialized!')"></div>
+```
+
+2. `x-init`可以用于数据初始化。
+
+```html
+<div 
+  x-data="{user: null}" 
+  x-init="user = {name: 'Tom',age: 25}"
+  >
+  <div x-text="user.name"></div>
+  <div x-text="user.age"></div>
+</div>
+```
+
+3. 初始可以在全局对象内初始化。
+
+```html
+<div x-data="user" >
+  <div>username: <span x-text="data.username"></span></div>
+  <div>age: <span x-text="data.age"></span></div>
+</div>
+</body>
+<script>
+  document.addEventListener('alpine:init', () => {
+    Alpine.data('user', () => ({
+      data: null,
+      async init() {
+        let res = await axios.get('https://dummyjson.com/users/1');
+        this.data = res.data;
+      }
+    }))
+  })
+</script>
+```
+
+### 渲染请求数据
+
+请求用户列表路径（https://dummyjson.com/users），并渲染用户列表。
+
+```html
+<body>
+<div x-data="userList">
+  <ul>
+    <template x-for="user in users" :key="user.id">
+      <li>
+        <div class="name" x-text="fullName(user)"></div>
+        <div x-text="`${user.gender} · ${user.age} · ${user.university}`"></div>
+      </li>
+    </template>
+  </ul>
+</div>
+</body>
+<script>
+  document.addEventListener('alpine:init', () => {
+    Alpine.data('userList', () => ({
+      users: [],
+      async init() {
+        let res = await axios.get('https://dummyjson.com/users');
+        this.users = res.data.users;
+      },
+      fullName(user) {
+        return user.firstName + ' ' + user.lastName + ' ' + user.maidenName;
+      }
+    }))
+  })
+</script>
+```
+
 ## 练习
+
+1. 使用[RandomUser](https://randomuser.me/)接口和模版方法生成一个用户卡片页。
 
 
 
