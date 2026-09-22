@@ -1,4 +1,4 @@
-# 闭包与箭头函数
+# ES6新特性
 
 <img src="./assets/images.png" style="zoom:85%;" />
 
@@ -429,6 +429,19 @@ function showProduct({ name, price, brand }) {
 }
 
 showProduct(product);
+```
+
+## 其他特性
+
+### 常量
+
+`const`关键字用于定义常量，常量必须定义时赋值，且赋值后不可更改。
+
+```js
+const PI = 3.1415926;
+console.log(PI);
+PI = 3.14;
+console.log(PI);
 ```
 
 ## 练习

@@ -82,7 +82,7 @@ export default withMermaid({
         text: 'javascript进阶',
         collapsed: true,
         items: [
-          { text: '闭包与箭头函数', link: '/docs/d-js/c-es6/a-闭包' },  
+          { text: 'ES6新特性', link: '/docs/d-js/c-es6/a-闭包' },  
           { text: '面向对象', link: '/docs/d-js/c-es6/b-对象' },
           { text: '内置对象进阶', link: '/docs/d-js/c-es6/c-内置' },
           { text: '原型', link: '/docs/d-js/c-es6/d-原型' },

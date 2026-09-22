@@ -40,9 +40,10 @@ Alpine.js用来代替标签选择器或jQuery库。
 
 > [!important]
 >
-> 指令的内容本质上式JavaScript代码，需要符合JavaScript语法，Alpine解析引擎会将代码放到沙盒中运行。
+> 指令的内容本质上式伪代码，需要符合JavaScript语法或Alpine.js约定的语法格式：
 >
-> * 指令内容的JavaScript代码包括：变量、对象和函数。
+> * 指令内容包括：变量、对象和函数。
+> * Alpine解析引擎会将指令放到沙盒中运行。
 
 ### 基本指令
 
@@ -360,9 +361,17 @@ Alpine.js用来代替标签选择器或jQuery库。
 >
 > `:key`是Alpine.js自定义的辅助属性，给循环生成的每一个标签，打上了一个唯一的标识（ID）。如果代码涉及动态增删、重排序列表时，需要使用该属性。
 
-### 全局配置对象
+### 全局对象
 
+框架提供的全局对象，用来注册公共逻辑、跨组件共享状态或修改Alpine自身的运行行为。
 
+`alpine:init`是Alpine官方，专门用来配置全局属性的生命周期函数，全局对象应该在这个阶段初始化。
+
+```js
+document.addEventListener('alpine:init', () => {
+	// 初始全局对象
+})
+```
 
 #### `Alpine.data`
 
@@ -389,9 +398,49 @@ Alpine.js用来代替标签选择器或jQuery库。
 </script>
 ```
 
-
+> [!important]
+>
+> `Alpine.data`可以添加多个对象，每个对象相当于一个`x-data`。
 
 #### `Alpine.store`
+
+用于定义跨组件的共享数据。
+
+```html
+<body>
+<div x-data>
+    <h2 x-text="$store.counter.count"></h2>
+</div>
+<div x-data>
+    <button @click="$store.counter.increment()">增加</button>
+</div>
+<hr>
+<div x-data>
+    <button @click="$store.counter.decrement()">减少</button>
+</div>
+</body>
+<script>
+    document.addEventListener('alpine:init', () => {
+        Alpine.store('counter', {
+            count: 0,
+            increment() {
+                this.count++;
+            },
+            decrement() {
+                this.count--;
+            }
+        })
+    })
+</script>
+```
+
+## 请求数据渲染
+
+## 练习
+
+
+
+
 
 
 

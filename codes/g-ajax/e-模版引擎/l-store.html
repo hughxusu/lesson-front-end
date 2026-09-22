@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script defer src="https://cdn.bootcdn.net/ajax/libs/alpinejs/3.16.1/cdn.min.js"></script>
+</head>
+<body>
+<div x-data>
+    <h2 x-text="$store.counter.count"></h2>
+</div>
+<div x-data>
+    <button @click="$store.counter.increment()">增加</button>
+</div>
+<hr>
+<div x-data>
+    <button @click="$store.counter.decrement()">减少</button>
+</div>
+</body>
+<script>
+    document.addEventListener('alpine:init', () => {
+        Alpine.store('counter', {
+            count: 0,
+            increment() {
+                this.count++;
+            },
+            decrement() {
+                this.count--;
+            }
+        })
+    })
+</script>
+</html>
