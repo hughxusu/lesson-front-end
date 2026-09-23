@@ -8,7 +8,9 @@ BS架构本质上也是一种通信，在BS架构中：
 * 信道：网络链路与通讯协议
 * 信宿：Web服务器
 
-通信协议（Communication Protocol）是指通信的双方完成通信所必须遵守的规则和约定。
+通信协议（Communication Protocol）是指通信的双方完成通信所必须遵守的规则和约定。计算机网络通讯是一个非常复杂的过程
+
+<img src="./assets/网络协议.jpg" style="zoom:60%;" />
 
 
 
