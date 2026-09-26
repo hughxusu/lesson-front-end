@@ -20,15 +20,13 @@
 
 ```mermaid
 flowchart LR
-    a(浏览器 Browser) -- http请求 --> c(后台程序)
-    c -- html网页 -->a
-    b(客户端 Client) <-- 其他协议-请求与响应 --> c
+    a(浏览器 Browser) --  http协议-请求服务器 --> c(后台程序)
+    c -- http协议-服务器响应 -->a
     subgraph 服务器Server
     c <-- 数据库查询与返回 --> d(数据库)
     end
     subgraph 前端
     a
-    b
     end
 ```
 
@@ -147,7 +145,10 @@ flowchart TB
 * 参数格式。
 * 响应格式。
 
-[Cat Fact API](https://catfact.ninja/#/MCP) Swagger接口文档。
+接口文档示例：
+
+* [Cat Fact API](https://catfact.ninja/#/MCP) Swagger接口文档。
+* [微博开发者平台](https://open.weibo.com/wiki/%E9%A6%96%E9%A1%B5)。
 
 ## 数据交换格式
 

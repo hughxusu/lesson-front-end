@@ -39,7 +39,7 @@
 Access-Control-Allow-Origin: http://store.company.com
 ```
 
-* `Access-Control-Allow-Origin`跨源资源共享响应头（CORS），告诉浏览器哪些源有权限读取该接口返回的资源。
+* `Access-Control-Allow-Origin`跨源资源共享响应头（CORS），告诉浏览器哪些源，有权限读取该接口返回的数据。
 * 这里允许`http://store.company.com`源，读取接口数据。
 
 ```
