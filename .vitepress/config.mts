@@ -99,6 +99,7 @@ export default withMermaid({
           { text: 'Axios', link: '/docs/d-js/d-ajax/c-axios' }, 
           { text: '网络交互的注意事项', link: '/docs/d-js/d-ajax/d-注意' }, 
           { text: '模版引擎', link: '/docs/d-js/d-ajax/e-模版' }, 
+          { text: 'HTTP协议', link: '/docs/d-js/d-ajax/f-http' }, 
         ]
       },
       // {

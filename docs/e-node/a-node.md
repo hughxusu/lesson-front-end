@@ -92,8 +92,6 @@ which node
 
 * nvm安装的node路径为`~/.nvm/versions/node/v10.18.0/bin/node`
 
-
-
 查看当前运行的node版本
 
 ```shell
