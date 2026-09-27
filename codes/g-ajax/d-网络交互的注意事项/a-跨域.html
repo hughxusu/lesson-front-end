@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://cdn.bootcdn.net/ajax/libs/axios/1.18.1/axios.min.js" defer></script>
-    <style>
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/axios/1.18.1/axios.min.js" defer></script>
+  <style>
+  </style>
 </head>
+
 <body>
   <input type="file" id="file-input" />
   <br />
@@ -18,27 +20,28 @@
   <img id="img" src="" alt="" />
 </body>
 <script defer>
-    let btn = document.querySelector('#btn');
-    let link = document.querySelector('#link');
-    let img = document.querySelector('#img');
-    btn.addEventListener('click', function() {
-        let files = document.querySelector('#file-input').files;
-        if (files.length <= 0) {
-            alert('请选择文件');
-            return;
-        }
+  let btn = document.querySelector('#btn');
+  let link = document.querySelector('#link');
+  let img = document.querySelector('#img');
+  btn.addEventListener('click', function () {
+    let files = document.querySelector('#file-input').files;
+    if (files.length <= 0) {
+      alert('请选择文件');
+      return;
+    }
 
-        let file = files[0];
-        console.log(file);
-        let formData = new FormData();
-        formData.append('file', file);
+    let file = files[0];
+    console.log(file);
+    let formData = new FormData();
+    formData.append('file', file);
 
-        axios.post('https://api.escuelajs.co/api/v1/files/upload', formData).then(function(response) {
-            console.log(response.data);
-            link.style.display = 'block';
-            link.href = response.data.location;
-            img.src = response.data.location;
-        })
+    axios.post('https://api.escuelajs.co/api/v1/files/upload', formData).then(function (response) {
+      console.log(response.data);
+      link.style.display = 'block';
+      link.href = response.data.location;
+      img.src = response.data.location;
     })
+  })
 </script>
+
 </html>

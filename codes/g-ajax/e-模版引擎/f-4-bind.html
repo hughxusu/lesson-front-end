@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
   <meta charset="UTF-8">
   <title>Document</title>
-    <script defer src="https://cdn.bootcdn.net/ajax/libs/alpinejs/3.16.1/cdn.min.js"></script>
+  <script defer src="https://cdn.bootcdn.net/ajax/libs/alpinejs/3.16.1/cdn.min.js"></script>
   <style>
     body {
       display: flex;
@@ -19,7 +20,7 @@
       color: #333;
       cursor: pointer;
     }
-    
+
     .active {
       background-color: #007bff;
       color: #ffffff;
@@ -28,18 +29,16 @@
     }
   </style>
 </head>
+
 <body>
-<div x-data="{ current: 'personal' }">
-<button class="tab-btn" 
-        :class="{ 'active': current === 'personal' }" 
-        @click="current = 'personal'">
-    个人登录
-</button>
-<button class="tab-btn" 
-        :class="{ 'active': current === 'company' }" 
-        @click="current = 'company'">
-    企业登录
-</button>
-</div>
+  <div x-data="{ current: 'personal' }">
+    <button class="tab-btn" :class="{ 'active': current === 'personal' }" @click="current = 'personal'">
+      个人登录
+    </button>
+    <button class="tab-btn" :class="{ 'active': current === 'company' }" @click="current = 'company'">
+      企业登录
+    </button>
+  </div>
 </body>
+
 </html>

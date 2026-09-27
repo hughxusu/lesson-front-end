@@ -1,6 +1,6 @@
-import fs from 'fs'
+import fs from 'fs';
 
-let str =  `
+let str = `
 关山月
 明月出天山，苍茫云海间。
 长风几万里，吹度玉门关。
@@ -8,9 +8,8 @@ let str =  `
 由来征战地，不见有人还。
 戍客望边邑，思归多苦颜。
 高楼当此夜，叹息未应闲。
-`
+`;
 
-let fd = fs.openSync('./关山月.txt', 'w')
-fs.writeSync(fd, str)
-fs.closeSync(fd)
-
+let fd = fs.openSync('./关山月.txt', 'w');
+fs.writeSync(fd, str);
+fs.closeSync(fd);

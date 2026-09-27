@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<title>Document</title>
+  <meta charset="UTF-8">
+  <title>Document</title>
 </head>
+
 <body>
-	<button>发送验证码</button>
+  <button>发送验证码</button>
 </body>
 <script type="text/javascript">
-let btn = document.querySelector('button');
-btn.addEventListener('click', function() {
+  let btn = document.querySelector('button');
+  btn.addEventListener('click', function () {
     this.disabled = true;
-	function reset() {
-		this.disabled = false;
-	}
+    function reset() {
+      this.disabled = false;
+    }
 
-	let resetFn = reset.bind(this);
-	setTimeout(resetFn, 2000);
-});
+    let resetFn = reset.bind(this);
+    setTimeout(resetFn, 2000);
+  });
 </script>
+
 </html>

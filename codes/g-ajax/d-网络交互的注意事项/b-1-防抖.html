@@ -1,32 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://cdn.bootcdn.net/ajax/libs/axios/1.18.1/axios.min.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/axios/1.18.1/axios.min.js" defer></script>
 </head>
+
 <body>
-    <button id="btn">发送get请求</button>
-    <hr>
-    <div >username: <span id="result"></span></div>
+  <button id="btn">发送get请求</button>
+  <hr>
+  <div>username: <span id="result"></span></div>
 </body>
 <script defer>
-    let btn = document.querySelector('#btn');
-    let result = document.querySelector('#result');
-    let query = {
-        key: 'username',
-        value: 'emilys'
-    }
-    btn.addEventListener('click', function() {
-        axios({
-            method: 'GET',
-            url: 'https://dummyjson.com/users/filter',
-            params: query
-        }).then(function(response) {
-            let user = response.data.users[0];
-            result.innerHTML = JSON.stringify(user.username);
-        })
+  let btn = document.querySelector('#btn');
+  let result = document.querySelector('#result');
+  let query = {
+    key: 'username',
+    value: 'emilys'
+  }
+  btn.addEventListener('click', function () {
+    axios({
+      method: 'GET',
+      url: 'https://dummyjson.com/users/filter',
+      params: query
+    }).then(function (response) {
+      let user = response.data.users[0];
+      result.innerHTML = JSON.stringify(user.username);
     })
+  })
 </script>
+
 </html>

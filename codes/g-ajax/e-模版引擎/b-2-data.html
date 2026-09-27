@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title> 
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
+
 <body>
-<div >
+  <div>
     <button id="btn">Increment</button>
     <h2 id="count">0</h2>
-</div>
+  </div>
 </body>
 <script>
-let btn = document.getElementById('btn');
-let count = document.getElementById('count');
-btn.addEventListener('click', () => {
+  let btn = document.getElementById('btn');
+  let count = document.getElementById('count');
+  btn.addEventListener('click', () => {
     count.innerHTML = Number(count.innerHTML) + 1;
-})
+  })
 </script>
+
 </html>
