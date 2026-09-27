@@ -1,17 +1,15 @@
-import { withMermaid } from 'vitepress-plugin-mermaid'
+import { withMermaid } from 'vitepress-plugin-mermaid';
 
 // https://vitepress.dev/reference/site-config
 export default withMermaid({
-  title: "前端开发与Vibe Coding",
-  description: "前端开发与Vibe Coding",
+  title: '前端开发与Vibe Coding',
+  description: '前端开发与Vibe Coding',
   ignoreDeadLinks: true,
   base: '/lesson-front-end/',
   markdown: {
     math: true,
   },
-  head: [
-    ['link', { rel: 'icon', href: '/lesson-front-end/logo_icon.jpeg' }],
-  ],
+  head: [['link', { rel: 'icon', href: '/lesson-front-end/logo_icon.jpeg' }]],
   themeConfig: {
     sidebar: [
       {
@@ -20,7 +18,7 @@ export default withMermaid({
         items: [
           { text: '认识前端开发', link: '/docs/a-introduce/1-概述.md' },
           { text: '搭建前端开发环境', link: '/docs/a-introduce/2-环境.md' },
-        ]
+        ],
       },
       {
         text: 'HTML',
@@ -29,7 +27,7 @@ export default withMermaid({
           { text: '认识HTML', link: '/docs/b-html/1-认识' },
           { text: '基础HTML标签', link: '/docs/b-html/2-基础' },
           { text: '高级HTML标签', link: '/docs/b-html/3-高级' },
-        ]
+        ],
       },
       {
         text: 'CSS',
@@ -49,65 +47,66 @@ export default withMermaid({
           { text: '3D变换', link: '/docs/c-css/12-3D.md' },
           { text: '弹性布局', link: '/docs/c-css/13-弹性.md' },
           { text: '综合案例', link: '/docs/c-css/14-案例.md' },
-        ]
+        ],
       },
       {
         text: 'javascript基础',
         collapsed: true,
         items: [
-          { text: 'JavaScript介绍', link: '/docs/d-js/a-base/01-介绍' }, 
-          { text: '从变量开始', link: '/docs/d-js/a-base/02-变量' }, 
-          { text: '数据类型', link: '/docs/d-js/a-base/03-类型' }, 
-          { text: '字符串', link: '/docs/d-js/a-base/04-字符' }, 
-          { text: '条件控制', link: '/docs/d-js/a-base/05-条件' }, 
-          { text: '数组', link: '/docs/d-js/a-base/06-数组' }, 
-          { text: '循环控制', link: '/docs/d-js/a-base/07-循环' }, 
-          { text: '函数', link: '/docs/d-js/a-base/08-函数' }, 
-          { text: '对象', link: '/docs/d-js/a-base/09-对象' }, 
-        ]
+          { text: 'JavaScript介绍', link: '/docs/d-js/a-base/01-介绍' },
+          { text: '从变量开始', link: '/docs/d-js/a-base/02-变量' },
+          { text: '数据类型', link: '/docs/d-js/a-base/03-类型' },
+          { text: '字符串', link: '/docs/d-js/a-base/04-字符' },
+          { text: '条件控制', link: '/docs/d-js/a-base/05-条件' },
+          { text: '数组', link: '/docs/d-js/a-base/06-数组' },
+          { text: '循环控制', link: '/docs/d-js/a-base/07-循环' },
+          { text: '函数', link: '/docs/d-js/a-base/08-函数' },
+          { text: '对象', link: '/docs/d-js/a-base/09-对象' },
+        ],
       },
       {
         text: 'Web API',
         collapsed: true,
         items: [
-          { text: 'WebAPI基本知识', link: '/docs/d-js/b-dom/1-基本' }, 
-          { text: 'DOM事件基础', link: '/docs/d-js/b-dom/2-事件' }, 
-          { text: '节点操作', link: '/docs/d-js/b-dom/3-节点' }, 
-          { text: '事件对象', link: '/docs/d-js/b-dom/4-事件' }, 
-          { text: '高级特性', link: '/docs/d-js/b-dom/5-高级' }, 
-          { text: 'BOM', link: '/docs/d-js/b-dom/6-bom' }, 
-        ]
+          { text: 'WebAPI基本知识', link: '/docs/d-js/b-dom/1-基本' },
+          { text: 'DOM事件基础', link: '/docs/d-js/b-dom/2-事件' },
+          { text: '节点操作', link: '/docs/d-js/b-dom/3-节点' },
+          { text: '事件对象', link: '/docs/d-js/b-dom/4-事件' },
+          { text: '高级特性', link: '/docs/d-js/b-dom/5-高级' },
+          { text: 'BOM', link: '/docs/d-js/b-dom/6-bom' },
+        ],
       },
       {
         text: 'javascript进阶',
         collapsed: true,
         items: [
-          { text: 'ES6新特性', link: '/docs/d-js/c-es6/a-闭包' },  
+          { text: 'ES6新特性', link: '/docs/d-js/c-es6/a-闭包' },
           { text: '面向对象', link: '/docs/d-js/c-es6/b-对象' },
           { text: '内置对象进阶', link: '/docs/d-js/c-es6/c-内置' },
           { text: '原型', link: '/docs/d-js/c-es6/d-原型' },
           { text: '继承', link: '/docs/d-js/c-es6/e-继承' },
           { text: 'class关键字', link: '/docs/d-js/c-es6/f-class' },
-        ]
+        ],
       },
       {
         text: '网络请求',
         collapsed: true,
         items: [
-          { text: '网络请求的基本知识', link: '/docs/d-js/d-ajax/a-基础' }, 
-          { text: 'Ajax', link: '/docs/d-js/d-ajax/b-ajax' }, 
-          { text: 'Axios', link: '/docs/d-js/d-ajax/c-axios' }, 
-          { text: '网络交互的注意事项', link: '/docs/d-js/d-ajax/d-注意' }, 
-          { text: '模版引擎', link: '/docs/d-js/d-ajax/e-模版' }, 
-          { text: 'HTTP协议', link: '/docs/d-js/d-ajax/f-http' }, 
-        ]
+          { text: '网络请求的基本知识', link: '/docs/d-js/d-ajax/a-基础' },
+          { text: 'Ajax', link: '/docs/d-js/d-ajax/b-ajax' },
+          { text: 'Axios', link: '/docs/d-js/d-ajax/c-axios' },
+          { text: '网络交互的注意事项', link: '/docs/d-js/d-ajax/d-注意' },
+          { text: '模版引擎', link: '/docs/d-js/d-ajax/e-模版' },
+          { text: 'HTTP协议', link: '/docs/d-js/d-ajax/f-http' },
+        ],
       },
       {
         text: 'node.js',
         collapsed: true,
         items: [
-          { text: 'Node', link: '/docs/e-node/a-node.md' }, 
-        ]
+          { text: 'Node', link: '/docs/e-node/a-node.md' },
+          { text: '包管理', link: '/docs/e-node/b-npm.md' },
+        ],
       },
       // {
       //   text: 'typescript',
@@ -142,7 +141,10 @@ export default withMermaid({
 
     socialLinks: [
       { icon: 'github', link: 'https://github.com/hughxusu/lesson-front-end' },
-      { icon: 'bilibili', link: 'https://space.bilibili.com/94456974/upload/video' }
-    ]
-  }
-})
+      {
+        icon: 'bilibili',
+        link: 'https://space.bilibili.com/94456974/upload/video',
+      },
+    ],
+  },
+});

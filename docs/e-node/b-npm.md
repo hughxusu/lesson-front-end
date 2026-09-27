@@ -25,7 +25,7 @@ npm init -y   # 快速初始化
 npm init      # 交互式初始化
 ```
 
-初始化node项目文件夹下有一个配置文件`package.json`文件，现在了项目的当前配置
+初始化node项目文件夹下有一个配置文件`package.json`，现在了项目的当前配置
 
 ```json
 {
@@ -100,61 +100,192 @@ npm install [包名]
 npm i [包名]
 ```
 
-### dayjs
+### Day.js
 
 [Day.js](https://day.js.org/zh-CN/)是一个轻量的处理时间和日期的JavaScript库。
 
-1. 使用JavaScript内置函数显示年月日
+> [!tip]
+>
+> 如何使用JavaScript内置对象，格式化年月日？
 
 ```js
+Date.prototype.dateFormat = function () {
+  function padZero(n) {
+    return n > 9 ? n : '0' + n;
+  }
+
+  const y = this.getFullYear();
+  const m = padZero(this.getMonth() + 1);
+  const d = padZero(this.getDate());
+  const hh = padZero(this.getHours());
+  const mm = padZero(this.getMinutes());
+  const ss = padZero(this.getSeconds());
+
+  return `${y}-${m}-${d} ${hh}:${mm}:${ss}`;
+};
+
+let dt = new Date();
+console.log(dt.dateFormat());
 ```
 
+* 在`Date`对象的原型链上增加了一个时间格式化方法。
 
-
-
-
-
-
-
-
-
-
-* 通过npm下载的包都放到node_modules文件夹中。
-* npm包可以直接通过包名引入。
-* node在使用模块名字来引入模块时，会首先在当前目录的node_modules中寻找，如果没有则去上一级目录的node_modules中寻找，直到找到为止或磁盘的根目录，如果没有则报错。
-
-
-
-
-
-
-
-
-
-
-
-
+是`npm`工具安装Day.js工具库
 
 ```shell
-npm install -g [包名] # 全局安装，一般是一些工具
-npm remove [包名] # 删除包
-npm root -g # 全局下载根目录
-npm list --depth --global # 查看全局安装包
-npm list --depth=0 # 查看文件安装包
-
-# 设置淘宝镜像服务器，使用cnpm是淘宝服务器，npm是原始服务器
-npm install -g cnpm --registry=https://registry.npm.taobao.org
-# 直接修改npm镜像，会在用户目录下生产.npmrc文件可
-npm config set registry https://registry.npm.taobao.org
-npm config get registry # 检查仓库路径
-
-npm view umi version # 查看某个包的最新版本
-
-npm update # 更新所有包
-npm update dayjs # 更新单个包
+npm install dayjs
 ```
 
+成功安装Day.js工具库后，在配置文件`package.json`会添加一个依赖项
 
+```json
+{
+  "dependencies": {
+    "dayjs": "^1.11.23"
+  }
+}
+
+```
+
+* `dependencies`表示项目中依赖的工具库，包括：工具库的名称和版本。
+
+安装第三方包后目标文件夹为
+
+```shell
+.
+├── ...
+├── node_modules
+├── package-lock.json
+└── package.json
+```
+
+* 通过`npm`下载的包都放到`node_modules`文件夹中。
+* `package-lock.json`文件是npm在安装或更新依赖包时自动生成的锁定文件。
+
+> [!important]
+>
+> 项目管理
+>
+> 1. 在Node项目中`node_modules`文件夹不会上传的git服务器中。
+> 2. `package.json`和`package-lock.json`需要上传到git服务器中，可以在项目成员中共享安装包。
+> 3. 从git上拉取新项目后，执行`npm install`会按照`package.json`依赖库自动安装包。
+
+使用Day.js完成上面的年月日格式化
+
+```js
+import dayjs from 'dayjs';
+
+let dtStr = dayjs().format('YYYY-MM-DD HH:mm:ss');
+console.log(dtStr);
+
+dtStr = dayjs().format('YYYY-MM-DD HH-mm-ss');
+console.log(dtStr);
+```
+
+* `.format('YYYY-MM-DD HH:mm:ss')`表示时间显示的格式化模版。[格式化工具的详细应用](https://day.js.org/docs/zh-CN/display/format)
+
+### 全局模块
+
+Node项目的组织结构：
+
+* 以文件夹为基础，一个项目就是一个独立的文件夹。
+* 每个独立项目下包含`node_modules`、`package-lock.json`和`package.json`文件。
+* 不同项目的需要依赖不同的第三方库，由`package.json`管理。
+* 不同的项目不共用`node_modules`中的第三方库。
+* 在文件中引入第三方模块的搜索顺序：
+  1. 先在当前目录的`node_modules`中寻找。
+  2. 不存在则上一级目录的`node_modules`中寻找。
+  3. 以此类推，直到磁盘的根目录中。
+  4. 如果一律没有，则会报错。
+
+全局包会安装到用户根目录下，不会安装到某个项中，可以跨项目使用。
+
+```shell
+npm install [包名] -g  # -g参数表示安装为全局包
+```
+
+轻量级静态服务器，全局安装服务器
+
+```shell
+npm install -g serve
+```
+
+启动服务器
+
+```shell
+serve .
+```
+
+* 在浏览器中打开网址http://localhost:3000可以访问服务器。
+
+> [!warning]
+>
+> 只有工具性质的包，才有全局安装的必要性，它们提供了常用终端命令。
+
+### 镜像服务器
+
+使用npm下包的时，默认从国外的服务器进行下载，下载的速度会比较慢。
+
+<img src="./assets/Xnip2026-09-27_21-32-31.jpg" style="zoom:50%;" />
+
+设置中国科学技术大学镜像源
+
+```shell
+npm config set registry https://npmreg.proxy.ustclug.org/
+```
+
+查看镜像源是否成功
+
+```shell
+npm config get registry
+```
+
+## 模块化
+
+模块化就是按照代码规范，将一个大文件拆成，独立并互相依赖的多个小文件。
+
+程序模块化的优点：
+
+* 提高了代码的复用性。
+* 提高了代码的可维护性。
+* 可以实现按需加载。、
+
+`import ... from ...`就是从不同的模块导入对象、函数等。
+
+模块化规范是ES6中提出的，在此之前JavaScript 社区已经尝试并提出了AMD、CMD、CommonJS等模块化规范，但这些规范还是存在一定的差异性与局限性、并不是浏览器与服务器通用的模块化标准。
+
+ES6模块化标准的推出，统一了浏览器端与服务器端的开发规范，是现在主流的模块化方式。
+
+* 开启Node项目的ES6模块化规范，在配置文件`package.json`中设置`"type": "module"`。
+
+ES6模块化规范：
+
+* 每个 js 文件都是一个独立的模块。
+* 导入其它模块成员使用`import`关键字。
+* 向外共享模块成员使用`export`关键字。
+
+
+
+## 其他命令
+
+1. 删除以安装的包
+
+```shell
+npm remove [包名]
+```
+
+2. 更新以安装的包
+
+```shell
+npm update         # 更新所有包
+npm update [包名]   # 更新指定包
+```
+
+3. 查看全局包的根目录
+
+```shell
+npm root -g 
+```
 
 
 
