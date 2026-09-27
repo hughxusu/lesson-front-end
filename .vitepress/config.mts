@@ -102,13 +102,13 @@ export default withMermaid({
           { text: 'HTTP协议', link: '/docs/d-js/d-ajax/f-http' }, 
         ]
       },
-      // {
-      //   text: 'node.js',
-      //   collapsed: true,
-      //   items: [
-      //     { text: 'node.js安装', link: '/docs/e-node/a-node.md' }, 
-      //   ]
-      // },
+      {
+        text: 'node.js',
+        collapsed: true,
+        items: [
+          { text: 'Node', link: '/docs/e-node/a-node.md' }, 
+        ]
+      },
       // {
       //   text: 'typescript',
       //   collapsed: true,

@@ -1,24 +1,141 @@
-## 包管理工具
+# 包管理
 
-### npm
+Node.js中模块又叫做包，模块分为内置模块和第三方模块。
 
-Node Package Manager包管理工具
+* 内置模块，安装node后自带的模块，包括：文件模块、路径模块等。
+* 第三方模块，有开发者免费分享的模块，这些模块提供高级的功能。
+
+## npm
+
+[npmjs](https://www.npmjs.com/)是全球最大的Node包共享平台，在该平台上共享了数百万个包。`npm`（Node Package Manager）是用于管理第三方模块的命令。安装Node后，`npm`工具也默认安装。
+
+查看`npm`是否安装成功
+
+```shell
+npm             # 查看帮助
+npm -v          # npm版本
+```
+
+### 初始化项目
+
+在当前文件夹下使用
+
+```shell
+npm init -y   # 快速初始化
+npm init      # 交互式初始化
+```
+
+初始化node项目文件夹下有一个配置文件`package.json`文件，现在了项目的当前配置
+
+```json
+{
+  "name": "a-node",           // 项目名称
+  "version": "1.0.0",         // 版本号
+  "description": "",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"         // 模块化规范
+}
+
+```
+
+* `type`表示模块化规范，修改值为`module`。
+  * `commonjs`传统的模块化规范。
+  * `module`为ES6后新模块化规范。
+
+> [!warning]
+>
+> 当前版本Node已经对ES6模块化规范支持非常完善，现在的项目一般统一使用新规范。
+
+## 内置模块
+
+Node.js官方提供了内置的fs模块用来操作文件，该模块可以直接使用。
+
+* 它包含一系列的方法和属性，用来满足用户对文件的操作需求。
+* fs中所有操作都分为同步和异步，同步会阻塞程序执行，异步操作不会阻塞程序。
+
+下面文件读写均已同步操作为例：
+
+1. 文件写入。操作步骤：
+   1. 打开文件；
+   2. 向文件中写入内容；
+   3. 保存并关闭文件。
+
+```javascript
+import fs from 'fs'
+
+let str =  `
+关山月
+明月出天山，苍茫云海间。
+长风几万里，吹度玉门关。
+汉下白登道，胡窥青海湾。
+由来征战地，不见有人还。
+戍客望边邑，思归多苦颜。
+高楼当此夜，叹息未应闲。
+`
+
+let fd = fs.openSync('./关山月.txt', 'w')
+fs.writeSync(fd, str)
+fs.closeSync(fd)
+```
+
+2. 读取文件。
+
+```javascript
+import fs from 'fs'
+
+let fd = fs.openSync('./关山月.txt', 'r')
+let str = fs.readFileSync(fd, 'utf-8')
+fs.closeSync(fd)
+console.log(str)
+```
+
+## 第三方模块
+
+使用如下命令可以安装第三方模块
+
+```shell
+npm install [包名]  
+npm i [包名]
+```
+
+### dayjs
+
+[Day.js](https://day.js.org/zh-CN/)是一个轻量的处理时间和日期的JavaScript库。
+
+1. 使用JavaScript内置函数显示年月日
+
+```js
+```
+
+
+
+
+
+
+
+
+
+
 
 * 通过npm下载的包都放到node_modules文件夹中。
 * npm包可以直接通过包名引入。
 * node在使用模块名字来引入模块时，会首先在当前目录的node_modules中寻找，如果没有则去上一级目录的node_modules中寻找，直到找到为止或磁盘的根目录，如果没有则报错。
 
+
+
+
+
+
+
+
+
+
+
+
+
 ```shell
-# 基本命令
-npm # 查看帮助
-npm -v # npm版本
-
-npm init # 初始化包，生成package.json文件
-npm init -y # 直接初始化项目目录
-
-npm search [包名] # 搜索包名
-npm install [包名] # 安装包
-npm install [包名] --save # 安装包，并添加到依赖中
 npm install -g [包名] # 全局安装，一般是一些工具
 npm remove [包名] # 删除包
 npm root -g # 全局下载根目录
@@ -39,131 +156,5 @@ npm update dayjs # 更新单个包
 
 
 
-## 入门
 
-```shell
-node -v # 查看node版本
-
-# 执行js文件
-node hello.js
-```
-
-在node中有一个全局对象global，类似网页中window。变量为global的属性，函数为global的方法。
-
-```javascript
-var a = 10;
-console.log(global.a); // 全局路径
-```
-
-使用webstorm中的run命令可以运行单个node文件
-
-### commonjs
-
-模块化
-
-* 模块类型
-  * 核心模块：由node引擎提供的模块。
-  * 文件模块：用户自己创建的模块。
-
-* 在Node中，一个js文件就是一个模块。每模块的代码都包装到到一个函数中。
-  * `exports`该对象用来将变量或函数暴露到外部。
-  * `require`用来引入外部的模块。
-  * `module`当前模块本身，exports就是module的属性。
-  * `__filename`当前模块的完整路径。
-  * `__dirnam`当前模块所在文件夹的完整路径。
-
-```javascript
-function (exports, require, module, __filename, __dirname) {} // 包装模块的代码
-```
-
-* 导出变量和方法
-  * 通过 exports 来向外部暴露变量和方法，将外部变量或方法设置为exports的属性。
-  * 也可以使用module.exports导出，这种方式可以直接赋值。
-
-```javascript
-exports.x = "x变量";
-exports.y = "y变量";
-exports.fn = function () {
-	console.log("this is math");
-};
-
-module.exports.add = function (a , b) {
-	return a+b;
-};
-
-// 直接赋值导出模块
-module.exports = {
-	name:"猪八戒",
-	age:28,
-	sayName:function () {
-		console.log("我是猪八戒");
-	}
-};
-```
-
-* 通过`require()`函数来引入外部的模块，相对路径以`.`开头。该函数会返回一个对象，这个对象代表引入的模块。
-
-```javascript
-var math = require("./math");
-console.log(math.add(123,456));
-```
-
-### Package（包）
-
-commonjs包规范由包结构和包描述文件两部分组成
-
-* 包结构，用于组织包中的各种文件。
-  * `package.json`描述文件（必须文件）
-  * `bin`可执行二进制文件
-  * `lib`js代码
-  * `doc`文档
-  * `test`单元测试
-* 包描述文件，描述包的相关信息，以供外部读取分析，保存在包的根目录下。
-
-```json
-{
-  "dependencies":{}, // 依赖
-  "descriotion": "", // 包描述
-  "devDependencies": {}, // 开发依赖
-  "main": "./index", // 主文件
-  "name": "node_test",  // 包名npm规范包名全部使用小写，require所需要的包名。
-}
-```
-
-## 文件系统
-
-文件系统就是通过Node来操作系统中的文件。
-
-### Buffer
-
-Buffer：专门用来存储二进制数据， 结构和数组很像，操作的方法也和数组类似。Buffer中的一个元素，占用内存的一个字节，大小一旦确定，则不能修改。Buffer实际上是对底层内存的直接操作。
-
-```javascript
-var str = "Hello 尚硅谷";
-var buf = Buffer.from(str); // 将一个字符串保存到buffer中
-console.log(buf.length); // 占用内存的大小
-
-// 创建一个指定大小的buffer，buffer构造函数都不推荐使用
-var buf2 = new Buffer(10);
-var buf2 = Buffer.alloc(10); // 通常创建buffer的方法
-
-//通过索引，来操作buf中的元素
-buf2[0] = 88;
-buf2[1] = 255;
-buf2[2] = 0xaa;
-
-// 转换为16进制字符串
-console.log(buf2[2].toString(16));
-
-// 遍历buffer，只要数字在控制台输出一定是10进制
-for(var i=0 ; i<buf2.length ; i++){
-	console.log(buf2[i]);
-}
-
-// 创建一个指定大小的buffer，不清空内存
-buf3 = Buffer.allocUnsafe(10);
-
-var buf4 = Buffer.from("我是一段文本数据");
-console.log(buf4.toString()); // 将缓冲区中的数据转换为字符串
-```
 
