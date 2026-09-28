@@ -1,0 +1,20 @@
+.base {
+  font-size: 32px;
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.main(@w:10px, @h:10px, @c:pink) {
+  width: @w;
+  height: @h;
+  background-color: @c;
+}
+
+#box {
+  width: 100px;
+  height: 100px;
+  .base;
+
+  .inner {
+    .main(20px, 20px, red);
+  }
+}

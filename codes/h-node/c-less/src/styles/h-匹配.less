@@ -1,0 +1,15 @@
+.triangle(L, @w, @c) {
+  border-width: @w;
+  border-style: dashed solid dashed dashed;
+  border-color: transparent @c transparent transparent;
+}
+
+.triangle(R, @w, @c) {
+  border-width: @w;
+  border-style: dashed dashed dashed solid;
+  border-color: transparent transparent transparent @c;
+}
+
+#wrap {
+  .triangle(R, 40px, yellow);
+}

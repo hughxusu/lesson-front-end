@@ -1,0 +1,18 @@
+// 定义基类样式
+.base {
+  font-size: 32px;
+  color: #000;
+}
+
+.base:hover {
+  color: red;
+}
+
+#wrap:extend(.base) {
+  font-weight: bold;
+}
+
+.content:extend(.base all) {
+  font-weight: bold;
+  font-style: italic;
+}
