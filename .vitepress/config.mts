@@ -106,6 +106,7 @@ export default withMermaid({
         items: [
           { text: 'Node', link: '/docs/e-node/a-node.md' },
           { text: '包管理', link: '/docs/e-node/b-npm.md' },
+          { text: 'Less', link: '/docs/e-node/c-less.md' },
         ],
       },
       // {
