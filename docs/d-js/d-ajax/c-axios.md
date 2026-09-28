@@ -449,6 +449,115 @@ async function request() {
 }
 ```
 
+## JavaScript执行机制
+
+由于Javascript的主要任务，是处理网页中的交互，所以Javascript语言单线程编程语言。
+
+* 同一个时间只能完成一个任务。
+* 用户操作不能同时进行，如：对某个`DOM`元素进行添加和删除操作，应该先进行添加，之后再删除。
+* 所有任务需要排队，前一个任务结束，才会执行后一个任务。
+
+<img src="./assets/image-20260928183837777.png" alt="image-20260928183837777" style="zoom:85%;" />
+
+> [!caution]
+>
+> 单线程的问题：如果任务耗时过长，则后序任务不得不一直等待，这样就会造成页面的渲染不连贯。
+
+为了防止某个耗时任务导致程序假死的问题，HTML5提出WebWorker标准，把待执行的任务分为了两类：
+
+* 同步任务（synchronous）：同步任务在主线程上顺序执行，同步任务为非耗时任务。
+* 异步任务（asynchronous）：异步任务放入任务队列中，由JavaScript委托给宿主环境进行执行，异步任务为耗时任务，通过回调函数实现。
+
+> [!important]
+>
+> 哪些任务是同步，哪些是异步，JavaScript解释器与宿主环境已经定义完毕。程序员可以通过代码调用这些机制，但无法更改内置API本身的底层运行性质。
+
+常见的同步任务：
+
+* JavaScript引擎模块：负责JavaScript的编译和运行，如：`for`循环、函数调用等。
+* HTML/CSS文档解析模块：负责页面文本的解析。
+* DOM模块：负责DOM在内存中的相关处理。
+* 布局和渲染模块：负责页面的布局和效果的绘制。
+
+常见的异步任务：
+
+* 定时器模块：负责定时器的管理（`setInterval`、`setTimeout`）。
+* 网络请求模块：负责服务器请求。
+* 事件响应模块：负责事件的管理（如：`click`、`resize`）。
+
+<img src="./assets/image-20260928193028004.png" alt="image-20260928193028004" style="zoom:80%;" />
+
+JavaScript执行机制：
+
+1. 先执行执行栈中的同步任务。
+2. 异步任务放入任务队列中。
+3. 一旦执行栈中的所有同步任务执行完毕，系统就会按次序读取任务队列中的异步任务。
+4. 被读取的异步任务结束等待状态，进入主线程，开始执行。
+5. 最终所有任务都是在主线程中执行的。
+
+> [!warning]
+>
+> 任务队列，不是线程或协程中不执行任何代码，只是一个程序执行的排序工具。
+
+由于主线程不断的重复获得任务、执行任务、再获取任务、再执行，所以这种机制被称为事件循环（event loop）。
+
+```html
+<body>
+    <div class="root"></div>
+</body>
+<script>
+    function newH1(text) {
+        let h1 = document.createElement('h1');
+        h1.innerText = text;
+        return h1;
+    }
+
+    let root = document.querySelector('.root');
+    root.appendChild(newH1('1'));
+
+    document.addEventListener('click', function () {
+        root.appendChild(newH1('2'));
+    });
+
+    setTimeout(function () {
+        root.appendChild(newH1('3'));
+    }, 2000);
+
+    root.appendChild(newH1('4'));
+</script>
+```
+
+* 上面的所有代码都是在主线程中执行的。
+* `setTimeout`会在任务队列中等待2秒，然后在主线程中执行代码。
+
+> [!important]
+>
+> 后台线程：
+>
+> 1. 图片下载在独立网络线程完成，不占用主线程。
+> 2. 网络请求的过程在后台线程执行，当下载完成后，回调函数回到主线程。
+
+### 宏任务和微任务
+
+```mermaid
+flowchart LR
+    a(任务) --> b(异步任务) --> c(宏任务)
+    a --> d(同步任务)
+    b-->e(维任务)
+```
+
+* 宏任务（macrotask）：异步Ajax请求、`setTimeout`、`setInterval`、文件操作，等。
+* 微任务（microtask）：`Promise`等。
+
+<img src="./assets/image-20260928223247859.png" alt="image-20260928223247859" style="zoom:65%;" />
+
+微任务相当于插队机制，确保一些高优先级、短小的状态能立即响应，无需等待下一次浏览器事件循环轮询。
+
+1. 执行一个宏任务。
+2. 检查是否存在待执行的微任务。
+3. 执行完所有的微任务。
+4. 执行下一个宏任务。
+
 ## 练习
 
 1. 使用一言的接口设计一个显示名言的应用，名言选择诗词类别。
