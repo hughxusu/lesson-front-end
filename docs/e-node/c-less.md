@@ -1,16 +1,27 @@
 
 
-# less
+# Less
 
-Less是一个CSS预处理器，Less文件后缀是 .less。扩充了 CSS 语言，使 CSS 具备一定的逻辑性、计算能力。
+Less是一个CSS预处理器，Less文件后缀是`.less`。扩充了 CSS 语言，使 CSS 具备一定的逻辑性和计算能力。使用Less使得样式表更易维护和扩展。
 
-> [!warning]
+> [!caution]
 >
 > 浏览器不识别Less代码，网页只能引入对应的CSS文件。
 
-Easy Less vscode插件，less文件保存自动生成css文件。
+## 搭建Less自动编译环境
 
-<img src="https://s1.ax1x.com/2023/04/15/p9pbAP0.png" style="zoom:80%;" />
+自动化处理的两大核心：
+
+* 编译器：负责把 Less 语法翻译成CSS语法。
+* 监听器：负责监听，一旦发现指定的`.less`文件有保存动作，就立刻触发编译器执行。
+
+
+
+
+
+
+
+
 
 ## 语法
 

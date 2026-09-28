@@ -252,7 +252,7 @@ npm config get registry
 
 `import ... from ...`就是从不同的模块导入对象、函数等。
 
-模块化规范是ES6中提出的，在此之前JavaScript 社区已经尝试并提出了AMD、CMD、CommonJS等模块化规范，但这些规范还是存在一定的差异性与局限性、并不是浏览器与服务器通用的模块化标准。
+模块化规范是ES6中提出的，在此之前社区已经尝试并提出了AMD、CMD、CommonJS等模块化规范，但这些规范还是存在一定的差异性与局限性、并不是浏览器与服务器通用的模块化标准。
 
 ES6模块化标准的推出，统一了浏览器端与服务器端的开发规范，是现在主流的模块化方式。
 
@@ -260,11 +260,193 @@ ES6模块化标准的推出，统一了浏览器端与服务器端的开发规�
 
 ES6模块化规范：
 
-* 每个 js 文件都是一个独立的模块。
+* 每个JavaScript文件都是一个独立的模块。
 * 导入其它模块成员使用`import`关键字。
 * 向外共享模块成员使用`export`关键字。
 
+### 模块化使用
 
+#### 默认导出与导入
+
+默认导出模块
+
+```js
+const PI = 3.1415926;
+
+function getArea(radius) {
+  return PI * radius * radius;
+}
+
+class Point {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+
+  distanceTo(other) {
+    return Math.sqrt((this.x - other.x) ** 2 + (this.y - other.y) ** 2);
+  }
+}
+
+export default {
+  PI,
+  getArea,
+  Point,
+};
+```
+
+* `export default`表示导出当前模块的默认值
+  * 可以是对象、函数和和变量。
+  * 只能使用一次，并且只能导出一个实体。
+  * 这里表示导出了唯一的对象。
+
+默认导入模块
+
+```js
+import math from './d-1-默认导出.js';
+
+console.log(math.PI);
+console.log(math.getArea(5));
+
+let p1 = new math.Point(1, 2);
+let p2 = new math.Point(3, 4);
+console.log(p1.distanceTo(p2));
+```
+
+* `import math from './d-1-默认导出.js';`表示导入实体，使用`math`变量接收导入的实体。
+* `math`的值和默认导出绑定在一起，无法改变。
+* 这里表示`math`接受了一个对象。
+
+#### 按需导出与导入
+
+按需导出模块
+
+```js
+export const PI = 3.1415926;
+
+export function getArea(radius) {
+  return PI * radius * radius;
+}
+
+export class Point {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+
+  distanceTo(other) {
+    return Math.sqrt((this.x - other.x) ** 2 + (this.y - other.y) ** 2);
+  }
+}
+```
+
+* 按需导出，在需要导出的实体前添加`export`关键字，没有导出的实体无法被其他文件使用。
+
+按需导入模块
+
+```js
+import { PI as circlePI, getArea, Point } from './e-1-按需导出.js';
+
+console.log(circlePI);
+console.log(getArea(5));
+
+let p1 = new Point(1, 2);
+let p2 = new Point(3, 4);
+console.log(p1.distanceTo(p2));
+```
+
+* `import { PI, getArea, Point } from './e-1-按需导出.js';`按需导入相应的实体。
+  * 按需导入的写法上类似解构赋值，实际上是将变量与导入信息绑定。
+  * 变量的值一旦绑定无法更改。
+  * 一般情况下按需导入实体的名称应该与导出一致。
+* 使用`as`可以对按需导入的实体重命名。
+
+按需导入的另一种写法
+
+```js
+const PI = 3.1415926;
+
+function getArea(radius) {
+  return PI * radius * radius;
+}
+
+export { PI, getArea }
+```
+
+* 这里的按需导入与上面一致，注意没有`default`关键字。
+
+#### 混合导出与导入
+
+混合导出：默认导出和按需导出一起使用。
+
+```js
+export const PI = 3.1415926;
+
+export function getArea(radius) {
+  return PI * radius * radius;
+}
+
+class Point {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+
+  distanceTo(other) {
+    return Math.sqrt((this.x - other.x) ** 2 + (this.y - other.y) ** 2);
+  }
+}
+
+export default Point;
+```
+
+混合导入
+
+```js
+import Point, { PI, getArea } from './f-1-混合导出.js';
+
+console.log(PI);
+console.log(getArea(5));
+
+let p1 = new Point(1, 2);
+let p2 = new Point(3, 4);
+console.log(p1.distanceTo(p2));
+```
+
+* `Point`接收默认导出实体。
+* `{ PI, getArea }`接收按需导出的实体。
+
+### 导入过程
+
+当使用`import`语句导入一个模块时，JavaScript 引擎确实会加载并执行该模块文件的代码。
+
+1. 导出模块
+
+```js
+const PI = 3.1415926;
+
+function getArea(radius) {
+  return PI * radius * radius;
+}
+
+for (let i = 1; i < 4; i++) {
+  console.log(getArea(i));
+}
+
+export default getArea;
+```
+
+* 模块中有`for`循环函数。
+
+2. 导入模块
+
+```js
+import getArea from './g-1-导出过程.js';
+
+console.log(getArea(5));
+```
+
+* 导入`getArea`过程中会将导出模块的`for`循环执行一遍。
 
 ## 其他命令
 
@@ -287,5 +469,7 @@ npm update [包名]   # 更新指定包
 npm root -g 
 ```
 
+## 练习
 
+1. 使用Node读取和显示一张图片，注意：不要借助浏览器。
 
