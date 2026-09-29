@@ -109,13 +109,11 @@ export default withMermaid({
           { text: 'Less', link: '/docs/e-node/c-less.md' },
         ],
       },
-      // {
-      //   text: 'typescript',
-      //   collapsed: true,
-      //   items: [
-
-      //   ]
-      // },
+      {
+        text: 'Typescript',
+        collapsed: true,
+        items: [{ text: 'Typescript基础', link: '/docs/f-ts/a-base.md' }],
+      },
       // {
       //   text: 'Vue',
       //   collapsed: true,

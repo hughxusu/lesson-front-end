@@ -2,41 +2,10 @@
 
 ## 概念
 
-TypeScript是JavaScript的超集，TypeScript类型是静态的。需要编译器编译成JavaScript在浏览器端运行。
-
-### 配置TypeScript环境
-
-vscode 中设置quote为单引号，tab为两个空格。安装Prettier，format on save 选择
-
-```shell
-# 全局安装TypeScript，可以使用tsc的命令
-cnpm install typescript -g 
-tyarn global add typescript
-
-# 1、在终端中生成js代码，demo.js
-tsc demo.ts
-
-# 2、运行得到执行结果
-node demo.js
-
-tsc --init # 初始化项目为ts项目
-
-cnpm install -g ts-node
-ts-node demo.ts # 直接可以运行不用编译为js文件
-
-tsc -v # 查看typescript版本
-```
-
-### JavaScript兼容
-
-在Typescript使用JavaScript需要安装总结翻译文件，该文件可用通过提示安装，使用`cnpm`命令安装。一般通过.d.ts文件形成映射可以在ts中使用。
-
 ### 项目管理
 
 1. npm初始化项目，使用`npm init`初始化项目，并填写相应信息。`npm init -y`直接初始化项目目录。
 2. ts项目初始化，创建文件夹并用`tsc --init`初始化项目，并生成tsconfig.json文件。
-3. 安装 `npm install -D typescript`，开发环境下单typescript库。
-4. 安装 `npm install -D ts-node`，安装开发依赖。
 5. 创建相应目录结构
 
 ```shell
@@ -47,7 +16,7 @@ tsc -v # 查看typescript版本
 └── tsconfig.json # ts编译控制
 ```
 
-6. 编写程序，并编译。`tsc` Typescript编译命令，可以将ts文件编译成js文件。如果不指定文件名，可以将目录下所有的ts文件编译成js文件，编译过程通过tsconfig.json文件实现控制。（只有不指定文件名才可以用tsconfig.json控制编译过程）
+6. 编写程序，并编译。`tsc`Typescript编译命令，可以将ts文件编译成js文件。如果不指定文件名，可以将目录下所有的ts文件编译成js文件，编译过程通过tsconfig.json文件实现控制。（只有不指定文件名才可以用tsconfig.json控制编译过程）
 
 Package.json配置
 
@@ -91,44 +60,6 @@ ts编译配置
 
 ## 变量
 
-### 类型
-
-```mermaid
-graph TB
-
-类型-->基础类型
-类型-->any
-类型-->对象类型
-
-对象类型-->Object
-对象类型-->数组
-对象类型-->Class
-对象类型-->function
-
-基础类型-->null
-基础类型-->undefined
-基础类型-->void
-基础类型-->never
-基础类型-->boolean
-基础类型-->number
-基础类型-->string
-基础类型-->symbol
-```
-
-### 变量声明
-
-```typescript
-let count: number = 123; // 类型注解，显示声明类型
-let countInference = 123; // 类型推断，类型推断可能无效，需要使用类型注解
-let count: number // 生命分复制分离
-count = 123
-
-const first = 1; // 声明常量
-
-let temp: number | string = 123 // 定义两种类型，多种类型并列称为联合类型
-temp = '456'
-```
-
 ### 枚举
 
 ```typescript
@@ -141,155 +72,7 @@ enum Status {
 console.log(Status.OFFLINE, Status[1]);
 ```
 
-## 数组
-
-```typescript
-// 数组类型注解
-const arr: (number | string)[] = [1, '2', 3];
-const stringArr: string[] = ['a', 'b', 'c'];
-const undefinedArr: undefined[] = [undefined];
-
-const objectArr: {name: string}[] = [{ // 对象类型数组
-    name: 'dell'
-}]
-
-// type alias 类型别名
-type User = { name: string; age: number };
-const userArr: User[] = [{ // 使用类型别名定义数组
-    name: 'dell',
-    age: 18
-}]
-
-type NAME = 'name'; // 定义NAME类型为字符串'name'
-let temp: NAME = 'name' // 当变量类型为NAME时，值只能是'name'
-
-class Teacher {
-  name: string;
-  age: number;
-}
-const objectArr: Teacher[] = [
-  new Teacher(),
-  {
-    name: 'dell',
-    age: 28
-  }
-];
-
-// 元组 tuple，类型必须被预先定义
-const teacherInfo: [string, string, number] = ['Dell', 'male', 18];
-const teacherList: [string, string, number][] = [ // 使用元组解析csv
-    ['dell', 'male', 19],
-    ['sun', 'female', 26],
-    ['jeny', 'female', 38]
-];
-
-const a = ['jack', 12, { gender: 'male'}] as const // 以最原始类型返回
-```
-
-## 函数
-
-### 函数定义
-
-```typescript
-function foo() { }
-const bar = function () { }
-const tool = () => { }
-
-function add(one: number, two: number): number { // 指定函数返回值类型
-  return one + two
-}
-
-function print(one: number, two: number): void { // 无返回值
-  console.log(one + two)
-}
-
-function error(): never { // never返回值，表示程序有可能无法执行完成
-  throw new Error()
-  console.log(123)
-}
-
-function add(
-    {one, two}: {one: number, two: number} // 解构赋值了下注解
-): number {
-  return one + two
-}
-const total = add({one: 1, two: 2})
-
-// 箭头函数声明的两种方式
-const func = (str: string):number => { // 返回值可以推断出来，去掉声明
-    return parseInt(str, 10)
-}
-
-const foo: (str: string) => number = (str) => { // (str: string) => number 表示参数类型
-    return parseInt(str, 10)
-}
-```
-
-## 接口
-
-可以用于代替函数或对象
-
-```typescript
-interface Person { // 定义接口代替对象
-  name: string;
-  age: number;
-}
-
-interface Person {
-  name: string;
-  age?: number; // age属性可有可无
-}
-
-const getPersonName = (person: Person): void => {
-  console.log(person.name);
-};
-
-const person = { 
-  name: 'dell'
-}
-
-getPersonName(person) // 使用对象传入接口，且无需age变量
-
-interface Dog {
-  name: string;
-  age?: number;
-  readonly kind: string; // 只读属性，不能修改
-}
-
-interface Person {
-  name: string;
-  age?: number;
-  [propName: string]: any; // 可以有任何类型的属性，属性名称为string，属性值为any任意类型
-  say(): string; // 接口中添加方法，返回值必须为字符串
-}
-
-interface Teacher extends Person { // 接口可以继承
-  teach(): string;
-}
-
-interface SayHi { // 定义一个函数类型的接口
-  (word: string): string; // 参数为string类型，返回值为string类型
-}
-
-const say: SayHi = (word: string) => { // 实现接口函数
-  return word;
-}
-```
-
 ##  类型别名
-
-通过基本类型来定义特殊的类型。
-
-```typescript
-type Row = string | number;
-type OrString = null | unknown | string;
-type OrNumber = null | unknown | number;
-
-type Person = {  // 只能包含类型的定义，不能包含函数，类似结构体
-  name: string;
-  age?: number;
-}
-```
 
 ### Utility Type
 

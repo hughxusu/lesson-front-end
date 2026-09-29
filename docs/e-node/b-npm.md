@@ -97,6 +97,7 @@ console.log(str)
 
 ```shell
 npm install [包名]  
+npm install [包名]@[版本号]
 npm i [包名]
 ```
 
