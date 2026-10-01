@@ -112,7 +112,10 @@ export default withMermaid({
       {
         text: 'Typescript',
         collapsed: true,
-        items: [{ text: 'Typescript基础', link: '/docs/f-ts/a-base.md' }],
+        items: [
+          { text: 'Typescript基础', link: '/docs/f-ts/a-base.md' },
+          { text: 'Typescript进阶', link: '/docs/f-ts/b-进阶.md' },
+        ],
       },
       // {
       //   text: 'Vue',
