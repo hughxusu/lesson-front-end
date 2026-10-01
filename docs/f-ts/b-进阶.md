@@ -471,5 +471,5 @@ console.log(serializable.serialize());
 
 ## 练习
 
-1. 定义`WXNote`模型向微信发送账单，继承`Note`实现抽象方法。
+1. 定义`WXNote`类模拟向微信发送账单，继承`Note`实现抽象方法。
 
