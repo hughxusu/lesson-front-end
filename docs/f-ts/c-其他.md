@@ -551,7 +551,85 @@ class UserController {
 
 * 使用装饰器时，可以传入参数。
 
-## 
+## 类型定义文件
+
+用于对JavaScript类库的类型进行规范，使得类库可以在TypeScript下使用，文件名称为`*.d.ts`文件。
+
+安装Dayjs工具包
+
+```ts
+import dayjs from 'dayjs';
+
+console.log(dayjs().format('YYYY-MM-DD HH:mm:ss'));
+```
+
+查看Dayjs的声明文件
+
+```ts
+export = dayjs;
+
+declare function dayjs (date?: dayjs.ConfigType): dayjs.Dayjs
+...
+```
+
+`declare`关键字是TypeScript中用来进行环境声明（Ambient Declaration）的机制。它的核心作用是告诉TypeScript编译器：“某个变量、函数、类或模块已经在外部存在了，请不要为此生成代码，只需提供类型检查和代码提示即可。”
+
+部分使用npm安装库文件，需要手动安装`.d.ts`类型文件。
+
+* 在引入文件时会有安装提示。
+* 类型定义文件安装应该安装到开发环境下。
+
+## 工具类型
+
+工具类型（Utility Types）以现有的类型为基础，通过类型转换/组合，快速生成新的类型。
+
+`Partial`所有字段变为可选
+
+```ts
+interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+
+type UpdateUserInput = Partial<User>;
+let user = { id: 10012, name: '张三' };
+console.log(user);
+```
+
+`Omit`移除字段
+
+```ts
+interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+
+type UpdateUserInput = Omit<User, 'id' | 'email'>;
+let user: UpdateUserInput = { name: '张三' };
+console.log(user);
+```
+
+`Readonly`所有字段变为只读
+
+```ts
+interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+
+type UpdateUserInput = Readonly<User>;
+let user: UpdateUserInput = {
+  id: 10012,
+  name: '张三',
+  email: 'zhangsan@example.com',
+};
+console.log(user);
+```
+
+[全部工具类型](https://www.typescriptlang.org/docs/handbook/utility-types.html)
 
 ## 练习
 

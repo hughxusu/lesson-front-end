@@ -115,6 +115,7 @@ export default withMermaid({
         items: [
           { text: 'Typescript基础', link: '/docs/f-ts/a-base.md' },
           { text: 'Typescript进阶', link: '/docs/f-ts/b-进阶.md' },
+          { text: 'Typescript其他特性', link: '/docs/f-ts/c-其他.md' },
         ],
       },
       // {
