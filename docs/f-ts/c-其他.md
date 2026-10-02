@@ -574,7 +574,7 @@ declare function dayjs (date?: dayjs.ConfigType): dayjs.Dayjs
 
 `declare`关键字是TypeScript中用来进行环境声明（Ambient Declaration）的机制。它的核心作用是告诉TypeScript编译器：“某个变量、函数、类或模块已经在外部存在了，请不要为此生成代码，只需提供类型检查和代码提示即可。”
 
-部分使用npm安装库文件，需要手动安装`.d.ts`类型文件。
+部分使用npm安装库文件，需要手动安装`.d.ts`类型文件：
 
 * 在引入文件时会有安装提示。
 * 类型定义文件安装应该安装到开发环境下。
