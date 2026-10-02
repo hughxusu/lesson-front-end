@@ -10,8 +10,6 @@
 
 Alpine.js用来代替标签选择器或jQuery库。
 
-<img src="./assets/double-bind.jpg" style="zoom:90%;" />
-
 ## Alpine使用
 
 使用CDN引入Alpine.js包
