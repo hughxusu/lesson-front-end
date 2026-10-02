@@ -118,13 +118,11 @@ export default withMermaid({
           { text: 'Typescript其他特性', link: '/docs/f-ts/c-其他.md' },
         ],
       },
-      // {
-      //   text: 'Vue',
-      //   collapsed: true,
-      //   items: [
-
-      //   ]
-      // },
+      {
+        text: 'Vue',
+        collapsed: true,
+        items: [{ text: 'Vue概述', link: '/docs/g-vue/a-概述.md' }],
+      },
       // {
       //   text: '微信小程序',
       //   collapsed: true,

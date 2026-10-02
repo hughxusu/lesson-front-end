@@ -18,10 +18,10 @@ Alpine.js用来代替标签选择器或jQuery库。
 
 ```html
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title> 
-    <script src="https://cdn.bootcdn.net/ajax/libs/alpinejs/3.14.0/alpine.min.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script defer src="https://cdn.bootcdn.net/ajax/libs/alpinejs/3.16.1/cdn.min.js"></script>
 </head>
 ```
 
@@ -29,7 +29,7 @@ Alpine.js用来代替标签选择器或jQuery库。
 
 ```html
 <body x-data="{ message: 'hello alpine' }">
-    <h1 x-text="message"></h1>
+  <h1 x-text="message"></h1>
 </body>
 ```
 
@@ -53,8 +53,8 @@ Alpine.js用来代替标签选择器或jQuery库。
 
 ```html
 <div x-data="{ count: 0 }">
-    <button x-on:click="count++">Increment</button>
-    <h2 x-text="count"></h2>
+  <button x-on:click="count++">Increment</button>
+  <h2 x-text="count"></h2>
 </div>
 ```
 
@@ -63,17 +63,18 @@ Alpine.js用来代替标签选择器或jQuery库。
 使用元素选择的方式实现上面的功能
 
 ```html
-<div >
+<body>
+  <div>
     <button id="btn">Increment</button>
     <h2 id="count">0</h2>
-</div>
+  </div>
 </body>
 <script>
-let btn = document.getElementById('btn');
-let count = document.getElementById('count');
-btn.addEventListener('click', () => {
+  let btn = document.getElementById('btn');
+  let count = document.getElementById('count');
+  btn.addEventListener('click', () => {
     count.innerHTML = Number(count.innerHTML) + 1;
-})
+  })
 </script>
 ```
 
@@ -81,13 +82,13 @@ btn.addEventListener('click', () => {
 
 ```html
 <div x-data="{ count: 0 }">
-    <button x-on:click="count++">Increment</button>
-    <h2 x-text="count"></h2>
+  <button x-on:click="count++">Increment</button>
+  <h2 x-text="count"></h2>
 </div>
 <hr>
 <div x-data="{ count: 0 }">
-    <button x-on:click="count++">Increment</button>
-    <h2 x-text="count"></h2>
+  <button x-on:click="count++">Increment</button>
+  <h2 x-text="count"></h2>
 </div>
 ```
 
@@ -100,9 +101,9 @@ btn.addEventListener('click', () => {
 ```html
 <div x-data="{ parentName: '张三', age: 40 }">
   <div x-data="{ childName: '张小三', age: 10 }">
-    <p x-text="childName"></p> 
-    <p x-text="parentName"></p> 
-    <p x-text="age"></p> 
+    <p x-text="childName"></p>
+    <p x-text="parentName"></p>
+    <p x-text="age"></p>
   </div>
 </div>
 ```
@@ -111,11 +112,11 @@ btn.addEventListener('click', () => {
 
 ```html
 <div x-data="{ open: false, toggle() { this.open = ! this.open } }">
-    <button @click="toggle()">Toggle Content</button>
-    <hr>
-    <div x-show="open">
-        天下风云出我辈，一入江湖岁月催。
-    </div>
+  <button @click="toggle()">Toggle Content</button>
+  <hr>
+  <h2 x-show="open">
+    天下风云出我辈，一入江湖岁月催。
+  </h2>
 </div>
 ```
 
@@ -125,7 +126,7 @@ btn.addEventListener('click', () => {
 
 ```html
 <div x-data="{ username: 'calebporzio' }">
-    Username: <strong x-text="username.toUpperCase()"></strong>
+  Username: <strong x-text="username.toUpperCase()"></strong>
 </div>
 ```
 
@@ -135,7 +136,7 @@ btn.addEventListener('click', () => {
 
 ```html
 <div x-data="{ username: '<strong>calebporzio</strong>' }">
-    Username: <span x-html="username"></span>
+  Username: <span x-html="username"></span>
 </div>
 ```
 
@@ -145,7 +146,7 @@ btn.addEventListener('click', () => {
 
 ```html
 <body x-data>
-<button x-on:click="alert('Hello World!')">Say Hi</button>
+  <button x-on:click="alert('Hello World!')">Say Hi</button>
 </body>
 ```
 
@@ -156,7 +157,7 @@ btn.addEventListener('click', () => {
 
 ```html
 <body x-data>
-<button @click="alert('Hello World!')">Say Hi</button>
+  <button @click="alert('Hello World!')">Say Hi</button>
 </body>
 ```
 
@@ -164,12 +165,12 @@ btn.addEventListener('click', () => {
 
 ```html
 <body x-data>
-<button @click="handleClick">Say Hi</button>
+  <button @click="handleClick">Say Hi</button>
 </body>
 <script>
-    function handleClick(e) {
-        alert(`Target innerHTML: ${e.target.innerHTML}`);
-    }
+  function handleClick(e) {
+    alert(`Target innerHTML: ${e.target.innerHTML}`);
+  }
 </script>
 ```
 
@@ -183,7 +184,7 @@ btn.addEventListener('click', () => {
 
 ```html
 <div x-data="{ placeholderText: 'Type here...' }">
-    <input type="text" x-bind:placeholder="placeholderText">
+  <input type="text" x-bind:placeholder="placeholderText">
 </div>
 ```
 
@@ -194,7 +195,7 @@ btn.addEventListener('click', () => {
 
 ```html
 <div x-data="{ placeholderText: 'Type here...' }">
-    <input type="text" :placeholder="placeholderText">
+  <input type="text" :placeholder="placeholderText">
 </div>
 ```
 
@@ -204,27 +205,21 @@ btn.addEventListener('click', () => {
 
 ```html
 <div x-data="{ color: 'red' }">
-    <h2 :style="'color: ' + color">皇图霸业谈笑中，不胜人生一场醉。</h2>
+  <h2 :style="'color: ' + color">皇图霸业谈笑中，不胜人生一场醉。</h2>
 </div>
 ```
 
 用于绑定属性
 
 ```html
-<body>
-  <div x-data="{ current: 'personal' }">
-    <button class="tab-btn" 
-            :class="{ 'active': current === 'personal' }" 
-            @click="current = 'personal'">
-      个人登录
-    </button>
-    <button class="tab-btn" 
-            :class="{ 'active': current === 'company' }" 
-            @click="current = 'company'">
-      企业登录
-    </button>
-  </div>
-</body>
+<div x-data="{ current: 'personal' }">
+  <button class="tab-btn" :class="{ 'active': current === 'personal' }" @click="current = 'personal'">
+    个人登录
+  </button>
+  <button class="tab-btn" :class="{ 'active': current === 'company' }" @click="current = 'company'">
+    企业登录
+  </button>
+</div>
 ```
 
 * 原有的`class`为静态样式。
@@ -242,9 +237,9 @@ btn.addEventListener('click', () => {
 
 ```html
 <div x-data="{ message: '' }">
-    <input type="text" x-model="message">
-    <hr>
-    <h2 x-text="message"></h2>
+  <input type="text" x-model="message">
+  <hr>
+  <h2 x-text="message"></h2>
 </div>
 ```
 
@@ -254,9 +249,9 @@ btn.addEventListener('click', () => {
 
 ```html
 <div x-data="{ message: '岭外音书断，经冬复历春。' }">
-    <input type="text" x-model="message">
-    <hr>
-    <button x-text="message" @click="message = '近乡情更怯，不敢问来人。'"></button>
+  <input type="text" x-model="message">
+  <hr>
+  <button x-text="message" @click="message = '近乡情更怯，不敢问来人。'"></button>
 </div>
 ```
 
@@ -269,12 +264,12 @@ btn.addEventListener('click', () => {
 用来控制DOM元素显示和隐藏，支持动画效果。
 
 ```html
-<div x-data="{ open: ture, toggle() { this.open = ! this.open } }">
-    <button @click="toggle()">Toggle Content</button>
-    <hr>
-    <h2 x-show="open">
-      提剑跨骑挥鬼雨，白骨如山鸟惊飞。
-    </h2>
+<div x-data="{ open: true, toggle() { this.open = ! this.open } }">
+  <button @click="toggle()">Toggle Content</button>
+  <hr>
+  <h2 x-show="open">
+    提剑跨骑挥鬼雨，白骨如山鸟惊飞。
+  </h2>
 </div>
 ```
 
@@ -286,13 +281,13 @@ btn.addEventListener('click', () => {
 
 ```html
 <div x-data="{ open: true, toggle() { this.open = ! this.open } }">
-    <button @click="toggle()">Toggle Content</button>
-    <hr>
-    <template x-if="open">
-      <h2>
-        尘事如潮人如水，只叹江湖几人回。
-      </h2>
-    </template>
+  <button @click="toggle()">Toggle Content</button>
+  <hr>
+  <template x-if="open">
+    <h2>
+      尘事如潮人如水，只叹江湖几人回。
+    </h2>
+  </template>
 </div>
 ```
 
@@ -315,9 +310,9 @@ btn.addEventListener('click', () => {
 
 ```html
 <ul x-data="{ colors: ['Red', 'Orange', 'Yellow'] }">
-    <template x-for="color in colors">
-        <li x-text="color"></li>
-    </template>
+  <template x-for="color in colors">
+    <li x-text="color"></li>
+  </template>
 </ul>
 ```
 
@@ -329,12 +324,12 @@ btn.addEventListener('click', () => {
 
 ```html
 <ul x-data="{ colors: ['Red', 'Orange', 'Yellow'] }">
-    <template x-for="(color, index) in colors">
-        <li>
-            <span x-text="index + ': '"></span>
-            <span x-text="color"></span>
-        </li>
-    </template>
+  <template x-for="(color, index) in colors">
+    <li>
+      <span x-text="index + ': '"></span>
+      <span x-text="color"></span>
+    </li>
+  </template>
 </ul>
 ```
 
@@ -346,11 +341,11 @@ btn.addEventListener('click', () => {
 
 ```html
 <ul x-data="{ car: { make: 'Jeep', model: 'Grand Cherokee', color: 'Black' } }">
-    <template x-for="(value, key) in car">
-        <li>
-            <span x-text="key"></span>: <span x-text="value"></span>
-        </li>
-    </template>
+  <template x-for="(value, key) in car">
+    <li>
+      <span x-text="key"></span>: <span x-text="value"></span>
+    </li>
+  </template>
 </ul>
 ```
 
@@ -364,13 +359,13 @@ btn.addEventListener('click', () => {
 
 ```html
 <ul x-data="{ colors: [
-    { id: 1, label: 'Red' },
-    { id: 2, label: 'Orange' },
-    { id: 3, label: 'Yellow' },
-]}">
-    <template x-for="color in colors" :key="color.id">
-        <li x-text="color.label"></li>
-    </template>
+  { id: 1, label: 'Red' },
+  { id: 2, label: 'Orange' },
+  { id: 3, label: 'Yellow' },
+  ]}">
+  <template x-for="color in colors" :key="color.id">
+    <li x-text="color.label"></li>
+  </template>
 </ul>
 ```
 
@@ -395,23 +390,25 @@ document.addEventListener('alpine:init', () => {
 提供了一种在应用程序中重复使用`x-data`上下文的方法。
 
 ```html
-<div x-data="dropdown">
+<body>
+  <div x-data="dropdown">
     <button @click="toggle">Toggle Content</button>
     <hr>
     <h2 x-show="open">
+      登高 (杜甫) <br>
 			...
     </h2>
-</div>
+  </div>
 </body>
 <script>
-    document.addEventListener('alpine:init', () => {
-        Alpine.data('dropdown', () => ({
-            open: false,
-            toggle() {
-                this.open = ! this.open
-            }
-        }))
-    })
+  document.addEventListener('alpine:init', () => {
+    Alpine.data('dropdown', () => ({
+      open: false,
+      toggle() {
+        this.open = !this.open
+      }
+    }))
+  })
 </script>
 ```
 
@@ -425,29 +422,29 @@ document.addEventListener('alpine:init', () => {
 
 ```html
 <body>
-<div x-data>
+  <div x-data>
     <h2 x-text="$store.counter.count"></h2>
-</div>
-<div x-data>
+  </div>
+  <div x-data>
     <button @click="$store.counter.increment()">增加</button>
-</div>
-<hr>
-<div x-data>
+  </div>
+  <hr>
+  <div x-data>
     <button @click="$store.counter.decrement()">减少</button>
-</div>
+  </div>
 </body>
 <script>
-    document.addEventListener('alpine:init', () => {
-        Alpine.store('counter', {
-            count: 0,
-            increment() {
-                this.count++;
-            },
-            decrement() {
-                this.count--;
-            }
-        })
+  document.addEventListener('alpine:init', () => {
+    Alpine.store('counter', {
+      count: 0,
+      increment() {
+        this.count++;
+      },
+      decrement() {
+        this.count--;
+      }
     })
+  })
 </script>
 ```
 
@@ -462,16 +459,15 @@ document.addEventListener('alpine:init', () => {
 1. `x-init`在初始化阶段执行回调。
 
 ```html
-<div x-init="console.log('I\'m being initialized!')"></div>
+<body>
+  <div x-init="console.log('I\'m being initialized!')"></div>
+</body>
 ```
 
 2. `x-init`可以用于数据初始化。
 
 ```html
-<div 
-  x-data="{user: null}" 
-  x-init="user = {name: 'Tom',age: 25}"
-  >
+<div x-data="{user: null}" x-init="user = {name: 'Tom',age: 25}">
   <div x-text="user.name"></div>
   <div x-text="user.age"></div>
 </div>
@@ -480,10 +476,11 @@ document.addEventListener('alpine:init', () => {
 3. 初始可以在全局对象内初始化。
 
 ```html
-<div x-data="user" >
-  <div>username: <span x-text="data.username"></span></div>
-  <div>age: <span x-text="data.age"></span></div>
-</div>
+<body>
+  <div x-data="user">
+    <div>username: <span x-text="data.username"></span></div>
+    <div>age: <span x-text="data.age"></span></div>
+  </div>
 </body>
 <script>
   document.addEventListener('alpine:init', () => {
@@ -504,16 +501,16 @@ document.addEventListener('alpine:init', () => {
 
 ```html
 <body>
-<div x-data="userList">
-  <ul>
-    <template x-for="user in users" :key="user.id">
-      <li>
-        <div class="name" x-text="fullName(user)"></div>
-        <div x-text="`${user.gender} · ${user.age} · ${user.university}`"></div>
-      </li>
-    </template>
-  </ul>
-</div>
+  <div x-data="userList">
+    <ul>
+      <template x-for="user in users" :key="user.id">
+        <li>
+          <div class="name" x-text="fullName(user)"></div>
+          <div x-text="`${user.gender} · ${user.age} · ${user.university}`"></div>
+        </li>
+      </template>
+    </ul>
+  </div>
 </body>
 <script>
   document.addEventListener('alpine:init', () => {
@@ -534,14 +531,3 @@ document.addEventListener('alpine:init', () => {
 ## 练习
 
 1. 使用[RandomUser](https://randomuser.me/)接口和模版方法生成一个用户卡片页。
-
-
-
-
-
-
-
-
-
-
-
