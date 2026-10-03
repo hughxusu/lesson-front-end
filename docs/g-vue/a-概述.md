@@ -206,9 +206,15 @@ vue 3项目的结构目录为
 
 ```ts
 import { createApp } from 'vue'
+import { createRouter, createWebHistory } from 'vue-router'
+import { createPinia } from 'pinia'
 import App from './App.vue'
 
 const app = createApp(App)
+
+app.use(createPinia())
+app.use(createRouter({ history: createWebHistory(), routes: [] }))
+
 app.mount('#app')
 ```
 
@@ -216,11 +222,14 @@ app.mount('#app')
 * `createApp`初始化并创建一个全新的Vue应用实例`app`
   * `app`实例会加载根组件`App`。
   * `app`实例可以加载第三方插件。
+* `app.use`可以添加第三方插件
+  * `createPinia`全局状态管理。
+  * `createRouter`路由管理插件。
 * `app.mount('#app')`将创建好的Vue应用渲染并挂载到HTML中`id="app"`的DOM节点上。
 
 ### 单文件组件
 
-`App.vue`文件是根组件，文件类型`*.vue`，该文件为Vue推荐的项目开发文件，即为单文件组件
+`App.vue`文件是根组件，文件类型`.vue`，该文件为Vue推荐的项目开发文件，即为单文件组件
 
 ```vue
 <script setup lang="ts"></script>

@@ -121,7 +121,11 @@ export default withMermaid({
       {
         text: 'Vue',
         collapsed: true,
-        items: [{ text: 'Vue概述', link: '/docs/g-vue/a-概述.md' }],
+        items: [
+          { text: 'Vue概述', link: '/docs/g-vue/a-概述.md' },
+          { text: 'Vue模版', link: '/docs/g-vue/b-模版.md' },
+          { text: 'Vue指令', link: '/docs/g-vue/c-指令.md' },
+        ],
       },
       // {
       //   text: '微信小程序',

@@ -1,0 +1,15 @@
+import { createApp } from 'vue'
+// import App from './a-setup演示.vue'
+// import App from './b-setup简洁写法.vue'
+// import App from './c-文本插值.vue'
+// import App from './d-非响应数据.vue'
+// import App from './e-ref.vue'
+// import App from './f-ref修改数据.vue'
+// import App from './g-ref对象数据.vue'
+// import App from './h-reactive.vue'
+// import App from './i-ref对象本质.vue'
+// import App from './j-reactive对象替换.vue'
+// import App from './k-toRefs.vue'
+import App from './l-toRef.vue'
+
+createApp(App).mount('#app')
