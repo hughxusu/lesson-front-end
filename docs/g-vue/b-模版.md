@@ -330,6 +330,8 @@ setTimeout(() => {
 2. 若需要一个响应式对象，层级不深，`ref`、`reactive`都可以。
 3. 若需要一个响应式对象，且层级较深，推荐使用`reactive`。
 
+[声明响应式状态](https://cn.vuejs.org/guide/essentials/reactivity-fundamentals.html#reactivity-fundamentals)详解
+
 ### `toRefs()`与`toRef()`
 
 `toRefs()`将响应式对象中的每一个属性，转换为`ref`对象。
