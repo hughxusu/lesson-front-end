@@ -2,30 +2,6 @@
 
 ## 基本概念
 
-### 在html页面中使用
-
-```html
-<div id="app">
-<input type="text" v-model="username"> <p>Hello, {{username}}</p>
-</div>
-<script type="text/javascript" src="../js/vue.js"></script>  <!--引入vue包-->
-<script type="text/javascript">
-	new Vue({ // 创建vue实例
-    el: '#app', 
-    data: { // 数据
-			username: 'atguigu' 
-    }
-	}) 
-</script>
-```
-
-### MVVM模型
-
-<img src="https://012.vuejs.org/images/mvvm.png" alt="https://012.vuejs.org/images/mvvm.png" style="zoom: 40%;" />
-
-* view是前端页面
-* model是后台获得的数据
-
 ## Vue语法
 
 ### 模板语法

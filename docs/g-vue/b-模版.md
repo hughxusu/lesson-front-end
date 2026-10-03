@@ -146,10 +146,13 @@ let score = 90.5
 
 Vue 3高度借鉴MVVM（Model-View-ViewModel）模式，并实现了双向绑定机制。
 
-<img src="./assets/mvvm.png" style="zoom:60%;" />
-
 * 数据变了，视图跟着改变：变量根据网络请求等操作发生变化，视图中数据自动更新。
 * 视图变了，数据跟着改变：当用户在页面上进行交互，比如输入账号和密码等操作，绑定的变量会同时变化。
+
+<img src="./assets/mvvm.png" style="zoom:60%;" />
+
+* View表示前端页面。
+* Model代表后台获得的数据。
 
 ## 响应式数据
 
