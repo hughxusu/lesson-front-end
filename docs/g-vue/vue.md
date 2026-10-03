@@ -1,55 +1,5 @@
 # Vue
 
-## 环境搭建
-
-### 安装vue脚手架工具
-
-```shell
-# 需要全局安装
-npm install -g @vue/cli
-cnpm install -g @vue/cli
-yarn global add @vue/cli
-tyarn global add @vue/cli
-
-
-vue --version
-
-# 升级脚手架
-npm update -g @vue/cli
-yarn global upgrade --latest @vue/cli
-```
-
-#### vite搭建开发环境
-
-```shell
-# 直接创建相应的开发环境，无需全局安装
-yarn create vite
-tyarn create vite
-```
-
-### 项目目录结构
-
-```shell
-.
-├── dist # 打包文件
-├── index.html # 入库文件
-├── package.json # npm配置文件
-├── public
-├── src
-│   ├── App.vue # vue 主文件
-│   ├── api # 项目接口
-│   ├── assets # 资源静态文件
-│   ├── components # 项目组件
-│   ├── config # 项目配置，mock api等
-│   ├── main.js # 入口JS
-│   ├── router # 路由
-│   ├── store # 项目状态管理
-│   ├── utils # 公共函数
-│   └── views # 页面
-├── vite.config.js # vite配置工具
-└── yarn.lock # 依赖版本锁定
-```
-
 ## 基本概念
 
 ### 在html页面中使用

@@ -10,7 +10,7 @@ Vue最核心的部分是：声明式渲染和组件系统，其他的功能可�
 
 <img src="./assets/v2-7de91fc9a17618d06aff2e9df88506f7_1440w.jpg" style="zoom:60%;" />
 
-* 库是集合了某些对象、方法和函数的工具箱
+* 库是集合了某些对象、方法和函数的工具箱。
 * 框架是一套开发规范，继承了一套完整的解决方案。
 
 Vue框架包括
@@ -31,7 +31,7 @@ Vue现在的主流版本是`3.x`，该版本从2020年9月发布至今。Vue 2�
 
 > [!tip]
 >
-> 浏览器只能解析HTML/CSS/JavaScript，如何将Typescript和Less等代码转化成浏览器能解析的文件？
+> 浏览器只能解析HTML/CSS/JavaScript，Vue项目中如何将Typescript和Less等代码转化成浏览器能解析的文件？
 
 ## Vite
 
@@ -42,17 +42,21 @@ Vue现在的主流版本是`3.x`，该版本从2020年9月发布至今。Vue 2�
 
 <img src="./assets/Xnip2026-10-02_19-50-31.jpg" style="zoom:60%;" />
 
+> [!warning]
+>
+> 开发阶段和生成阶段访问的文件和运行机制是完全不同的。
+
 ### 开发阶段
 
 * 轻量快速的热重载（HMR），能实现极速的服务启动。
 * 对TypeScript、CSS等支持开箱即用。
 * 真正的按需编译，不再等待整个应用编译完成。
 
+<img src="./assets/Xnip2026-10-02_21-29-02.jpg" style="zoom:60%;" />
+
 > [!warning]
 >
 > 上述特点优化开发服务器的响应速度，提升开发效率，本质上不影响打包结果。
-
-<img src="./assets/Xnip2026-10-02_21-29-02.jpg" style="zoom:60%;" />
 
 ### 单页面应用
 
@@ -81,6 +85,8 @@ Vue现在的主流版本是`3.x`，该版本从2020年9月发布至今。Vue 2�
 ```shell
 npm create vue@latest
 ```
+
+* `npm create`是npm 的标准官方内置命令，用于快速初始化各类前端工程化项目。
 
 上述命令实际运行的内容如下
 
@@ -138,10 +144,17 @@ vue 3项目的结构目录为
 ├── public                            # 页签图标
 ├── dist                              # 输出文件夹
 ├── src                               # 代码文件夹
+│   ├── assets                        # 静态资源目录，包括：静态样式、图标等           
+│   ├── stores                        # 全局状态管理（共享数据状态）
+│   ├── router                        # 路由配置目录
+│   ├── components                    # 通用组件
+│   ├── views                         # 页面组件
+│   ├── main.ts                       # 应用入口文件，整个Vue应用的总入口脚本
+│   └── App.vue                       # 根组件，所有其他Vue组件的最顶层父组件
 ├── .gitignore                        # git忽略文件
 ├── .prettierrc.json                  # 代码格式配置
 ├── env.d.ts                          # 类型声明文件            
-├── index.html                        # 入库文件
+├── index.html                        # 入口文件
 ├── README.md                         # 项目说明
 ├── package-lock.json
 ├── package.json                      # 项目配置文件
@@ -150,4 +163,58 @@ vue 3项目的结构目录为
 ├── tsconfig.node.json                # Typescript配置文件
 └── vite.config.ts                    # Vite打包配置文件
 ```
+
+由于前面选择安装了Pinia和Router两个功能，所以`package.json`包含如下
+
+```json
+{
+  "dependencies": {
+    "pinia": "^4.0.3",
+    "vue": "^3.5.42",
+    "vue-router": "^5.3.1"
+  }
+}
+```
+
+## 项目启动过程
+
+`index.html`做为项目的入口文件，项启动后开发服务器会直接访问该文件
+
+```html
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vite App</title>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
+</html>
+```
+
+* Vite会解析`<script type="module" src="/src/main.ts"></script>`指向的文件，启动项目。
+* `<div id="app"></div>`是加载页面的根节点。
+
+`main.ts`为应用入库文件，清除文件中的多余内容，保留如下代码
+
+```ts
+import { createApp } from 'vue'
+import App from './App.vue'
+
+const app = createApp(App)
+app.mount('#app')
+```
+
+* `App`为根组件，是所有Vue组件的顶级节点。其它页面和组件，都会作为子组件挂载到`App`下面，形成一棵组件树。
+* `createApp`初始化并创建一个全新的Vue应用实例`app`
+  * `app`实例会加载根组件`App`。
+  * `app`实例可以加载第三方插件。
+* `app.mount('#app')`将创建好的Vue应用渲染并挂载到HTML中`id="app"`的DOM节点上。
 
