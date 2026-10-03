@@ -218,3 +218,27 @@ app.mount('#app')
   * `app`实例可以加载第三方插件。
 * `app.mount('#app')`将创建好的Vue应用渲染并挂载到HTML中`id="app"`的DOM节点上。
 
+### 单文件组件
+
+`App.vue`文件是根组件，文件类型`*.vue`，该文件为Vue推荐的项目开发文件，即为单文件组件
+
+```vue
+<script setup lang="ts"></script>
+
+<template>
+  <h1>Hello Vue 3!</h1>
+</template>
+
+<style scoped></style>
+```
+
+* `script`标签是程序标签，在这里写代码，`lang="ts"`表示使用Typescript语言。
+* `template`标签写模版语法，HTML标签的超集，兼容基本的标签。最终被转换为纯JavaScript代码。
+* `style`标签写页面的样式，`scoped`保证样式只针对当前模版内标签生效。
+
+`*.vue`文件最终只会被编译并提炼为标准的JavaScript和CSS文件，不会生成`.html`文件。
+
+> [!important]
+>
+> Vue中的所有页面结构都是由JavaScript动态渲染得到，只有`index.html`中的根标签是元素HTML。
+
