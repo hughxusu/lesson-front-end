@@ -115,8 +115,6 @@ let message = '清川带长薄，车马去闲闲。'
 
 ```vue
 <script setup lang="ts">
-defineOptions({ name: 'App' })
-
 let message = '流水如有意，暮禽相与还。'
 let isMale = true
 let greeting = 'Hello world!'
@@ -160,8 +158,6 @@ Vue 3高度借鉴MVVM（Model-View-ViewModel）模式，并实现了双向绑定
 
 ```vue
 <script setup lang="ts">
-defineOptions({ name: 'App' })
-
 let message = '荒城临古渡，落日满秋山。'
 
 setTimeout(() => {
@@ -185,8 +181,6 @@ setTimeout(() => {
 
 ```vue
 <script setup lang="ts">
-defineOptions({ name: 'App' })
-
 import { ref } from 'vue'
 
 let message1 = '岱宗夫如何？齐鲁青未了。'
@@ -214,8 +208,6 @@ console.log(message2)
 
 ```vue
 <script setup lang="ts">
-defineOptions({ name: 'App' })
-
 import { ref } from 'vue'
 
 let message = ref('荡胸生曾云，决眦入归鸟。')
@@ -233,8 +225,6 @@ setTimeout(() => {
 
 ```vue
 <script setup lang="ts">
-defineOptions({ name: 'App' })
-
 import { ref } from 'vue'
 
 let user = ref({ name: '张三', id: 100012 })
@@ -266,11 +256,10 @@ setTimeout(() => {
 
 ```vue
 <script setup lang="ts">
-defineOptions({ name: 'App' })
-
 import { reactive } from 'vue'
 
 let user = reactive({ name: '张三', id: 100012 })
+console.log(user)
 setTimeout(() => {
   user.name = '李四'
   user.id = 100020
@@ -292,13 +281,15 @@ setTimeout(() => {
 
 ```vue
 <script setup lang="ts">
-defineOptions({ name: 'App' })
-
 import { ref } from 'vue'
 
 let user = ref({ name: '张三', id: 100012 })
 console.log(user)
 </script>
+
+<template>
+  <h2>用户名: {{ user.name }}，用户ID: {{ user.id }}</h2>
+</template>
 ```
 
 <img src="./assets/Xnip2026-10-03_23-24-31.jpg" style="zoom:80%;" />
@@ -307,14 +298,13 @@ console.log(user)
 
 ```vue
 <script setup lang="ts">
-defineOptions({ name: 'App' })
-
 import { reactive } from 'vue'
 
 let user = reactive({ name: '张三', id: 100012 })
 
 setTimeout(() => {
   user = { name: '李四', id: 100020 }
+  // Object.assign(user, { name: '李四', id: 100020 })
   console.log(user)
 }, 1500)
 </script>
@@ -341,8 +331,6 @@ setTimeout(() => {
 
 ```vue
 <script setup lang="ts">
-defineOptions({ name: 'App' })
-
 import { reactive, toRefs } from 'vue'
 
 let user = reactive({ name: '张三', id: 100012 })
@@ -357,14 +345,13 @@ setTimeout(() => {
 <template>
   <h2>用户名: {{ name }}，用户ID: {{ id }}</h2>
 </template>
+
 ```
 
 `toRef()`可以拆解出响应式对象中的一个属性，并转换为`ref`对象。
 
 ```vue
 <script setup lang="ts">
-defineOptions({ name: 'App' })
-
 import { reactive, toRef } from 'vue'
 
 let user = reactive({ name: '张三', id: 100012 })

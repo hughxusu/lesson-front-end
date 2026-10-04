@@ -1,6 +1,4 @@
 <script setup lang="ts">
-defineOptions({ name: 'App' })
-
 let message = '流水如有意，暮禽相与还。'
 let isMale = true
 let greeting = 'Hello world!'

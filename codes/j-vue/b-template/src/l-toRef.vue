@@ -1,6 +1,4 @@
 <script setup lang="ts">
-defineOptions({ name: 'App' })
-
 import { reactive, toRef } from 'vue'
 
 let user = reactive({ name: '张三', id: 100012 })

@@ -1,6 +1,4 @@
 <script setup lang="ts">
-defineOptions({ name: 'App' })
-
 let message = '荒城临古渡，落日满秋山。'
 
 setTimeout(() => {

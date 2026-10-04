@@ -1,6 +1,4 @@
 <script setup lang="ts">
-defineOptions({ name: 'App' })
-
 import { ref } from 'vue'
 
 let user = ref({ name: '张三', id: 100012 })

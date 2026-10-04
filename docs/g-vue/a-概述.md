@@ -251,3 +251,31 @@ app.mount('#app')
 >
 > Vue中的所有页面结构都是由JavaScript动态渲染得到，只有`index.html`中的根标签是元素HTML。
 
+## 安装Less包
+
+直接安装Less预处理器，安装为开发依赖
+
+```shell
+npm install less --save-dev
+```
+
+在`.vue`文件的`<style>`标签上添加`lang="less"`属性，即可直接编写Less语法
+
+```vue
+<style scoped lang="less"></style>
+```
+
+如果希望在所有组件中自动引入全局的Less变量文件，可以在`vite.config.ts`中配置`css.preprocessorOptions`。
+
+```ts
+export default defineConfig({
+  css: {
+    preprocessorOptions: {
+      less: {
+        additionalData: `@import "@/assets/less/variables.less";`,
+      },
+    },
+  },
+})
+```
+

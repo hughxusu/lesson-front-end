@@ -1,6 +1,4 @@
 <script setup lang="ts">
-defineOptions({ name: 'App' })
-
 import { ref } from 'vue'
 
 let message1 = '岱宗夫如何？齐鲁青未了。'
