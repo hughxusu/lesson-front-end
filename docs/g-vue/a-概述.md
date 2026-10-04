@@ -35,7 +35,16 @@ Vue现在的主流版本是`3.x`，该版本从2020年9月发布至今。Vue 2�
 
 ## Vite
 
-[Vite](https://vitejs.cn/)是新一代前端构建工具
+```mermaid
+timeline
+    title 构建工具的发展
+    2011-2014 : gulp : grunt : webpack
+    2015 : rollup
+    2017 : parcel
+    2020 : vite
+```
+
+[Vite](https://vitejs.cn/)是新一代前端构建工具，基于rollup发展起来
 
 * 开发阶段：搭建开发服务器，边写代码、边实时预览开发页面。
 * 生产阶段：优化的代码打包，将零散的代码文件按照依赖关系整合、优化并输出为静态资源。

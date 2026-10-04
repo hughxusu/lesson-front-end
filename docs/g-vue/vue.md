@@ -1,42 +1,6 @@
 # Vue
 
-## 基本概念
-
 ## Vue语法
-
-### 模板语法
-
-```html
-<div id="app"> 
-  <!-- 双大括号表达式 语法: {{exp}} 或 {{{exp}}} 功能: 向页面输出数据 可以调用对象的方法 -->
-  <p>{{content}}</p>
-  <p>{{content.toUpperCase()}}</p>
-
-  <!-- 强制数据绑定 功能: 指定变化的属性值  -->
-  <a href="url">访问指定站点</a><br>
-  <a v-bind:href="url">访问指定站点2</a><br> <!-- 完整写法  -->
-  <a :href="url">访问指定站点2</a><br>  <!-- 简洁写法  -->
- 
-  <!-- 绑定事件监听 功能: 绑定指定事件名的回调函数  -->
-  <button v-on:click="test">点我</button> <!-- 完整写法  -->
-  <button @click="test">点我</button> <!-- 简洁写法  -->
-</div>
-
-<script type="text/javascript">
-  new Vue({
-    el: '#app',
-    data: { // 绑定数据模块
-      content: 'NBA I Love This Game',
-      url: 'http://www.atguigu.com'
-    },
-    methods: { // 绑定函数模块
-      test () {
-        alert('好啊!!!')
-      }
-    }
-  })
-</script>
-```
 
 ### 计算值和监视
 
@@ -148,98 +112,7 @@
 </script>
 ```
 
-### 条件渲染
-
-```html
-<!-- 条件渲染指令 -->
-<div id="demo">
-	<!-- v-if 对应bool值 -->
-  <p v-if="ok">表白成功</p>
-  <p v-else>表白失败</p>
-
-  <hr>
-  <!-- v-show 对应bool值 如果需要频繁切换, 使用v-show较好 -->
-  <p v-show="ok">求婚成功</p> 
-  <p v-show="!ok">求婚失败</p>
-
-  <button @click="ok=!ok">切换</button>
-</div>
-
-<script type="text/javascript">
-  new Vue({
-    el: '#demo',
-    data: {
-      ok: true,
-    }
-  })
-</script>
-```
-
 ### 列表渲染
-
-基本渲染
-
-```html
-
-
-<!--
-1. 列表显示
-  数组: v-for / index
-  对象: v-for / key
-2. 列表的更新显示
-  删除item
-  替换item
--->
-
-<div id="demo">  
-  <!--  v-for 遍历数组 -->
-  <ul>
-		<!-- p是对象, index为索引, key唯一标识(有相同父元素的子元素必须有独特的key), 字符串或数字类型, 用于优化界面渲染 -->
-    <li v-for="(p, index) in persons" v-bind:key="index">
-      {{index}}--{{p.name}}--{{p.age}}
-      --<button @click="deleteP(index)">删除</button>
-      --<button @click="updateP(index, {name:'Cat', age: 16})">更新</button>
-    </li>
-  </ul>
-  <button @click="addP({name: 'xfzhang', age: 18})">添加</button>
-
-  <!--  v-for 遍历对象 -->
-  <ul>
-    <!-- value值, key键, key可以缩写 -->
-    <li v-for="(value, key) in persons[1]" :key="key">{{key}}={{item}}</li>
-  </ul>
-</div>
-<script type="text/javascript">
-  new Vue({
-    el: '#demo',
-    data: {
-      persons: [
-        {name: 'Tom', age:18},
-        {name: 'Jack', age:17},
-        {name: 'Bob', age:19},
-        {name: 'Mary', age:16}
-      ]
-    },
-
-    methods: {
-      deleteP (index) {
-        // 调用了不是原生数组的splice(), 而是Vue重写的方法
-        // 执行过程: 1. 调用原生的数组的对应方法; 2. 更新界面
-        this.persons.splice(index, 1) 
-      },
-
-      updateP (index, newP) {
-        // this.persons[index] = newP  // 该方法vue没有重写, 不会更新界面
-        this.persons.splice(index, 1, newP)
-      },
-
-      addP (newP) {
-        this.persons.push(newP)
-      }
-    }
-  })
-</script>
-```
 
 列表过滤与排序
 
@@ -335,62 +208,6 @@
       test6 () { alert('inner') },
 			// 按键修饰符
       test7 (event) { alert(event.target.value) }
-    }
-  })
-</script>
-```
-
-### 表单输入绑定
-
-```html
-<!-- 使用v-model(双向数据绑定)自动收集数据, 绑定对应的data项 -->
-<div id="demo">
-  <form action="/xxx" @submit.prevent="handleSubmit"> <!-- 阻止 -->
-    <span>用户名: </span>
-    <input type="text" v-model="username"><br>
-
-    <span>密码: </span>
-    <input type="password" v-model="pwd"><br>
-
-    <span>性别: </span>
-    <input type="radio" id="female" value="女" v-model="sex">
-    <label for="female">女</label>
-    <input type="radio" id="male" value="男" v-model="sex">
-    <label for="male">男</label><br>
-
-    <span>爱好: </span>
-    <input type="checkbox" id="basket" value="basket" v-model="likes">
-    <label for="basket">篮球</label>
-    <input type="checkbox" id="foot" value="foot" v-model="likes">
-    <label for="foot">足球</label>
-    <input type="checkbox" id="pingpang" value="pingpang" v-model="likes">
-    <label for="pingpang">乒乓</label><br>
-
-    <span>城市: </span>
-    <select v-model="cityId">
-      <option value="">未选择</option>
-      <option :value="city.id" v-for="(city, index) in allCitys" :key="city.id">{{city.name}}</option>
-    </select><br>
-    <span>介绍: </span>
-    <textarea rows="10" v-model="info"></textarea><br><br>
-
-    <input type="submit" value="注册">
-  </form>
-</div>
-<script type="text/javascript">
-  new Vue({
-    el: '#demo',
-    data: {
-      allCitys: [{id: 1, name: 'BJ'}, {id: 2, name: 'SS'}, {id: 3, name: 'SZ'}], // city渲染数据项
-      username: '',
-      pwd: '',
-      sex: '男',
-      likes: ['foot'], // 多选项为数组
-      cityId: '2',
-      info: ''
-    },
-    methods: {
-      handleSubmit () { alert('提交注册的ajax请求') }
     }
   })
 </script>
@@ -586,48 +403,6 @@ vue动画是通过操作css的trasition或animation，vue会给目标元素添�
 
 ### 指令
 
-#### 内置指令
-
-* `v-text`: 更新元素的 textContent
-* `v-html`: 更新元素的 innerHTML
-* `v-if`: 如果为true, 当前标签才会输出到页面
-* `v-else`: 如果为false, 当前标签才会输出到页面
-* `v-show`: 通过控制display样式来控制显示/隐藏
-* `v-for`: 遍历数组/对象
-* `v-on`: 绑定事件监听, 一般简写为@
-* `v-bind`: 强制绑定解析表达式, 可以省略v-bind
-* `v-model`: 双向数据绑定
-* `ref`: 为某个元素注册唯一标识, vue对象通过$refs属性访问这个元素对象
-* `v-cloak`: 使用它防止闪现表达式, 与css配合: [v-cloak] { display: none }
-
-```html
-<style>
-  [v-cloak] { display: none } /*2. 定义样式初始化时不显示*/
-</style>
-
-<div id="example">
-  <p v-cloak>{{content}}</p> <!-- 1. 增加防止闪现标签 -->
-  <p v-text="content"></p>   <!--p.textContent = content-->
-  <p v-html="content"></p>  <!--p.innerHTML = content-->
-  <p ref="msg">abcd</p> <!-- 1. 注册唯一标识 -->
-  <button @click="hint">提示</button>
-</div>
-
-<script type="text/javascript">
-  new Vue({
-    el: '#example',
-    data: {
-      content: '<a href="http://www.baidu.com">百度一下</a>'
-    },
-    methods: {
-      hint () { // 2. 通过唯一标识找到相关标签
-        alert(this.$refs.msg.innerHTML)
-      }
-    }
-  })
-</script>
-```
-
 #### 自定义指令
 
 ```html
@@ -739,52 +514,6 @@ vue动画是通过操作css的trasition或animation，vue会给目标元素添�
   2. 多个组件使用，保存在共同的父组件内。
   3. 数据在哪，更新数据的行为（函数）就应该定义在哪。
   4. 不要在子组件中直接修改父组件的数据，通过相应的方法修改数据（即在父组件中定义函数，传递给子组件，在子组件中调用）。
-
-### 主要文件
-
-#### 入口js文件
-
-```js
-// 文件名main.js
-import Vue from 'vue'
-import App from './App.vue'
-
-// 创建vm
-new Vue({
-  el: '#app',
-  components: {App}, // 映射组件标签
-  template: '<App/>' // 指定需要渲染到页面的模板, 在生命周期中对应has template operation判断
-})
-
-```
-
-#### 主Vue文件
-
-```vue
-<template>
-  <div>
-    <img src="./assets/logo.png" alt="logo" class="logo">
-    <HelloWorld/>  <!-- 3. 使用vue组件 -->
-  </div>
-</template>
-
-<script>
-  import HelloWorld from './components/HelloWorld.vue' // 1. 从外部引入vue文件
-
-  export default {
-    components: {
-      HelloWorld // 2. 声明vue组件
-    }
-  }
-</script>
-
-<style>
-  .logo { /* 定义组件样式 */
-    width: 100px;
-    height: 100px;
-  }
-</style>
-```
 
 
 

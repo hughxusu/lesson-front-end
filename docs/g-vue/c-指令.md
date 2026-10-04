@@ -6,7 +6,7 @@
 >
 > 如何使用原生的JavaScript给`<a>`标签设置`href`属性？
 
-## 内置指令
+## 基本指令
 
 ### `v-bind`
 
@@ -174,4 +174,284 @@ function handleEsc() {
 ```
 
 [更多按键修饰符](https://cn.vuejs.org/guide/essentials/event-handling.html#key-modifiers)
+
+### `v-model`
+
+专门用于表达元素数据进行双向绑定，可使用的元素包括：`<input>`、`<select>`、`<textarea>`和组件。
+
+```vue
+<script setup lang="ts">
+import { reactive, ref } from 'vue'
+
+const user = reactive({
+  username: '',
+  password: '',
+})
+
+const intro = ref('')
+</script>
+
+<template>
+  <label>用户名：<br /><input type="text" v-model="user.username" /></label>
+  <hr />
+  <label>密码：<br /><input type="password" v-model="user.password" /></label>
+  <hr />
+  <label>简洁： <br /><textarea rows="4" v-model="intro"></textarea></label>
+</template>
+```
+
+* `v-model`将输入框与变量（响应式数据）链接。
+
+`v-model`更多用法
+
+```vue
+<script setup lang="ts">
+import { reactive } from 'vue'
+
+const info = reactive({
+  area: '',
+  gender: '男',
+  hobby: [],
+  intro: '',
+  agree: false,
+})
+</script>
+
+<template>
+  <div>
+    <span>区域: </span> <br />
+    <select v-model="info.area" style="width: 100px">
+      <option value="0">北京</option>
+      <option value="1">天津</option>
+      <option value="2">铁岭</option>
+    </select>
+  </div>
+  <hr />
+  <div>
+    <span>性别: </span> <br />
+    <input type="radio" v-model="info.gender" value="男" />男
+    <input type="radio" v-model="info.gender" value="女" />女
+  </div>
+  <hr />
+  <div>
+    <span>爱好</span> <br />
+    <input type="checkbox" v-model="info.hobby" value="足球" /> 足球
+    <input type="checkbox" v-model="info.hobby" value="篮球" /> 篮球
+    <input type="checkbox" v-model="info.hobby" value="写代码" /> 写代码
+  </div>
+  <hr />
+  <div>
+    <span>自我介绍</span> <br />
+    <textarea v-model="info.intro" rows="4"></textarea>
+  </div>
+  <hr />
+  <div>
+    <input type="checkbox" v-model="info.agree" />
+    <span>同意协议</span>
+  </div>
+</template>
+```
+
+* 下拉框的`v-model`绑定到`<select>`。`value`值只能绑定在`<option>`，且值为字符串。
+* 同一组单选框绑定在同一个`v-model`时，就不需要手动设置`name`属性了。
+* 多选框的`v-model`需要绑定到数组上。
+* 单选复选框，绑定到一个变量上，Vue会自动转换为布尔值。
+
+想让单选复选框绑定的值为字符串，按照如下写法
+
+```vue
+<input type="checkbox" v-model="info.agree" true-value="yes" false-value="no" />
+```
+
+`v-model`可以使用的修饰符包括
+
+- `.lazy`表单失去焦点，才把值赋传递给变量。
+- `.number`将输入的合法字符串转为数字。
+- `.trim`移除输入内容两端空格。
+
+```vue
+<script setup lang="ts">
+import { reactive } from 'vue'
+
+const info = reactive({
+  area: '',
+  intro: '',
+})
+</script>
+
+<template>
+  <div>
+    <span>区域: </span> <br />
+    <select v-model.number="info.area" style="width: 100px">
+      <option value="0">北京</option>
+      <option value="1">天津</option>
+      <option value="2">铁岭</option>
+    </select>
+  </div>
+  <hr />
+  <div>
+    <span>自我介绍</span> <br />
+    <textarea v-model.lazy="info.intro" rows="4"></textarea>
+  </div>
+</template>
+```
+
+* `v-model.number`使单选框的值转换为数字。
+
+### 设置标签内容
+
+* `v-text`更新元素的文本内容。
+* `v-html`更新元素的innerHTML，会渲染一段HTML代码。
+
+```vue
+<script setup lang="ts">
+let msg = '<strong>莫听穿林打叶声，</strong>何妨吟啸且徐行。'
+</script>
+
+<template>
+  <p v-html="msg"></p>
+  <p v-text="msg"></p>
+</template>
+```
+
+### 条件渲染
+
+能够实现条件渲染的指令包括
+
+* `v-show`基于表达式值的真假性，来改变元素的可见性。
+* `v-if`与`v-else`基于条件语句，来改变元素的可见性。
+* `v-else-if`基于多分支语句，来改变元素的可见性。
+
+基本使用
+
+```vue
+<script setup lang="ts">
+import { ref } from 'vue'
+
+let isShow = ref(true)
+</script>
+
+<template>
+  <input type="checkbox" v-model="isShow" />
+  <hr />
+  <p v-show="isShow">竹杖芒鞋轻胜马，谁怕？一蓑烟雨任平生。</p>
+  <p v-if="isShow">料峭春风吹酒醒，微冷，山头斜照却相迎。</p>
+  <p v-else>回首向来萧瑟处，归去，也无风雨也无晴。</p>
+</template>
+```
+
+* `v-if`可以单独使用；`v-else`必须配合`v-if`，不能单独使用。
+
+多分支渲染
+
+```vue
+<script setup lang="ts">
+import { ref } from 'vue'
+
+let value = ref(0)
+</script>
+
+<template>
+  <div>
+    <select v-model.number="value" style="width: 100px">
+      <option value="0">A</option>
+      <option value="1">B</option>
+      <option value="2">C</option>
+    </select>
+  </div>
+  <div>
+    <h2 v-if="value === 0">A</h2>
+    <h2 v-else-if="value === 1">B</h2>
+    <h2 v-else>C</h2>
+  </div>
+</template>
+```
+
+`v-if`与`v-show`的区别
+
+* `v-show`用的`display:none`隐藏元素。
+* `v-if`直接从DOM树上移除节点。
+
+### `v-for`
+
+基于数据的循环渲染。
+
+1. `v-for = "(item, index) in array"`可以读取数据`item`和索引`index`。
+
+```vue
+<script setup lang="ts">
+let users = [
+  { id: 10012, name: '张三' },
+  { id: 10023, name: '李四' },
+  { id: 10034, name: '王五' },
+]
+</script>
+
+<template>
+  <ul>
+    <li v-for="(user, index) in users" :key="user.id">
+      序号:{{ index + 1 }}，用户名:{{ user.name }}
+    </li>
+  </ul>
+</template>
+```
+
+* `:key`相当于`v-bind:key`的缩写，而`key`不是原生 HTML 的属性，是Vue框架保留的特殊属性。
+
+> [!important]
+>
+> 绑定`key`属性可以提升提升DOM移动效率。
+
+2. `v-for = "item in array"`只读取数据`item`。
+
+```vue
+<script setup lang="ts">
+import { ref } from 'vue'
+
+let value = ref(0)
+</script>
+
+<template>
+  <div>
+    <select v-model.number="value" style="width: 100px">
+      <option value="0">A</option>
+      <option value="1">B</option>
+      <option value="2">C</option>
+    </select>
+  </div>
+  <div>
+    <h2 v-if="value === 0">A</h2>
+    <h2 v-else-if="value === 1">B</h2>
+    <h2 v-else>C</h2>
+  </div>
+</template>
+
+```
+
+> [!warning]
+>
+> `v-for`的临时变量名不能用到`v-for`范围外
+
+3. 可遍历的对象包括数组、对象、字符串等可遍历结构。
+
+```vue
+<script setup lang="ts">
+let user = {
+  id: 10012,
+  name: '张三',
+  phone: '13800000000',
+  email: 'zhangsan@example.com',
+}
+</script>
+
+<template>
+  <ul>
+    <li v-for="(value, key) in user" :key="key">{{ key }}: {{ value }}</li>
+  </ul>
+</template>
+```
+
+> [!important]
+>
+> 需要循环哪个页面元素，就将指令`v-for`写在该元素上。
 
