@@ -160,6 +160,28 @@ const myInput = document.getElementById("username") as HTMLInputElement;
 console.log(myInput.value);
 ```
 
+非空断言`!`专门用于表示数据不为空的类型断言
+
+```ts
+let users = [
+  { id: 10012, name: '张三' },
+  { id: 10023, name: '李四' },
+  { id: 10034, name: '王五' },
+];
+
+function modifyArray(users: { id: number; name: string }[]) {
+  if (users.length > 0) {
+    users[0]!.name += '~~~~';
+  }
+}
+
+console.log(users);
+modifyArray(users);
+console.log(users);
+```
+
+* `users[0]!`保证元素一定不为空。
+
 ## 泛型
 
 泛型（Generics）是类型的占位符，允许在编码时不预先指定具体的类型，而是在使用时再动态地传入具体类型。

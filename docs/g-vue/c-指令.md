@@ -400,7 +400,7 @@ let users = [
 
 > [!important]
 >
-> 绑定`key`属性可以提升提升DOM移动效率。
+> 绑定`key`属性可以提升提升DOM移动效率，`key`的值只能是字符串或数字。
 
 2. `v-for = "item in array"`只读取数据`item`。
 
@@ -455,3 +455,116 @@ let user = {
 >
 > 需要循环哪个页面元素，就将指令`v-for`写在该元素上。
 
+4. 只有直接修改响应式数据的方法，才会影响列表的渲染。
+
+```ts
+script setup lang="ts">
+import { reactive } from 'vue'
+
+let users = reactive([
+  { id: 10012, name: '张三' },
+  { id: 10023, name: '李四' },
+  { id: 10034, name: '王五' },
+])
+
+function reverseArray() {
+  users.reverse()
+}
+
+function modifyArray() {
+  if (users && users.length > 0) {
+    users[0]!.name += '~'
+  }
+}
+
+function sliceArray() {
+  if (users && users.length > 0) {
+    users.slice(0, 2)
+  }
+}
+</script>
+
+<template>
+  <ul>
+    <li v-for="user in users" :key="user.id">用户ID:{{ user.id }}，用户名:{{ user.name }}</li>
+  </ul>
+  <div class="btn-group">
+    <button @click="reverseArray">翻转</button>
+    <button @click="modifyArray">修改</button>
+    <button @click="sliceArray">截取</button>
+  </div>
+</template>
+```
+
+## 虚拟DOM
+
+页面中操作真实DOM会造成浏览器重新计算布局，造成浏览器渲染极大的负担。Vue采用虚拟DOM机制，减少操作实际DOM的次数，提示页面渲染性能。
+
+虚拟DOM本质上只是一个轻量级的JavaScript对象，只包含真实对象的部分属性和方法，操作的开销远小于真实DOM。
+
+当数据改变时：
+
+1. 框架会在内存中构建一棵新的虚拟 DOM 树。
+2. 通过高效的[Diff算法](https://juejin.cn/post/7602488966609829926)比对新旧两棵虚拟DOM树。
+3. 找出真正发生变化的节点。
+4. 只针对有差异的部分去更新真实DOM，做到局部更新，避免整块区域或整页重绘。
+
+![](./assets/yxa0pz2cwu.png)
+
+> [!important]
+>
+> 虚拟DOM的本质是用计算的开销，去换取DOM操作开销。
+
+使用序号作为`:key`
+
+```vue
+<script setup lang="ts">
+import { reactive } from 'vue'
+
+let users = reactive([
+  { id: 10012, name: '张三' },
+  { id: 10023, name: '李四' },
+  { id: 10034, name: '王五' },
+])
+
+function modifyArray() {
+  users.splice(1, 0, { id: 10045, name: '赵六' })
+}
+</script>
+
+<template>
+  <ul>
+    <li v-for="(user, index) in users" :key="index">
+      <input type="text" style="width: 100px" />
+      用户名:{{ user.name }}
+    </li>
+  </ul>
+  <button @click="modifyArray">添加元素</button>
+</template>
+```
+
+虚拟DOM树的比较与更新
+
+<img src="./assets/Xnip2026-10-05_09-49-15.jpg" style="zoom:65%;" />
+
+> [!important]
+>
+> Diff算法会基于`:key`属性来比较新、旧虚拟DOM，移除`:key`不存在元素或添加新元素。
+
+使用用户ID做为`:key`
+
+```vue
+<li v-for="user in users" :key="user.id">
+```
+
+虚拟DOM树的比较与更新
+
+<img src="./assets/Xnip2026-10-05_09-54-30.jpg" style="zoom:65%;" />
+
+> [!important]
+>
+> `:key`值的选择，优先选择数据的唯一ID，没有ID可以选择索引序号。
+
+## 练习
+
+1. 使用Vue框架生成是一个表单。

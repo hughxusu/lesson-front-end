@@ -12,6 +12,9 @@ import { createApp } from 'vue'
 // import App from './e-条件渲染-2.vue'
 // import App from './f-循环渲染-1.vue'
 // import App from './f-循环渲染-2.vue'
-import App from './f-循环渲染-3.vue'
+// import App from './f-循环渲染-3.vue'
+// import App from './f-循环渲染-4.vue'
+// import App from './g-dom树-1.vue'
+import App from './g-dom树-2.vue'
 
 createApp(App).mount('#app')

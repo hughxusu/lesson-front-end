@@ -112,66 +112,6 @@
 </script>
 ```
 
-### 列表渲染
-
-列表过滤与排序
-
-```html
-<div id="demo">
-  <input type="text" v-model="searchName">
-  <ul> <!-- 从计算属性中取值 -->
-    <li v-for="(p, index) in filterPersons" :key="index"> 
-      {{index}}--{{p.name}}--{{p.age}}
-    </li>
-  </ul>
-  <div>
-    <button @click="setOrderType(2)">年龄升序</button>
-    <button @click="setOrderType(1)">年龄降序</button>
-    <button @click="setOrderType(0)">原本顺序</button>
-  </div>
-</div>
-<script type="text/javascript">
-  new Vue({
-    el: '#demo',
-    data: {
-      searchName: '', // 过滤参数
-      orderType: 0, // 排序参数, 0代表不排序, 1代表降序, 2代表升序
-      persons: [
-        {name: 'Tom', age:18},
-        {name: 'Jack', age:17},
-        {name: 'Bob', age:19},
-        {name: 'Mary', age:16}
-      ]
-    },
-
-    computed: {
-      filterPersons () { // 计算属性
-        const {searchName, persons, orderType} = this // 取出相关数据
-        let arr = [...persons]
-        
-        if(searchName.trim()) { // 过滤数组
-          arr = persons.filter(p => p.name.indexOf(searchName)!==-1)
-        }
-        
-        if(orderType) { // 数组排序
-          arr.sort(function (p1, p2) {
-            if(orderType===1) return p2.age-p1.age // 降序
-            else return p1.age-p2.age // 升序
-          })
-        }
-        return arr // 返回处理后数组
-      }
-    },
-
-    methods: {
-      setOrderType (orderType) {
-        this.orderType = orderType
-      }
-    }
-  })
-</script>
-```
-
 ### 事件监听
 
 ```html
