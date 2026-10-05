@@ -298,6 +298,26 @@ const info = reactive({
 
 * `v-model.number`使单选框的值转换为数字。
 
+使用`v-bind`绑定`<input>`输入框
+
+```vue
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const txt = ref('金樽清酒斗十千，玉盘珍羞直万钱。')
+</script>
+
+<template>
+  <input :value="txt" type="text" style="width: 300px"></input>
+</template>
+```
+
+* 使用`v-bind`绑定`<input>`的`value`可以将响应数据绑定到输入框，但这是单项绑定。
+
+> [!important]
+>
+> Vue框架中的双向绑定，只有`v-model`这个指令，其它指令没有双向绑定。而`v-model`常用于绑定表单项，其它没有输入功能的标签，仅做数据展示，不需要双向绑定。
+
 ### 设置标签内容
 
 * `v-text`更新元素的文本内容。
