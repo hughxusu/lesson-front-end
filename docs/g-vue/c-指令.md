@@ -304,7 +304,7 @@ const info = reactive({
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const txt = ref('金樽清酒斗十千，玉盘珍羞直万钱。')
+const txt = ref('争将世上无期别，换得年年一度来。')
 </script>
 
 <template>

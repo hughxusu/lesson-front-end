@@ -1,0 +1,21 @@
+import { createApp } from 'vue';
+// import App from './a-class-1.vue';
+// import App from './a-class-2.vue';
+// import App from './a-class-3.vue';
+// import App from './b-style-1.vue';
+// import App from './b-style-2.vue';
+// import App from './b-style-3.vue';
+// import App from './c-computed-1.vue';
+// import App from './c-computed-2.vue';
+// import App from './c-computed-3.vue';
+// import App from './c-computed-4.vue';
+// import App from './d-侦听器-1.vue';
+// import App from './d-侦听器-2.vue';
+// import App from './d-侦听器-3.vue';
+// import App from './d-侦听器-4.vue';
+// import App from './d-侦听器-5.vue';
+// import App from './d-侦听器-6.vue';
+// import App from './d-侦听器-7.vue';
+import App from './d-侦听器-8.vue';
+
+createApp(App).mount('#app');
