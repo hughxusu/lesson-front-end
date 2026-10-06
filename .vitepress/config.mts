@@ -126,6 +126,7 @@ export default withMermaid({
           { text: 'Vue模版', link: '/docs/g-vue/b-模版.md' },
           { text: 'Vue指令', link: '/docs/g-vue/c-指令.md' },
           { text: '样式控制与计算侦听', link: '/docs/g-vue/d-样式.md' },
+          { text: '组件', link: '/docs/g-vue/e-组件.md' },
         ],
       },
       // {
