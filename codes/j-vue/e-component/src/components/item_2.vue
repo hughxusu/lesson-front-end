@@ -1,16 +1,17 @@
 <script setup lang="ts">
-defineOptions({ name: 'Item1' })
+defineOptions({ name: 'Item2' })
 
-let item = { id: 1, name: '锅包肉', price: 32.5, num: 1 }
+const props = defineProps(['food'])
+console.log(props)
 </script>
 
 <template>
   <div class="box">
-    <h3>{{ item.name }}</h3>
+    <h3>{{ food.name }}</h3>
     <div class="bottom">
-      价格：{{ item.price }}元
+      价格：{{ food.price }}元
       <div class="num">
-        <span>数量：{{ item.num }}</span>
+        <span>数量：{{ food.num }}</span>
         <button>+1</button>
         <button>-1</button>
       </div>
