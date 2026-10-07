@@ -1,5 +1,14 @@
 # Vue概述
 
+```mermaid
+timeline
+    title 前端技术的发展
+    1990-2005 : 无框架阶段 : 前后端一体
+    2005-2010 : 选择器框架 : jQuery
+    2010-~ : 单页应用 : Angular/Vue/React
+    2010-~ : SSR框架融合 : Next/Nuxt/Remix 
+```
+
 [Vue](https://cn.vuejs.org/)是渐进式的JavaScript框架，有一套自己的语法规程，可以开发出丰富的Web应用。
 
 <img src="./assets/Xnip2026-10-02_11-54-16.jpg" style="zoom:60%;" />
