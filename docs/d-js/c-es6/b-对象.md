@@ -139,7 +139,7 @@ console.log(Item.total);
 ### `Object`的静态方法
 
 * `Object.keys`静态方法，用于获取对象中所有属性。
-* `Object.values``静态方法，用于获取对象中所有属性值。
+* `Object.values`静态方法，用于获取对象中所有属性值。
 
 ```js
 let item = new Item('学习es6', false);
