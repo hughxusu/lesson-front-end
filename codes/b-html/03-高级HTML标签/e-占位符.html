@@ -1,18 +1,21 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
+  <body>
+    <p>
+      <input type="text" placeholder="请输入用户名" value="张三" name="nick" />
+    </p>
+    <p>
+      <input type="password" placeholder="请输入密码" />
+    </p>
+  </body>
 
-<body>
-  <p>
-    <input type="text" placeholder="请输入用户名" value="张三" name="nick">
-  </p>
-  <p>
-    <input type="password" placeholder="请输入密码">
-  </p>
-</body>
-
+  <script type="text/javascript">
+    let username = document.querySelector('input[name="nick"]');
+    console.log(username.value);
+  </script>
 </html>
