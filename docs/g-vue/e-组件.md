@@ -2,7 +2,7 @@
 
 > [!tip]
 >
-> 当[网页](https://www.figma.com/design/eQsqszguMZOHolmr7XVFoC/%25E6%2596%25B0%25E9%2597%25BB%25E8%25B5%2584%25E8%25AE%25AF%25E7%25B1%25BB%25E7%25BD%2591%25E7%25AB%2599?t=6IXD8QYBCxvwOv0p-0)中有重复结构时应该如何处理？
+> 当网页中有重复结构时应该如何处理？
 
 组件与组件化
 
