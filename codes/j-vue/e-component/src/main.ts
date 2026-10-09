@@ -8,6 +8,7 @@ import { createApp } from 'vue'
 // import App from './e-获取DOM.vue'
 // import App from './f-ref获取DOM.vue'
 // import App from './g-ref获取组件-1.vue'
-import App from './g-ref获取组件-2.vue'
+// import App from './g-ref获取组件-2.vue'
+import App from './g-ref获取组件-3.vue'
 
 createApp(App).mount('#app')

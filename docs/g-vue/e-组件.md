@@ -2,7 +2,7 @@
 
 > [!tip]
 >
-> 当网页中有重复结构时应该如何处理？
+> 当[网页](https://www.figma.com/design/eQsqszguMZOHolmr7XVFoC/%25E6%2596%25B0%25E9%2597%25BB%25E8%25B5%2584%25E8%25AE%25AF%25E7%25B1%25BB%25E7%25BD%2591%25E7%25AB%2599?t=6IXD8QYBCxvwOv0p-0)中有重复结构时应该如何处理？
 
 组件与组件化
 
@@ -431,7 +431,7 @@ function handleClick() {
 >
 > 在组件化编程中，不同组件间可能存在`id`重复的情况，所以使用`id`来选择页面元素，有可能`id`冲突。
 
-`ref`属性时Vue中保留的特殊属性，用于访问指定的DOM元素或组件。
+`ref`属性时Vue中保留的特殊属性，用于访问指定的DOM元素或组件。`ref`属性和定义响应式的`ref()`函数不是一个东西。
 
 ### 访问DOM元素
 
@@ -456,7 +456,7 @@ function handleClick() {
 
 > [!warning]
 >
-> `ref`属性和定义响应式的`ref()`函数不是一个东西。
+> `ref`属性类似于元素`id`的作用，同一个组件内，每个元素或组件的`ref`应该不同。
 
 ### 访问组件元素
 
@@ -539,7 +539,85 @@ function handleClick() {
 
 > [!warning]
 >
-> 通过模板`ref`属性直接改子组件的内部状态，等于绕过了`props`的单向数据流，父子会强耦合，调试也容易乱。在实际项目里父改用`props`，子通知父用`emit`。
+> 通过模板`ref`属性直接改子组件的内部状态，等于绕过了`props`的单向数据流，父子会强耦合，调试也容易乱。在实际项目里父改子用`props`，子通知父用`emit`。
+
+### `$ref`与`$parent`
+
+`$ref`模版语法中的保留关键字，可以访问页面中的所有`ref`元素
+
+```vue
+<script setup lang="ts">
+import TitleLine from '@/components/title_line_3.vue'
+import { ref } from 'vue'
+
+const sentence = ref('云对雨')
+
+function handleInput(refs: any, e: any) {
+  let value = e.target.value
+  console.log(refs)
+
+  for (let key in refs) {
+    refs[key].msg = value
+  }
+}
+
+defineExpose({
+  sentence,
+})
+</script>
+
+<template>
+  <h1>{{ sentence }}</h1>
+
+  <input type="text" @input="handleInput($refs, $event)" />
+  <TitleLine ref="line-one" />
+  <TitleLine ref="line-two" />
+</template>
+```
+
+* `$refs`是一个键值对，保存了不同`ref`值对应的组件。
+
+`$parents`模版语法中的保留关键字，可以访问页面的父元素。
+
+```vue
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const msg = ref('')
+
+function changeMsg(parent: any) {
+  msg.value = parent.sentence
+}
+
+defineExpose({
+  msg,
+})
+</script>
+
+<template>
+  <h2>{{ msg }}</h2>
+  <button @click="changeMsg($parent)">修改</button>
+</template>
+```
+
+* `changeMsg($parent)`将父元素作为参数传递给函数，函数中可以获得元素。
+* 可以读取父元素暴露出来的数据。
+
+访问组件父元素的另一种方法
+
+```ts
+import { getCurrentInstance } from 'vue'
+
+const instance = getCurrentInstance()
+console.log(instance?.parent)
+```
+
+* `getCurrentInstance`获得当前组件的实例。
+* `instance?.parent`访问组件的父元素。
+
+> [!important]
+>
+> 尽管`$ref`与`$parent`可以传递数据，但它们主要功能是用来访问组件，而不是传递数据。
 
 ## 练习
 
