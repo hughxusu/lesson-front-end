@@ -622,8 +622,3 @@ console.log(instance?.parent)
 ## 练习
 
 1. 使用组件设计一个古诗显示的页面。
-
-
-
-
-

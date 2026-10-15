@@ -414,3 +414,150 @@ const reverse = inject<() => void>('reverse')
 
 ## 插槽
 
+插槽用于标示父元素提供元素，在子组件中显示的位置
+
+<img src="./assets/slots.CKcE8XYd.png" style="zoom:60%;" />
+
+### 默认插槽
+
+子组件中只有只有一个插槽
+
+```vue
+<script setup lang="ts">
+defineProps(['title'])
+</script>
+
+<template>
+  <div class="card">
+    <h3>{{ title || '默认标题' }}</h3>
+    <hr />
+    <div class="content">
+      <slot>内容显示为空</slot>
+    </div>
+  </div>
+</template>
+```
+
+* `<slot>`中可以填入默认内容，如果插槽中没有填入页面元素，会显示默认内容。
+
+父组件添加的元素，自动填入子组件的插槽
+
+```vue
+<script setup lang="ts">
+import ShowCard1 from '@/components/show_card_1.vue'
+</script>
+
+<template>
+  <div class="cards">
+    <ShowCard1 title="题龙阳县青草湖">
+      <p>西风吹老洞庭波，<br />一夜湘君白发多。<br />醉后不知天在水，<br />满船清梦压星河。</p>
+    </ShowCard1>
+    <ShowCard1 title="热门图片">
+      <img style="width: 100%" src="https://picsum.photos/300/200" />
+    </ShowCard1>
+    <ShowCard1></ShowCard1>
+  </div>
+</template>
+```
+
+### 具名插槽
+
+指定名字的插槽，解决有时在一个组件中包含多个插槽出口的问题。
+
+在子组件中定义多个插槽
+
+```vue
+<script setup lang="ts">
+defineProps(['title'])
+</script>
+
+<template>
+  <div class="card">
+    <slot name="title"></slot>
+    <hr />
+    <slot name="content"></slot>
+  </div>
+</template>
+```
+
+* `<slot>`中的`name`属性可以指定插槽的名称。
+
+在父组件中添加元素
+
+```vue
+<script setup lang="ts">
+import ShowCard2 from '@/components/show_card_2.vue'
+</script>
+
+<template>
+  <div class="cards">
+    <ShowCard2 title="题龙阳县青草湖">
+      <template v-slot:title>
+        <h3>题龙阳县青草湖</h3>
+      </template>
+      <template #content>
+        <p>西风吹老洞庭波，<br />一夜湘君白发多。<br />醉后不知天在水，<br />满船清梦压星河。</p>
+      </template>
+    </ShowCard2>
+  </div>
+</template>
+```
+
+* 使用具名插槽时，填入插槽的元素必须使用`<template>`标签
+* `<template>`标签，可以使用`v-slot:`指令，指定填入插槽的名称。`v-slot:`指令可以简写为`#`。
+
+### 作用域插槽
+
+数据在组件的自身，但根据数据的展示结构需要组件的使用者来提供。
+
+在子组件中提供数据
+
+```vue
+<script setup lang="ts">
+import { reactive } from 'vue'
+
+const users = reactive([
+  { id: 10012, name: '张三' },
+  { id: 10023, name: '李四' },
+  { id: 10034, name: '王五' },
+])
+</script>
+
+<template>
+  <div class="card">
+    <slot :users="users"></slot>
+  </div>
+</template>
+```
+
+* `<slot>`中`:`方式向子组件提供数据，数据会包装成`{ users: [...] }`。
+
+在父组件中获得数据
+
+```vue
+<script setup lang="ts">
+import ShowCard3 from '@/components/show_card_3.vue'
+</script>
+
+<template>
+  <div class="cards">
+    <ShowCard3 v-slot="{ users }">
+      <h3>用户列表</h3>
+      <ul>
+        <li v-for="user in users" :key="user.id">{{ user.name }} ({{ user.id }})</li>
+      </ul>
+    </ShowCard3>
+    <ShowCard3 v-slot="{ users }">
+      <h3>用户列表</h3>
+      <ol>
+        <li v-for="user in users" :key="user.id">{{ user.name }} ({{ user.id }})</li>
+      </ol>
+    </ShowCard3>
+  </div>
+</template>
+```
+
+* 在父组件中使用`v-slot`属性获得`props`数据，获得数据时需要解包。
+* 数据可以在父组件中渲染。
+
+## 组件库

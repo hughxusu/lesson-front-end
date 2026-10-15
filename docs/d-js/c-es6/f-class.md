@@ -319,5 +319,5 @@ console.log(arr.includes(2));
 
    * 在 Dog类中实现一个barking的方法，打印出类似这样的句子"Brown Pug is barking!"，其中Brown是这条狗的颜色，Pug 是狗的品种。
 
-   * 可以在Animal的构造函数中看到颜色和品种是如何被初始化的。
+   * 在Animal的构造函中初始化颜色和品种。
 

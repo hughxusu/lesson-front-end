@@ -118,6 +118,7 @@ flowchart TB
 | [PokeAPI](https://pokeapi.co/)                              | 收录了全套宝可梦的属性、技能、图片等信息               |
 | [Dog API](https://dog.ceo/dog-api/)                         | 返回随机狗图片的URL                                    |
 | [Cat Facts](https://catfact.ninja/#/)                       | 随机返回一条关于猫咪的冷知识                           |
+| [Lorem Picsum](https://picsum.photos/)                      | 免费的随机图片占位符服务                               |
 
 测试一个`get`请求
 

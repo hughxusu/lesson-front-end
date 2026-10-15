@@ -10,12 +10,12 @@
 classDiagram
     class Item
     Item : +desc
-    Item : +isDown
+    Item : +isDone
     Item : +getElement(amount)
    
     class DeadlineItem
     DeadlineItem : +desc
-    DeadlineItem : +isDown
+    DeadlineItem : +isDone
     DeadlineItem : +deadline
     DeadlineItem : +getElement(amount)
 ```
@@ -85,11 +85,11 @@ document.body.appendChild(item.getElement());
 classDiagram
     class Item
     Item : +desc
-    Item : +isDown
+    Item : +isDone
     Item : +getElement(amount)
    
     class DeadlineItem
-    DeadlineItem : +isDown
+    DeadlineItem : +isDone
     
     Item <|-- DeadlineItem
 ```
@@ -212,4 +212,4 @@ try {
    * Dog类继承自Animal类
    * 在Animal中实现一个show_species的类方法，打印出当前父类或者子类的species属性，像这样： It's dog!
    * 在 Dog类中实现一个barking的方法，打印出类似这样的句子"Brown Pug is barking!"，其中Brown是这条狗的颜色，Pug 是狗的品种。
-   * 可以在Animal的构造函数中看到颜色和品种是如何被初始化的。
+   * 在Animal的构造函中初始化颜色和品种。
