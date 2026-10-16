@@ -561,3 +561,69 @@ import ShowCard3 from '@/components/show_card_3.vue'
 * 数据可以在父组件中渲染。
 
 ## 组件库
+
+Vue组件库是一套基于Vue.js框架预先编写好的用户界面组件集合。
+
+* [Vant](https://vant-ui.github.io/vant/#/zh-CN/home)轻量、可定制的移动端Vue组件库。
+* [TDesign](https://tdesign.tencent.com/)是由腾讯开源的企业级设计体系与UI组件库，TDesign支持多个框架。
+
+### 基础使用
+
+基础使用会全量注册所有组件，这种方式适用项目大规模使用组件。
+
+```ts
+import { createApp } from 'vue'
+import TDesign from 'tdesign-vue-next'
+import App from './e-td-1.vue'
+
+const app = createApp(App)
+app.use(TDesign)
+app.mount('#app')
+```
+
+* `app.use(TDesign)`添加TDesign组件库，添加组件库需要在`app.mount`前添加。
+
+在页面中使用组件
+
+```vue
+<template>
+  <t-space size="24px">
+    <t-button theme="primary" variant="base">填充按钮</t-button>
+    <t-button theme="default" variant="outline">描边按钮</t-button>
+    <t-button theme="success" variant="dashed">虚框按钮</t-button>
+    <t-button theme="warning" variant="text">文字按钮</t-button>
+  </t-space>
+</template>
+```
+
+### 按需引入
+
+根据需求引入使用的组件，避免生成文件过大
+
+```ts
+import { createApp } from 'vue'
+import { Button as TButton } from 'tdesign-vue-next'
+import App from './e-td-2.vue'
+
+const app = createApp(App)
+app.use(TButton)
+app.mount('#app')
+```
+
+页面中使用
+
+```vue
+<template>
+  <t-button theme="primary" variant="base">按需引入</t-button>
+</template>
+```
+
+### MCP工具
+
+[MCP](https://tdesign.tencent.com/vue-next/mcp)工具用于在AI辅助编程的场景中更高效、更准确地使用TDesign的各种开发资源。在Trae中添加TDesign的MCP工具
+
+<img src="./assets/Xnip2026-10-16_11-01-24.jpg" style="zoom:100%;" />
+
+## 练习
+
+1. 使用TDesign组件完成一个任务清单工具。
