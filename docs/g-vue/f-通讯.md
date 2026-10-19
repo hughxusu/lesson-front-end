@@ -567,6 +567,12 @@ Vue组件库是一套基于Vue.js框架预先编写好的用户界面组件集�
 * [Vant](https://vant-ui.github.io/vant/#/zh-CN/home)轻量、可定制的移动端Vue组件库。
 * [TDesign](https://tdesign.tencent.com/)是由腾讯开源的企业级设计体系与UI组件库，TDesign支持多个框架。
 
+安装TDesign组件库
+
+```shell
+npm i tdesign-vue-next
+```
+
 ### 基础使用
 
 基础使用会全量注册所有组件，这种方式适用项目大规模使用组件。
