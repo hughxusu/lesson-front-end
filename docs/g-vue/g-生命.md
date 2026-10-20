@@ -67,6 +67,8 @@ onUpdated(() => {
 * `onMounted`中发起数据请求。
 * `onBeforeUnmount`进行清理工作，如：清除定时器或事件监听。
 
+## Axios使用
+
 ## `nextTick()`
 
 在Vue中更改响应式状态时，DOM更新不是同步生效，而是由Vue将它们缓存在一个队列中，在某一时刻一起执行。`nextTick()`可以在状态改变后立即使用，以等待DOM更新完成。
@@ -171,3 +173,11 @@ const { dogList, getDog } = useDog()
   </div>
 </template>
 ```
+
+## 动态组件
+
+## 自定义指令
+
+## 练习
+
+1. axios
