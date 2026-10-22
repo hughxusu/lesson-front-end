@@ -69,6 +69,12 @@ onUpdated(() => {
 
 ## Axios使用
 
+在Vue中安装Axios库
+
+```shell
+npm i axios
+```
+
 Vue中可以同时使用Axios库发送数据请求
 
 ```vue
@@ -360,4 +366,4 @@ app.mount('#app')
 
 > [!note]
 >
-> 实现一个Axios的拦截器
+> 实现一个Axios的拦截器，请求https://dummyjson.com/ 接口
