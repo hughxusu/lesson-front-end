@@ -42,5 +42,3 @@ onUpdated(() => {
   <h1>{{ count }}</h1>
   <button @click="count++">Add 1</button>
 </template>
-
-<style scoped></style>

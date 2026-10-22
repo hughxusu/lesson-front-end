@@ -18,5 +18,3 @@ onMounted(() => {
   <hr />
   <img height="300" :src="url" alt="logo" />
 </template>
-
-<style scoped></style>

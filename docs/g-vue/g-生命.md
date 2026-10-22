@@ -69,6 +69,33 @@ onUpdated(() => {
 
 ## Axios使用
 
+Vue中可以同时使用Axios库发送数据请求
+
+```vue
+<script setup lang="ts">
+import { ref, onMounted } from 'vue'
+import axios from 'axios'
+
+const url = ref('')
+async function getDog() {
+  const res = await axios.get('https://dog.ceo/api/breeds/image/random')
+  url.value = res.data.message
+}
+
+onMounted(() => {
+  getDog()
+})
+</script>
+
+<template>
+  <button @click="getDog">获取随机狗</button>
+  <hr />
+  <img height="300" :src="url" alt="logo" />
+</template>
+```
+
+* 数据请求可以封装成方法，请求可以在`onMounted`发起请求。
+
 ## `nextTick()`
 
 在Vue中更改响应式状态时，DOM更新不是同步生效，而是由Vue将它们缓存在一个队列中，在某一时刻一起执行。`nextTick()`可以在状态改变后立即使用，以等待DOM更新完成。
@@ -176,8 +203,161 @@ const { dogList, getDog } = useDog()
 
 ## 动态组件
 
+动态组件可以在多个组件中来回切换，
+
+```vue
+<script setup lang="ts">
+import { ref } from 'vue'
+import Message1 from '@/components/message_1.vue'
+import Message2 from '@/components/message_2.vue'
+
+type MessageKey = keyof typeof massages
+const currentMessage = ref<MessageKey>('Message1')
+
+const massages = {
+  Message1,
+  Message2,
+}
+</script>
+
+<template>
+  <button v-for="(_, index) in massages" :key="index" @click="currentMessage = index">
+    显示{{ index }}
+  </button>
+  <hr />
+  <component :is="massages[currentMessage]" />
+</template>
+```
+
+* 使用`<component>`元素可以设置动态组件，`:is`属性可以设置要显示的组件。
+* 当组件发生变化事，消失的组件会被销毁。
+
+如果组件切换频繁，可以使用`<KeepAlive>`保证组件强行存活。
+
+```vue
+<template>
+	...
+  <KeepAlive>
+    <component :is="massages[currentMessage]" />
+  </KeepAlive>
+</template>
+```
+
+* 使用`<KeepAlive>`将要缓存的组件包起来。
+
+当组件发生切换时，`onActivated`和`onDeactivated`可以监听注解切换的状态。
+
+```ts
+import { onActivated, onDeactivated } from 'vue'
+
+onActivated(() => {
+  console.log('Message1 activated')
+})
+
+onDeactivated(() => {
+  console.log('Message1 deactivated')
+})
+```
+
 ## 自定义指令
+
+Vue中除了内置指令外，还允许用户自定义指令。
+
+> [!warning]
+>
+> 只有当所需功能，只能通过直接的DOM操作来实现时，才应该使用自定义指令。
+
+### 局部指令
+
+直接在`<script setup>`中自定义指令
+
+```vue
+<script setup lang="ts">
+const vHighlight = {
+  mounted: (el: HTMLElement) => {
+    el.classList.add('is-highlight')
+  },
+}
+</script>
+
+<template>
+  <p v-highlight>三十功名尘与土，八千里路云和月。</p>
+</template>
+
+<style scoped lang="less">
+.is-highlight {
+  background-color: yellow;
+}
+</style>
+```
+
+* 任何以`v`开头的驼峰式命名的变量，都可以当作自定义指令使用。
+* 指令不同的生命周期中完成对DOM的操作。
+* 指令一般在项目挂载后生效。[指令的生命周期钩子](https://cn.vuejs.org/guide/reusability/custom-directives.html#directive-hooks)
+* 使用指令和一般的Vue指令一致。
+
+### 全局指令
+
+全局指令给所有DOM添加，但是需要再App中注册。
+
+1. 定义指令操作
+
+```ts
+import type { Directive } from 'vue'
+
+export type HighlightDirective = Directive<HTMLElement, string>
+
+declare module 'vue' {
+  export interface GlobalDirectives {
+    vHighlight: HighlightDirective
+  }
+}
+
+export default {
+  mounted: (el, binding) => {
+    el.style.backgroundColor = binding.value
+  },
+} as HighlightDirective
+```
+
+* `declare module 'vue'`是在vue已有的类型声明里追加一个成员。
+* `mounted: (el, binding)`中`binding`参数可以获得指令的值。
+
+2. 在App中注册指令
+
+```ts
+import { createApp } from 'vue'
+import highlight from './directives/highlight'
+import App from './f-directives-2.vue'
+
+const app = createApp(App)
+app.directive('highlight', highlight)
+app.mount('#app')
+```
+
+3. 在组件的DOM元素中使用指令
+
+```vue
+<template>
+  <p v-highlight="'skyblue'">莫等闲，白了少年头，空悲切！</p>
+</template>
+```
 
 ## 练习
 
-1. axios
+在Vue项目使用Axios会统一设置请求拦截器和响应拦截器，拦截器便于 代码复用与统一管理。
+
+* 请求拦截器
+  * 设置请求的跟路径
+  * 统一携带Token
+  * 开启全局Loading
+*  响应拦截器
+  * 统一的状态码错误处理
+  * 关闭全局Loading
+  * 剥离冗余的外层数据
+
+拦截器代码一般放在`src/utils/request.ts`文件中
+
+> [!note]
+>
+> 实现一个Axios的拦截器

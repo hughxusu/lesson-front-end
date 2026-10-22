@@ -2,52 +2,6 @@
 
 ## Vue语法
 
-### 声明周期
-
-<img src="https://cn.vuejs.org/images/lifecycle.png" style="zoom: 40%;" />
-
-```html
-<!--
-vue对象的生命周期: 
-1. 初始化显示: beforeCreate(); created(); beforeMount(); mounted();
-2. 更新状态: beforeUpdate(); updated();
-3. 销毁vue实例: vm.$destory()-调用销毁方法; beforeDestory(); destoryed();
-
-常用的生命周期方法
-1. created()/mounted(): 发送ajax请求, 启动定时器等异步任务
-2. beforeDestory(): 做收尾工作, 如: 清除定时器
--->
-<div id="test">
-  <button @click="destroyVue">destory vue</button>
-  <p v-if="isShow">尚硅谷IT教育</p>
-</div>
-
-<script type="text/javascript">
-  new Vue({
-    el: '#test',
-    data: {
-      isShow: true
-    },
-
-    mounted () {
-      this.intervalId = setInterval(() => { // 执行异步任务
-        this.isShow = !this.isShow
-      }, 1000)
-    },
-
-    beforeDestroy() {
-      clearInterval(this.intervalId) // 执行收尾的工作
-    },
-
-    methods: {
-      destroyVue () {
-        this.$destroy() // 调用销毁方法
-      }
-    }
-  })
-</script>
-```
-
 ### 过渡和动画
 
 vue动画是通过操作css的trasition或animation，vue会给目标元素添加/移除特定的class。

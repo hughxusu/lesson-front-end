@@ -41,7 +41,7 @@ flowchart LR
   2. 根据请求内容查找相关资源。
   3. 将资源整合成网页，返回给浏览器。
 
-访问网站：https://www.ncut.edu.cn/，
+访问网站：https://www.ncut.edu.cn/
 
 <img src="./assets/Xnip2026-09-09_23-08-24.jpg" style="zoom:55%;" />
 
@@ -258,7 +258,7 @@ JSON数据结构
 * JSON中不允许使用单引号表示任何信息。
 * JSON中不能写注释。
 * JSON的最外层只能是对象或数组。
-* JSON中没有`undefined`数据类型，只要`null`类型。
+* JSON中没有`undefined`数据类型，只有`null`类型。
 
 > [!warning]
 >
