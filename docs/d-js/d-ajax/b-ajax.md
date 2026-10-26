@@ -308,20 +308,18 @@ xhr.onreadystatechange = function() {
 
 ```js
 let loginForm = document.querySelector('#loginForm');
-loginForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    let username = document.querySelector('#username').value;
-    let password = document.querySelector('#password').value;
-    let formData = new FormData(this);
-    let xhr = new XMLHttpRequest();
-    xhr.open('POST', 'https://dummyjson.com/user/login');
-    xhr.send(formData);
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            document.querySelector('#result').innerHTML = this.responseText;
-        }
+loginForm.addEventListener('submit', function (e) {
+  e.preventDefault();
+  let formData = new FormData(this);
+  let xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://dummyjson.com/user/login');
+  xhr.send(formData);
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      document.querySelector('#result').innerHTML = this.responseText;
     }
-})
+  };
+});
 ```
 
 * `new FormData(this)`根据`<form>`标签创建对象，对象中直接包含了表单中的数据。`this`指向`loginForm`。

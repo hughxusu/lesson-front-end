@@ -34,7 +34,7 @@
 ```
 
 * `<script>`会保证执行网页是去BootCDN上加载`axios`包，可以在JavaScript程序中直接使用`axios`对象。
-* `defer`带有defer的脚步会按顺序执行
+* `defer`带有defer的脚本会按顺序执行
 
 ## 使用Axios库
 
