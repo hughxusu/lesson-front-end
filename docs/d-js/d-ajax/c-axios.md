@@ -111,7 +111,7 @@ btn.addEventListener('click', function() {
      url: '请求的URL地址',
      data: { /* POST数据 */ },
      params: { /* GET参数 */ }
- }) .then(callback)
+ }).then(callback)
 ```
 
 1. 发送`get`请求，`get`请求参数用`params`表示。
