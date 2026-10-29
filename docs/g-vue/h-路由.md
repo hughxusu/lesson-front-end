@@ -24,17 +24,24 @@ npm install vue-router
 ```ts
 import { createRouter, createWebHistory } from 'vue-router'
 
+// 路由器实例，用于管理路由。
 const router = createRouter({
+  // 设置路由的模式
   history: createWebHistory(),
+  // 用于设置路由路径
   routes: [],
 })
 
-export default router
+export default router // 将路由器导出可以在App中使用。
 ```
 
-* `const router`表示路由器实例，用于管理路由。
-* `routes: []`用于设置路由路径。
-* `export default router`将路由器导出可以在App中使用。
+* `history`属性用于设置路由的模式
+  * `createWebHistory()`模式
+    * URL更加美观，不带有`#`，更接近传统的网站URL。
+    * 后期项目上线，需要服务端配合处理路径问题，否则刷新会有`404`错误。
+  * `createWebHashHistory()`模式
+    * 兼容性更好，因为不需要服务器端处理路径。
+    * URL带有`#`不太美观，且在SEO优化方面相对较差。
 
 在`main.ts`中使用路由器功能
 
@@ -51,4 +58,19 @@ app.mount('#app')
 
 ### 组件的分类
 
-* 通用组件：在不同的页面中可以复原的组件，如：按钮、数据卡片等。
+* 通用组件：在不同的页面中可以复用的组件，如：按钮、数据卡片等。
+* 页面组件：显示页面信息，通过URL地址访问，虽然被称为页面，但本质上还是Vue的组件。
+
+Vue中组件的管理
+
+```shell
+.
+├── src
+│   ├── components     # 通用组件
+│   ├── pages          # 页面组件
+│   ├── router         # 路由配置
+│   ├── App.vue
+│   └── main.ts
+...
+```
+
