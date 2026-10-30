@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { RouterLink } from 'vue-router'
+import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
   <div class="nav">
-    <RouterLink class="nav-link" to="/">首页</RouterLink>
-    <RouterLink class="nav-link" to="/about">关于</RouterLink>
-    <RouterLink class="nav-link" to="/contact">联系</RouterLink>
+    <RouterLink class="nav-link" to="/recipes">食谱</RouterLink>
+    <RouterLink class="nav-link" to="/todos">待办事项</RouterLink>
+    <RouterLink class="nav-link" to="/user">用户</RouterLink>
   </div>
   <RouterView />
 </template>
@@ -14,13 +14,19 @@ import { RouterLink } from 'vue-router'
 <style scoped lang="less">
 .nav {
   height: 60px;
-  background-color: #f5f5f5;
+  background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
 
-  .nav-link {
+  a {
     margin: 0 10px;
+    border: 1px solid #666;
+    border-radius: 5px;
+    padding: 5px 10px;
+    background-color: #666;
+    text-decoration: none;
+    color: white;
   }
 }
 </style>

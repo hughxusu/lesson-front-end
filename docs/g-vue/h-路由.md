@@ -68,9 +68,34 @@ Vue中组件的管理
 ├── src
 │   ├── components     # 通用组件
 │   ├── pages          # 页面组件
+│   │   ├── recipes.vue
+│   │   ├── todoes.vue
+│   │   └── user.vue
 │   ├── router         # 路由配置
 │   ├── App.vue
 │   └── main.ts
 ...
+```
+
+路由配置中，创建路由与页面的映射
+
+```ts
+const router = createRouter({
+  history: createWebHistory(),
+  routes: [
+    {
+      path: '/',
+      component: Recipes,
+    },
+    {
+      path: '/todoes',
+      component: Todoes,
+    },
+    {
+      path: '/user',
+      component: User,
+    },
+  ],
+})
 ```
 
