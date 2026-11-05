@@ -31,7 +31,9 @@ watch(() => route.params.id, showFirstProduct)
     <div class="products">
       <ul>
         <li v-for="product in products" :key="product.id">
-          <RouterLink :to="{ name: 'product-detail', params: { id: product.id, name: product.title } }">
+          <RouterLink
+            :to="{ name: 'product-detail', params: { id: product.id, name: product.title } }"
+          >
             <h3>{{ product.title }}</h3>
           </RouterLink>
         </li>
@@ -51,7 +53,7 @@ watch(() => route.params.id, showFirstProduct)
   }
   .products {
     display: flex;
-    align-items: flex-start;
+    align-items: top;
     gap: 20px;
     ul {
       margin-top: 20px;
@@ -62,7 +64,9 @@ watch(() => route.params.id, showFirstProduct)
       overflow: auto;
       overflow-x: hidden;
       a {
-        display: block;
+        display: flex;
+        align-items: center;
+        gap: 10px;
         text-decoration: none;
         color: black;
 
@@ -83,9 +87,6 @@ watch(() => route.params.id, showFirstProduct)
       margin-top: 20px;
       flex: 1;
       min-width: 0;
-      height: 600px;
-      padding: 20px;
-      background-color: white;
     }
   }
 }
