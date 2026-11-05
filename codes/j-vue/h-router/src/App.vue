@@ -4,9 +4,10 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <template>
   <div class="nav">
-    <RouterLink class="nav-link" to="/recipes">食谱</RouterLink>
-    <RouterLink class="nav-link" to="/todos">待办事项</RouterLink>
     <RouterLink class="nav-link" to="/user">用户</RouterLink>
+    <RouterLink class="nav-link" :to="{ path: '/todos' }">待办事项</RouterLink>
+    <RouterLink class="nav-link" :to="{ name: 'recipes' }">食谱</RouterLink>
+    <RouterLink class="nav-link" :to="{ name: 'products' }">商品</RouterLink>
   </div>
   <RouterView />
 </template>
@@ -27,6 +28,11 @@ import { RouterLink, RouterView } from 'vue-router'
     background-color: #666;
     text-decoration: none;
     color: white;
+    font: 18px bold;
+
+    &.router-link-active {
+      color: red;
+    }
   }
 }
 </style>
