@@ -64,18 +64,25 @@ app.mount('#app')
 Vue中组件的管理
 
 ```shell
-.
-├── src
-│   ├── components     # 通用组件
-│   ├── pages          # 页面组件
-│   │   ├── recipes.vue
-│   │   ├── todoes.vue
-│   │   └── user.vue
-│   ├── router         # 路由配置
-│   ├── App.vue
-│   └── main.ts
-...
+src
+├── assets                     # 全局样式
+├── App.vue
+├── components                 # 通用组件
+│   ├── product-detail.vue
+│   └── recipe-detail.vue
+├── pages                      # 页面组件
+│   ├── products.vue
+│   ├── recipes.vue
+│   ├── todos.vue
+│   └── user.vue
+├── router                     # 路由配置
+│   └── index.ts
+└── main.ts
 ```
+
+* 页面组件通常保存在`pages`和`viwes`文件夹内。
+
+### 路由导航
 
 路由配置中，创建路由与页面的映射
 
@@ -84,18 +91,44 @@ const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
-      path: '/',
-      component: Recipes,
+      path: '/',          // 重定向根路由
+      redirect: '/user',
     },
     {
-      path: '/todoes',
-      component: Todoes,
+      path: '/user',      // 表示路由路径
+      component: User,    // 表示映射的页面组件
     },
     {
-      path: '/user',
-      component: User,
+      name: 'todos',      // 可以给路由起名字
+      path: '/todos',
+      component: Todos,
     },
+    ...
   ],
 })
+```
+
+* 重定向可以指定路径打开后默认跳转的页面。重定向根路由可以指定，根路径默认跳转的页面。
+* 路由名字也可以用于页面跳转。
+
+在页面中使用路由组件
+
+```vue
+<script setup lang="ts">
+import { RouterLink, RouterView } from 'vue-router'
+</script>
+
+<template>
+  <div class="nav">
+    <!-- 声明式导航 -->
+    <RouterLink class="nav-link" to="/user">用户</RouterLink>
+    <RouterLink class="nav-link" :to="{ path: '/todos' }">待办事项</RouterLink>
+    <RouterLink class="nav-link" :to="{ name: 'recipes' }">食谱</RouterLink>
+    <RouterLink class="nav-link" :to="{ name: 'products' }">商品</RouterLink>
+  </div>
+	<!-- 展示区 -->
+  <RouterView />
+</template>
+
 ```
 

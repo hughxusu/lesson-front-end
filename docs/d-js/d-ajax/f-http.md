@@ -141,10 +141,8 @@ HTTP请求方法，属于HTTP协议中的一部分，用来表明要对服务器
 | `PATCH`  | 在服务器更新资源（客户端提供改变的属性）。       |
 | `DELETE` | 从服务器删除资源。                               |
 
-> [!warning]
->
-> 1. `POST`/`PUT`/`PATCH`携带请求体的数据格式是一致的。
-> 2. `GET`/`DELETE`请求的格式是一致的，不携带请求体，请求参数在URL中。
+* `POST`/`PUT`/`PATCH`携带请求体的数据格式是一致的。
+* `GET`/`DELETE`请求的格式是一致的，不携带请求体，请求参数在URL中。
 
 [HTTP全部请求方法](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Reference/Methods)
 
