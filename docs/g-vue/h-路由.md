@@ -82,8 +82,6 @@ src
 
 * 页面组件通常保存在`pages`和`viwes`文件夹内。
 
-### 路由导航
-
 路由配置中，创建路由与页面的映射
 
 ```ts
@@ -103,6 +101,12 @@ const router = createRouter({
       path: '/todos',
       component: Todos,
     },
+    {
+      name: 'recipes',
+      path: '/recipes',
+      component: Recipes,
+      children: [],       // 配置子路由
+    },
     ...
   ],
 })
@@ -111,7 +115,9 @@ const router = createRouter({
 * 重定向可以指定路径打开后默认跳转的页面。重定向根路由可以指定，根路径默认跳转的页面。
 * 路由名字也可以用于页面跳转。
 
-在页面中使用路由组件
+### 声明式导航
+
+在页面中使用路由组件`RouterLink`类，配置页面导航为声明式导航。
 
 ```vue
 <script setup lang="ts">
@@ -130,5 +136,84 @@ import { RouterLink, RouterView } from 'vue-router'
   <RouterView />
 </template>
 
+```
+
+1. 直接使用路径进行导航
+
+```html
+<RouterLink class="nav-link" to="/user">用户</RouterLink>
+```
+
+2. 使用对象配置路径导航，需要使用Vue的绑定属性写法。
+
+```html
+<RouterLink class="nav-link" :to="{ path: '/todos' }">待办事项</RouterLink>
+```
+
+3. 命名路由，给路由规则命名。使用对象配置命名路由。
+
+```html
+<RouterLink class="nav-link" :to="{ name: 'recipes' }">食谱</RouterLink>
+```
+
+`<RouterView />`作为挂载点用于切换不同的路由页面。
+
+> [!important]
+>
+> 默认情况下，路由组件消失，实际是被销毁；路径组件显示，实际是重新创建页面。
+
+### 嵌套路由
+
+在一级路由下可以嵌套二级路由
+
+```ts
+const router = createRouter({
+  history: createWebHistory(),
+  routes: [
+		...
+    {
+      name: 'recipes',
+      path: '/recipes',
+      component: Recipes,
+      children: [
+        {
+          name: 'recipe-detail',         // 配置子路由映射的页面
+          path: 'detail',
+          component: RecipeDetail,
+        },
+      ],
+    },
+    {
+      name: 'products',
+      path: '/products',
+      component: Products,
+      children: [
+        {
+          name: 'product-detail',
+          path: 'detail/:id/:name',
+          component: ProductDetail,
+        },
+      ],
+    },
+  ],
+})
+```
+
+1. 使用路径实现子路由导航
+
+```html
+<div class="container">
+	...
+  <div class="recipes">
+    <ul>
+      <li v-for="recipe in recipes" :key="recipe.id">
+        <RouterLink :to="{ path: '/recipes/detail' }">
+          <h3>{{ recipe.name }}</h3>
+        </RouterLink>
+      </li>
+    </ul>
+		...
+  </div>
+</div>
 ```
 

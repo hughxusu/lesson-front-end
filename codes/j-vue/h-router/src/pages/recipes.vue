@@ -33,7 +33,7 @@ watch(() => route.query.id, showFirstRecipe)
         <li v-for="recipe in recipes" :key="recipe.id">
           <RouterLink
             :class="{ active: route.query.id === String(recipe.id) }"
-            :to="{ name: 'recipe-detail', query: { id: recipe.id, name: recipe.name } }"
+            :to="{ path: '/recipes/detail', query: { id: recipe.id, name: recipe.name } }"
           >
             <h3>{{ recipe.name }}</h3>
           </RouterLink>
