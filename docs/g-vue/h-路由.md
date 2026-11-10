@@ -375,5 +375,3 @@ const showFirstRecipe = () => {
 </RouterLink>
 ```
 
-
-
