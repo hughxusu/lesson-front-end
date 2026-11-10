@@ -3,10 +3,9 @@ import axios from 'axios'
 import { onMounted, ref, watch } from 'vue'
 import { RouterLink, RouterView, useRoute, useRouter } from 'vue-router'
 
-const route = useRoute()
-const router = useRouter()
 const products = ref<{ id: number; title: string }[]>([])
 
+const router = useRouter()
 const showFirstProduct = () => {
   const first = products.value[0]
   if (!route.params.id && first) {
@@ -14,14 +13,15 @@ const showFirstProduct = () => {
   }
 }
 
+const route = useRoute()
+watch(() => route.params.id, showFirstProduct)
+
 onMounted(() => {
   axios.get('https://dummyjson.com/products?limit=10&skip=10&select=title').then((res) => {
     products.value = res.data.products
     showFirstProduct()
   })
 })
-
-watch(() => route.params.id, showFirstProduct)
 </script>
 
 <template>
@@ -32,6 +32,7 @@ watch(() => route.params.id, showFirstProduct)
       <ul>
         <li v-for="product in products" :key="product.id">
           <RouterLink
+            replace
             :to="{ name: 'product-detail', params: { id: product.id, name: product.title } }"
           >
             <h3>{{ product.title }}</h3>

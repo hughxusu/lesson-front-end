@@ -3,10 +3,10 @@ import { ref, onMounted, watch } from 'vue'
 import { RouterLink, RouterView, useRoute, useRouter } from 'vue-router'
 
 import axios from 'axios'
-const route = useRoute()
-const router = useRouter()
+
 const recipes = ref<any>([])
 
+const router = useRouter()
 const showFirstRecipe = () => {
   const first = recipes.value[0]
   if (!route.query.id && first) {
@@ -14,14 +14,15 @@ const showFirstRecipe = () => {
   }
 }
 
+const route = useRoute()
+watch(() => route.query.id, showFirstRecipe)
+
 onMounted(() => {
   axios.get('https://dummyjson.com/recipes?limit=10&skip=0&select=name').then((res) => {
     recipes.value = res.data.recipes
     showFirstRecipe()
   })
 })
-
-watch(() => route.query.id, showFirstRecipe)
 </script>
 
 <template>

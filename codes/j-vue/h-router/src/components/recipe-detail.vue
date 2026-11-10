@@ -3,10 +3,9 @@ import { reactive, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import axios from 'axios'
 
-const route = useRoute()
-
 const recipe = reactive<any>({})
 
+const route = useRoute()
 const fetchRecipe = (id: string) => {
   if (!id) return
   axios.get(`https://dummyjson.com/recipes/${id}`).then((res) => {

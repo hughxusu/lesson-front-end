@@ -115,7 +115,7 @@ const router = createRouter({
 * 重定向可以指定路径打开后默认跳转的页面。重定向根路由可以指定，根路径默认跳转的页面。
 * 路由名字也可以用于页面跳转。
 
-### 声明式导航
+## 声明式导航
 
 在页面中使用路由组件`RouterLink`类，配置页面导航为声明式导航。
 
@@ -162,7 +162,7 @@ import { RouterLink, RouterView } from 'vue-router'
 >
 > 默认情况下，路由组件消失，实际是被销毁；路径组件显示，实际是重新创建页面。
 
-### 嵌套路由
+## 嵌套路由
 
 在一级路由下可以嵌套二级路由
 
@@ -207,8 +207,31 @@ const router = createRouter({
   <div class="recipes">
     <ul>
       <li v-for="recipe in recipes" :key="recipe.id">
+        <!-- 使用路径导航子路由，写完整的路径。 -->
         <RouterLink :to="{ path: '/recipes/detail' }">
           <h3>{{ recipe.name }}</h3>
+        </RouterLink>
+      </li>
+    </ul>
+    <div class="detail">
+      <!-- 显示子路由映射的页面 -->
+      <RouterView />
+    </div>
+  </div>
+</div>
+```
+
+2. 使用命名路由进行导航
+
+```html
+<div class="container">
+	...
+  <div class="products">
+    <ul>
+      <li v-for="product in products" :key="product.id">
+        <!-- 命名路由导航，只写路由名称即可 -->
+        <RouterLink :to="{ name: 'product-detail' }">
+          <h3>{{ product.title }}</h3>
         </RouterLink>
       </li>
     </ul>
@@ -216,4 +239,141 @@ const router = createRouter({
   </div>
 </div>
 ```
+
+## 路由传参
+
+在跳转路由时，可以给路由对应的组件传递参数。
+
+> [!warning]
+>
+> 路由参数最好通过对象方式传递给子组件。
+
+### `query`参数
+
+`query`参数规则与`get`请求的查询参数一致，在`RouterLink`发送请求参数。
+
+```html
+<ul>
+  <li v-for="recipe in recipes" :key="recipe.id">
+    <!-- 传递query对象 { id: recipe.id, name: recipe.name } -->
+    <RouterLink
+      :class="{ active: route.query.id === String(recipe.id) }"
+      :to="{ path: '/recipes/detail', query: { id: recipe.id, name: recipe.name } }"
+    >
+      <h3>{{ recipe.name }}</h3>
+    </RouterLink>
+  </li>
+</ul>
+```
+
+`query`参数会显示的拼接在`url`路径中
+
+```url
+http://localhost:5173/recipes/detail?id=1&name=Classic+Margherita+Pizza
+```
+
+使用路由的响应式对象类接收参数
+
+```ts
+...
+// route是一个相应式对象，包含当前路径的相关信息
+const route = useRoute()  
+// 通过route中的route.query对象可以读取查询参数
+watch(() => route.query.id, showFirstRecipe)  
+...
+```
+
+> [!important]
+>
+> `route`对象还包括：`path`、`meta`和`name`等信息。
+
+### `params`参数
+
+`params`参数为路径参数，参数会以路径的形式拼接起来。首先要在路由中配置参数占位符
+
+```ts
+const router = createRouter({
+  history: createWebHistory(),
+  routes: [
+    ...
+    {
+      name: 'products',
+      path: '/products',
+      component: Products,
+      children: [
+        {
+          name: 'product-detail',
+          // id和name为占位符，读取参数的名称
+          path: 'detail/:id/:name',   
+          component: ProductDetail,
+        },
+      ],
+    },
+  ],
+})
+```
+
+在`RouterLink`发送请求参数
+
+```html
+<ul>
+  <li v-for="product in products" :key="product.id">
+    <!-- 传递params对象， params的键应用与路径配置一致-->
+    <RouterLink
+      :to="{ name: 'product-detail', params: { id: product.id, name: product.title } }"
+    >
+      <h3>{{ product.title }}</h3>
+    </RouterLink>
+  </li>
+</ul>
+```
+
+参数会拼接在路径中
+
+```url
+http://localhost:5173/products/detail/11/Annibale%20Colombo%20Bed
+```
+
+使用路由的响应式对象类接收参数
+
+```ts
+const route = useRoute()
+// 通过route中的route.params对象可以读取查询参数
+watch(() => route.params.id, showFirstProduct)
+```
+
+> [!caution]
+>
+> 传递`params`参数时，使用对象写法，必须使用`name`配置项，不能用`path`。
+
+## 编程式导航
+
+用代码来进行路由跳转，需要引入`router`的全局路由器实例，用来控制路由跳转
+
+* `router.push()`是追加历史记录（默认值）。
+* `router.replace()` 是替换当前记录。
+
+```ts
+const router = useRouter()
+const showFirstRecipe = () => {
+  const first = recipes.value[0]
+  if (!route.query.id && first) {
+    // 使用路由器进行跳转
+    router.replace({ name: 'recipe-detail', query: { id: first.id, name: first.name } })
+  }
+}
+```
+
+在声明式导航中使用`replace`
+
+```html
+<RouterLink
+  replace
+  :to="{ name: 'product-detail', params: { id: product.id, name: product.title } }"
+>
+  <h3>{{ product.title }}</h3>
+</RouterLink>
+```
+
+
 
