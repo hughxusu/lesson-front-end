@@ -13,9 +13,7 @@ flowchart LR
 * Firefox浏览器，OdinMonkey（奥丁猴）。 
 * IE浏览器， Chakra（查克拉）。
 
-**在浏览器中运行**
-
-浏览器中的JavaScript运行时环境，由浏览器提供的内置API（WEB API）及JavaScript解析引擎组成。
+在浏览器中运行：浏览器中的JavaScript运行时环境，由浏览器提供的内置API（WEB API）及JavaScript解析引擎组成。
 
 <img src="./assets/webapi.jpg" style="zoom:65%;" />
 
@@ -28,9 +26,7 @@ flowchart LR
 >
 > JavaScript是否可以操作电脑上的文件？
 
-**在服务端运行**
-
-Node.js是一个基于V8引擎的JavaScript运行环境，可以在PC上运行。
+在电脑端运行：Node.js是一个基于V8引擎的JavaScript运行环境，可以在PC上运行。
 
 <img src="./assets/node.jpg" style="zoom:65%;" />
 
