@@ -200,7 +200,7 @@ Less语法可以使用嵌套来实现后代选择器。
 Less中可以引用其它Less文件，使用 `@import path`
 
 ```less
-@import './base.less';
+@import './d-变量.less';
 
 .son {
     background-color: @primary;

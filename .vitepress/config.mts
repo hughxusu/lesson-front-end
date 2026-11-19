@@ -130,7 +130,7 @@ export default withMermaid({
           { text: "组件通讯", link: "/docs/g-vue/f-通讯.md" },
           { text: "生命周期", link: "/docs/g-vue/g-生命.md" },
           { text: "路由", link: "/docs/g-vue/h-路由.md" },
-          { text: "全局状态", link: "/docs/g-vue/i-全局.md" },
+          // { text: "全局状态", link: "/docs/g-vue/i-全局.md" },
         ],
       },
       // {
