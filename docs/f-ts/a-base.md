@@ -68,6 +68,8 @@ tsx a-hello.ts
 
 * 可以使用Code Runner执行Typescript代码。
 
+3. 搜索`terminal.integrated.defaultProfile.osx`设置为` zsh`，设置程序的执行codebuddy的执行终端。
+
 ## 基本语法
 
 TypeScript是静态类型语言，也就是说变量的类型一旦确定，就不能改变。
